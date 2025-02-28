@@ -1,4 +1,4 @@
-name: tox
+name: commitizen
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
 
     - name: Run Commitizen Check
       run: |
-        commitizen check --rev-range origin/main..HEAD
+        cz check --rev-range origin/main..HEAD
 
     - name: Run Commitizen Bump
       run: |
