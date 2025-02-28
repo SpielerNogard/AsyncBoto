@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .create_replica_action import CreateReplicaAction
 from .delete_replica_action import DeleteReplicaAction
 
@@ -19,5 +19,5 @@ class ReplicaUpdate(BaseModel):
         The name of the existing replica to be removed.
     """
 
-    Create: Optional[CreateReplicaAction] = None
-    Delete: Optional[DeleteReplicaAction] = None
+    Create: CreateReplicaAction | None = None
+    Delete: DeleteReplicaAction | None = None

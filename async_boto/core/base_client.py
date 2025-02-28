@@ -1,20 +1,23 @@
 import json as json_
 import logging
-from typing import Any, Dict, Literal, Optional
+import traceback
+from typing import Any, Literal
 
 import aiohttp
 import boto3
-from .response import AsyncRequestResponse
-from .aws_sig_v4_headers import aws_sig_v4_headers
-from async_boto.utils.generate_param_tuple import generate_param_tuple
-from async_boto.utils.json_dumps import json_dump
-import traceback
 from tenacity import (
     retry,
     retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
 )
+
+from async_boto.utils.generate_param_tuple import generate_param_tuple
+from async_boto.utils.json_dumps import json_dump
+
+from .aws_sig_v4_headers import aws_sig_v4_headers
+from .response import AsyncRequestResponse
+
 logger = logging.getLogger(__name__)
 
 
@@ -28,10 +31,10 @@ class BaseClient:
     async def _get(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="GET",
@@ -45,10 +48,10 @@ class BaseClient:
     async def _post(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="POST",
@@ -62,10 +65,10 @@ class BaseClient:
     async def _put(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="PUT",
@@ -79,10 +82,10 @@ class BaseClient:
     async def _delete(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="DELETE",
@@ -96,10 +99,10 @@ class BaseClient:
     async def _head(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="HEAD",
@@ -113,10 +116,10 @@ class BaseClient:
     async def _options(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="OPTIONS",
@@ -130,10 +133,10 @@ class BaseClient:
     async def _patch(
         self,
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         return await self._async_request(
             method="PATCH",
@@ -144,16 +147,20 @@ class BaseClient:
             headers=headers,
         )
 
-    @retry(stop=stop_after_attempt(5), wait=wait_exponential(multiplier=10, max=60),
-        retry=retry_if_exception_type(aiohttp.client.ClientOSError), reraise=True, )
+    @retry(
+        stop=stop_after_attempt(5),
+        wait=wait_exponential(multiplier=10, max=60),
+        retry=retry_if_exception_type(aiohttp.client.ClientOSError),
+        reraise=True,
+    )
     async def _async_request(
         self,
         method: Literal["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH"],
         url: str,
-        json: Optional[Dict[str, Any]] = None,
-        data: Optional[bytes] = None,
-        params: Optional[Dict[str, Any]] = None,
-        headers: Optional[Dict[str, Any]] = None,
+        json: dict[str, Any] | None = None,
+        data: bytes | None = None,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
     ) -> AsyncRequestResponse:
         session = aiohttp.ClientSession()
 
@@ -179,7 +186,7 @@ class BaseClient:
             async with session.request(
                 method=method, params=params, data=data, url=url, headers=signed_headers
             ) as response:
-                print(f'{method=} {params=} {data=} {url=} {headers=}')
+                print(f"{method=} {params=} {data=} {url=} {headers=}")
                 try:
                     resp_json = await response.json(content_type=None)
                 except json_.decoder.JSONDecodeError:
@@ -193,7 +200,7 @@ class BaseClient:
                     url=response.url,
                     headers=response.headers,
                 )
-        except:
+        except:  # noqa: E722
             logger.error(traceback.format_exc())
         finally:
             await session.close()

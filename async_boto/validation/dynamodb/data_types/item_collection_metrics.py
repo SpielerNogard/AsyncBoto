@@ -1,6 +1,6 @@
 from pydantic import BaseModel, conlist
-from typing import Dict, List, Optional
-from .attribute_value import AttributeValue, AttributeValueDict
+
+from .attribute_value import AttributeValueDict
 
 
 class ItemCollectionMetrics(BaseModel):
@@ -15,5 +15,5 @@ class ItemCollectionMetrics(BaseModel):
         An estimate of item collection size, in gigabytes.
     """
 
-    ItemCollectionKey: Optional[AttributeValueDict] = None
-    SizeEstimateRangeGB: Optional[conlist(float, min_length=2, max_length=2)] = None
+    ItemCollectionKey: AttributeValueDict | None = None
+    SizeEstimateRangeGB: conlist(float, min_length=2, max_length=2) | None = None

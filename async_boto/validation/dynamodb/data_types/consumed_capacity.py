@@ -1,11 +1,14 @@
+# ruff: noqa: E501
 from pydantic import BaseModel, constr
-from typing import Dict, Optional
+
 from .capacity import Capacity
 
 
 class ConsumedCapacity(BaseModel):
     """
-    The capacity units consumed by an operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation.
+    The capacity units consumed by an operation. The data returned includes the total
+    provisioned throughput consumed, along with statistics for the table and any indexes
+    involved in the operation.
 
     Attributes
     ----------
@@ -25,14 +28,16 @@ class ConsumedCapacity(BaseModel):
         The total number of write capacity units consumed by the operation.
     """
 
-    CapacityUnits: Optional[float] = None
-    GlobalSecondaryIndexes: Optional[
-        Dict[constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+"), Capacity]
-    ] = None
-    LocalSecondaryIndexes: Optional[
-        Dict[constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+"), Capacity]
-    ] = None
-    ReadCapacityUnits: Optional[float] = None
-    Table: Optional[Capacity] = None
-    TableName: Optional[constr(min_length=1, max_length=1024)] = None
-    WriteCapacityUnits: Optional[float] = None
+    CapacityUnits: float | None = None
+    GlobalSecondaryIndexes: (
+        dict[constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+"), Capacity]
+        | None
+    ) = None
+    LocalSecondaryIndexes: (
+        dict[constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+"), Capacity]
+        | None
+    ) = None
+    ReadCapacityUnits: float | None = None
+    Table: Capacity | None = None
+    TableName: constr(min_length=1, max_length=1024) | None = None
+    WriteCapacityUnits: float | None = None

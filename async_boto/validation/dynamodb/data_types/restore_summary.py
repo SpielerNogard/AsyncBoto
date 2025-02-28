@@ -1,6 +1,7 @@
-from pydantic import BaseModel, constr
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel, constr
+
 
 class RestoreSummary(BaseModel):
     """
@@ -17,7 +18,8 @@ class RestoreSummary(BaseModel):
     SourceTableArn : Optional[str]
         The ARN of the source table of the backup that is being restored.
     """
+
     RestoreDateTime: datetime
     RestoreInProgress: bool
-    SourceBackupArn: Optional[constr(min_length=37, max_length=1024)] = None
-    SourceTableArn: Optional[constr(min_length=1, max_length=1024)] = None
+    SourceBackupArn: constr(min_length=37, max_length=1024) | None = None
+    SourceTableArn: constr(min_length=1, max_length=1024) | None = None

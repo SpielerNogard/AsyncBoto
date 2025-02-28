@@ -1,9 +1,10 @@
+# ruff: noqa: E501
 from pydantic import BaseModel, constr
-from typing import List, Optional
+
+from .auto_scaling_settings_update import AutoScalingSettingsUpdate
 from .replica_global_secondary_index_auto_scaling_update import (
     ReplicaGlobalSecondaryIndexAutoScalingUpdate,
 )
-from .auto_scaling_settings_update import AutoScalingSettingsUpdate
 
 
 class ReplicaAutoScalingUpdate(BaseModel):
@@ -21,9 +22,9 @@ class ReplicaAutoScalingUpdate(BaseModel):
     """
 
     RegionName: constr(min_length=1)
-    ReplicaGlobalSecondaryIndexUpdates: Optional[
-        List[ReplicaGlobalSecondaryIndexAutoScalingUpdate]
-    ] = None
-    ReplicaProvisionedReadCapacityAutoScalingUpdate: Optional[
-        AutoScalingSettingsUpdate
-    ] = None
+    ReplicaGlobalSecondaryIndexUpdates: (
+        list[ReplicaGlobalSecondaryIndexAutoScalingUpdate] | None
+    ) = None
+    ReplicaProvisionedReadCapacityAutoScalingUpdate: (
+        AutoScalingSettingsUpdate | None
+    ) = None

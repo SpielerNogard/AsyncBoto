@@ -8,6 +8,6 @@ def json_dump(obj: Any):
     json.dumps
     """
 
-    if isinstance(obj, (datetime.datetime, datetime.date)):
+    if isinstance(obj, datetime.datetime | datetime.date):
         return obj.isoformat()
     raise Exception(f"Type {type(obj)} not serializable")

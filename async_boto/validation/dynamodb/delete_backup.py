@@ -1,5 +1,7 @@
 from pydantic import BaseModel, constr
+
 from .data_types.backup_description import BackupDescription as BackupDescriptionModel
+
 
 class DeleteBackupRequest(BaseModel):
     """
@@ -10,6 +12,7 @@ class DeleteBackupRequest(BaseModel):
     BackupArn : str
         The ARN associated with the backup.
     """
+
     BackupArn: constr(min_length=37, max_length=1024)
 
 
@@ -22,4 +25,5 @@ class DeleteBackupResponse(BaseModel):
     BackupDescription : dict
         Contains the description of the backup created for the table.
     """
+
     BackupDescription: BackupDescriptionModel

@@ -1,5 +1,6 @@
+from typing import Literal
+
 from pydantic import BaseModel, constr
-from typing import Optional, Literal
 
 
 class TimeToLiveDescription(BaseModel):
@@ -14,7 +15,7 @@ class TimeToLiveDescription(BaseModel):
         The TTL status for the table.
     """
 
-    AttributeName: Optional[constr(min_length=1, max_length=255)] = None
-    TimeToLiveStatus: Optional[
-        Literal["ENABLING", "DISABLING", "ENABLED", "DISABLED"]
-    ] = None
+    AttributeName: constr(min_length=1, max_length=255) | None = None
+    TimeToLiveStatus: Literal["ENABLING", "DISABLING", "ENABLED", "DISABLED"] | None = (
+        None  # noqa: E501
+    )

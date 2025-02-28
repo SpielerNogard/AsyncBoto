@@ -1,17 +1,20 @@
-from pydantic import BaseModel, Field, constr
-from typing import List, Optional, Literal
+from typing import Literal
+
+from pydantic import BaseModel, constr
+
 from .data_types.attribute_definition import AttributeDefinition
-from .data_types.key_schema_element import KeySchemaElement
-from .data_types.projection import Projection
-from .data_types.provisioned_throughput import ProvisionedThroughput
-from .data_types.on_demand_throughput import OnDemandThroughput
 from .data_types.global_secondary_index import GlobalSecondaryIndex
+from .data_types.key_schema_element import KeySchemaElement
 from .data_types.local_secondary_index import LocalSecondaryIndex
+from .data_types.on_demand_throughput import OnDemandThroughput
+from .data_types.provisioned_throughput import ProvisionedThroughput
 from .data_types.sse_specification import SSESpecification
 from .data_types.stream_specification import StreamSpecification
+from .data_types.table_description import TableDescription as TableDescriptionModel
 from .data_types.tag import Tag
 from .data_types.warm_throughput import WarmThroughput
-from .data_types.table_description import TableDescription as TableDescriptionModel
+
+
 class CreateTableRequest(BaseModel):
     """
     Creates a new table in DynamoDB.
@@ -25,19 +28,23 @@ class CreateTableRequest(BaseModel):
     TableName : str
         The name of the table to create.
     BillingMode : Optional[Literal['PROVISIONED', 'PAY_PER_REQUEST']]
-        Controls how you are charged for read and write throughput and how you manage capacity.
+        Controls how you are charged for read and write throughput and how you manage
+        capacity.
     DeletionProtectionEnabled : Optional[bool]
-        Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.
+        Indicates whether deletion protection is to be enabled (true) or
+        disabled (false) on the table.
     GlobalSecondaryIndexes : Optional[List[GlobalSecondaryIndex]]
         One or more global secondary indexes to be created on the table.
     LocalSecondaryIndexes : Optional[List[LocalSecondaryIndex]]
         One or more local secondary indexes to be created on the table.
     OnDemandThroughput : Optional[OnDemandThroughput]
-        Sets the maximum number of read and write units for the specified table in on-demand capacity mode.
+        Sets the maximum number of read and write units for the specified table in
+        on-demand capacity mode.
     ProvisionedThroughput : Optional[ProvisionedThroughput]
         Represents the provisioned throughput settings for a specified table or index.
     ResourcePolicy : Optional[str]
-        An AWS resource-based policy document in JSON format that will be attached to the table.
+        An AWS resource-based policy document in JSON format that will be attached
+        to the table.
     SSESpecification : Optional[SSESpecification]
         Represents the settings used to enable server-side encryption.
     StreamSpecification : Optional[StreamSpecification]
@@ -49,21 +56,23 @@ class CreateTableRequest(BaseModel):
     WarmThroughput : Optional[WarmThroughput]
         Represents the warm throughput for creating a table.
     """
-    AttributeDefinitions: List[AttributeDefinition]
-    KeySchema: List[KeySchemaElement]
+
+    AttributeDefinitions: list[AttributeDefinition]
+    KeySchema: list[KeySchemaElement]
     TableName: constr(min_length=1, max_length=1024)
-    BillingMode: Optional[Literal['PROVISIONED', 'PAY_PER_REQUEST']] = None
-    DeletionProtectionEnabled: Optional[bool] = None
-    GlobalSecondaryIndexes: Optional[List[GlobalSecondaryIndex]] = None
-    LocalSecondaryIndexes: Optional[List[LocalSecondaryIndex]] = None
-    OnDemandThroughput: Optional[OnDemandThroughput] = None
-    ProvisionedThroughput: Optional[ProvisionedThroughput] = None
-    ResourcePolicy: Optional[str] = None
-    SSESpecification: Optional[SSESpecification] = None
-    StreamSpecification: Optional[StreamSpecification] = None
-    TableClass: Optional[Literal['STANDARD', 'STANDARD_INFREQUENT_ACCESS']] = None
-    Tags: Optional[List[Tag]] = None
-    WarmThroughput: Optional[WarmThroughput] = None
+    BillingMode: Literal["PROVISIONED", "PAY_PER_REQUEST"] | None = None
+    DeletionProtectionEnabled: bool | None = None
+    GlobalSecondaryIndexes: list[GlobalSecondaryIndex] | None = None
+    LocalSecondaryIndexes: list[LocalSecondaryIndex] | None = None
+    OnDemandThroughput: OnDemandThroughput | None = None
+    ProvisionedThroughput: ProvisionedThroughput | None = None
+    ResourcePolicy: str | None = None
+    SSESpecification: SSESpecification | None = None
+    StreamSpecification: StreamSpecification | None = None
+    TableClass: Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"] | None = None
+    Tags: list[Tag] | None = None
+    WarmThroughput: WarmThroughput | None = None
+
 
 class CreateTableResponse(BaseModel):
     """
@@ -74,4 +83,5 @@ class CreateTableResponse(BaseModel):
     TableDescription : dict
         Represents the properties of the table.
     """
+
     TableDescription: TableDescriptionModel

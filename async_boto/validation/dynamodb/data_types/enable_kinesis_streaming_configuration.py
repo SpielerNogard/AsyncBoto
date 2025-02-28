@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing_extensions import Literal, Optional
+
 
 class EnableKinesisStreamingConfiguration(BaseModel):
     """
@@ -7,7 +9,12 @@ class EnableKinesisStreamingConfiguration(BaseModel):
 
     Attributes
     ----------
-    ApproximateCreationDateTimePrecision : Literal["MILLISECOND", "MICROSECOND"], optional
-        Toggle for the precision of Kinesis data stream timestamp. The values are either MILLISECOND or MICROSECOND.
+    ApproximateCreationDateTimePrecision : Literal["MILLISECOND", "MICROSECOND"],
+    optional
+        Toggle for the precision of Kinesis data stream timestamp.
+        The values are either MILLISECOND or MICROSECOND.
     """
-    ApproximateCreationDateTimePrecision: Optional[Literal["MILLISECOND", "MICROSECOND"]] = None
+
+    ApproximateCreationDateTimePrecision: (
+        Literal["MILLISECOND", "MICROSECOND"] | None
+    ) = None  # noqa: E501

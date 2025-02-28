@@ -3,7 +3,8 @@ from pydantic import BaseModel, constr
 
 class Tag(BaseModel):
     """
-    Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a single DynamoDB table.
+    Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a single
+    DynamoDB table.
 
     Attributes
     ----------

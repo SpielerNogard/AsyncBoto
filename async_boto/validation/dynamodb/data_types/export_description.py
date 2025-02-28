@@ -1,10 +1,16 @@
-from pydantic import BaseModel, conint, constr
-from typing import Optional
+# ruff: noqa: E501
 from datetime import datetime
-from typing_extensions import Literal
-from .incremental_export_specificaton import IncrementalExportSpecification as IncrementalExportSpecificationModel
+from typing import Literal
+
+from pydantic import BaseModel, conint, constr
+
+from .incremental_export_specification import (
+    IncrementalExportSpecification as IncrementalExportSpecificationModel,
+)
+
+
 class ExportDescription(BaseModel):
-    """
+    r"""
     Represents the properties of the exported table.
 
     Attributes
@@ -52,24 +58,30 @@ class ExportDescription(BaseModel):
     TableId : Optional[constr(pattern=r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')]
         Unique ID of the table that was exported.
     """
-    BilledSizeBytes: Optional[conint(ge=0)] = None
-    ClientToken: Optional[constr(pattern=r'^[^\$]+$')] = None
-    EndTime: Optional[datetime] = None
-    ExportArn: Optional[constr(min_length=37, max_length=1024)] = None
-    ExportFormat: Optional[Literal["DYNAMODB_JSON", "ION"]] = None
-    ExportManifest: Optional[str] = None
-    ExportStatus: Optional[Literal["IN_PROGRESS", "COMPLETED", "FAILED"]] = None
-    ExportTime: Optional[datetime] = None
-    ExportType: Optional[Literal["FULL_EXPORT", "INCREMENTAL_EXPORT"]] = None
-    FailureCode: Optional[str] = None
-    FailureMessage: Optional[str] = None
-    IncrementalExportSpecification: Optional[IncrementalExportSpecificationModel] = None
-    ItemCount: Optional[conint(ge=0)] = None
-    S3Bucket: Optional[constr(max_length=255, pattern=r'^[a-z0-9A-Z]+[\.\-\w]*[a-z0-9A-Z]+$')] = None
-    S3BucketOwner: Optional[constr(pattern=r'[0-9]{12}')] = None
-    S3Prefix: Optional[constr(max_length=1024)] = None
-    S3SseAlgorithm: Optional[Literal["AES256", "KMS"]] = None
-    S3SseKmsKeyId: Optional[constr(min_length=1, max_length=2048)] = None
-    StartTime: Optional[datetime] = None
-    TableArn: Optional[constr(min_length=1, max_length=1024)] = None
-    TableId: Optional[constr(pattern=r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')] = None
+
+    BilledSizeBytes: conint(ge=0) | None = None
+    ClientToken: constr(pattern=r"^[^\$]+$") | None = None
+    EndTime: datetime | None = None
+    ExportArn: constr(min_length=37, max_length=1024) | None = None
+    ExportFormat: Literal["DYNAMODB_JSON", "ION"] | None = None
+    ExportManifest: str | None = None
+    ExportStatus: Literal["IN_PROGRESS", "COMPLETED", "FAILED"] | None = None
+    ExportTime: datetime | None = None
+    ExportType: Literal["FULL_EXPORT", "INCREMENTAL_EXPORT"] | None = None
+    FailureCode: str | None = None
+    FailureMessage: str | None = None
+    IncrementalExportSpecification: IncrementalExportSpecificationModel | None = None
+    ItemCount: conint(ge=0) | None = None
+    S3Bucket: (
+        constr(max_length=255, pattern=r"^[a-z0-9A-Z]+[\.\-\w]*[a-z0-9A-Z]+$") | None
+    ) = None
+    S3BucketOwner: constr(pattern=r"[0-9]{12}") | None = None
+    S3Prefix: constr(max_length=1024) | None = None
+    S3SseAlgorithm: Literal["AES256", "KMS"] | None = None
+    S3SseKmsKeyId: constr(min_length=1, max_length=2048) | None = None
+    StartTime: datetime | None = None
+    TableArn: constr(min_length=1, max_length=1024) | None = None
+    TableId: (
+        constr(pattern=r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
+        | None
+    ) = None

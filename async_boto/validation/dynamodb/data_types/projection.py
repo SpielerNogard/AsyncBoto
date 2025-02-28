@@ -1,5 +1,6 @@
+from typing import Literal
+
 from pydantic import BaseModel, conlist, constr
-from typing import List, Optional, Literal
 
 
 class Projection(BaseModel):
@@ -14,7 +15,8 @@ class Projection(BaseModel):
         The set of attributes that are projected into the index.
     """
 
-    NonKeyAttributes: Optional[
+    NonKeyAttributes: (
         conlist(constr(min_length=1, max_length=255), min_length=1, max_length=20)
-    ] = None
-    ProjectionType: Optional[Literal["ALL", "KEYS_ONLY", "INCLUDE"]] = None
+        | None
+    ) = None  # noqa: E501
+    ProjectionType: Literal["ALL", "KEYS_ONLY", "INCLUDE"] | None = None

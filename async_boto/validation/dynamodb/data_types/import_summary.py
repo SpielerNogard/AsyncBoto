@@ -1,7 +1,11 @@
-from pydantic import BaseModel, constr
-from typing import Literal, Optional
+# ruff: noqa: E501
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, constr
+
 from .s3_bucket_source import S3BucketSource as S3BucketSourceModel
+
 
 class ImportSummary(BaseModel):
     """
@@ -26,11 +30,14 @@ class ImportSummary(BaseModel):
     TableArn : Optional[constr(min_length=1, max_length=1024)]
         The Amazon Resource Number (ARN) of the table being imported into.
     """
-    CloudWatchLogGroupArn: Optional[constr(min_length=1, max_length=1024)] = None
-    EndTime: Optional[datetime] = None
-    ImportArn: Optional[constr(min_length=37, max_length=1024)] = None
-    ImportStatus: Optional[Literal['IN_PROGRESS', 'COMPLETED', 'CANCELLING', 'CANCELLED', 'FAILED']] = None
-    InputFormat: Optional[Literal['DYNAMODB_JSON', 'ION', 'CSV']] = None
-    S3BucketSource: Optional[S3BucketSourceModel] = None
-    StartTime: Optional[datetime] = None
-    TableArn: Optional[constr(min_length=1, max_length=1024)] = None
+
+    CloudWatchLogGroupArn: constr(min_length=1, max_length=1024) | None = None
+    EndTime: datetime | None = None
+    ImportArn: constr(min_length=37, max_length=1024) | None = None
+    ImportStatus: (
+        Literal["IN_PROGRESS", "COMPLETED", "CANCELLING", "CANCELLED", "FAILED"] | None
+    ) = None
+    InputFormat: Literal["DYNAMODB_JSON", "ION", "CSV"] | None = None
+    S3BucketSource: S3BucketSourceModel | None = None
+    StartTime: datetime | None = None
+    TableArn: constr(min_length=1, max_length=1024) | None = None

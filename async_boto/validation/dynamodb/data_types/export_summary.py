@@ -1,6 +1,6 @@
+from typing import Literal
+
 from pydantic import BaseModel, constr
-from typing import Optional
-from typing_extensions import Literal
 
 
 class ExportSummary(BaseModel):
@@ -17,6 +17,6 @@ class ExportSummary(BaseModel):
         The type of export that was performed.
     """
 
-    ExportArn: Optional[constr(min_length=37, max_length=1024)] = None
-    ExportStatus: Optional[Literal["IN_PROGRESS", "COMPLETED", "FAILED"]] = None
-    ExportType: Optional[Literal["FULL_EXPORT", "INCREMENTAL_EXPORT"]] = None
+    ExportArn: constr(min_length=37, max_length=1024) | None = None
+    ExportStatus: Literal["IN_PROGRESS", "COMPLETED", "FAILED"] | None = None
+    ExportType: Literal["FULL_EXPORT", "INCREMENTAL_EXPORT"] | None = None

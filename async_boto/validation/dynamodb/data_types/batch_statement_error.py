@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .attribute_value import AttributeValueDict
+
 
 class BatchStatementError(BaseModel):
     """
@@ -10,12 +11,18 @@ class BatchStatementError(BaseModel):
     ----------
     Code : Optional[str]
         The error code associated with the failed PartiQL batch statement.
-        Valid Values: ConditionalCheckFailed, ItemCollectionSizeLimitExceeded, RequestLimitExceeded, ValidationError, ProvisionedThroughputExceeded, TransactionConflict, ThrottlingError, InternalServerError, ResourceNotFound, AccessDenied, DuplicateItem.
+        Valid Values: ConditionalCheckFailed, ItemCollectionSizeLimitExceeded,
+        RequestLimitExceeded, ValidationError, ProvisionedThroughputExceeded,
+        TransactionConflict, ThrottlingError, InternalServerError, ResourceNotFound,
+        AccessDenied, DuplicateItem.
     Item : Optional[AttributeValueDict]
-        The item which caused the condition check to fail. This will be set if ReturnValuesOnConditionCheckFailure is specified as ALL_OLD. Maximum length of 65535.
+        The item which caused the condition check to fail. This will be set if
+        ReturnValuesOnConditionCheckFailure is specified as ALL_OLD.
+        Maximum length of 65535.
     Message : Optional[str]
         The error message associated with the PartiQL batch response.
     """
-    Code: Optional[str] = None
-    Item: Optional[AttributeValueDict] = None
-    Message: Optional[str] = None
+
+    Code: str | None = None
+    Item: AttributeValueDict | None = None
+    Message: str | None = None

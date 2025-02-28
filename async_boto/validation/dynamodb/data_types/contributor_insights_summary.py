@@ -1,6 +1,7 @@
+# ruff: noqa: E501
+from typing import Literal
+
 from pydantic import BaseModel, constr
-from typing import Optional
-from typing_extensions import Literal
 
 
 class ContributorInsightsSummary(BaseModel):
@@ -17,12 +18,12 @@ class ContributorInsightsSummary(BaseModel):
         Name of the table associated with the summary.
     """
 
-    ContributorInsightsStatus: Optional[
-        Literal["ENABLING", "ENABLED", "DISABLING", "DISABLED", "FAILED"]
-    ] = None
-    IndexName: Optional[
-        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ] = None
-    TableName: Optional[
-        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ] = None
+    ContributorInsightsStatus: (
+        Literal["ENABLING", "ENABLED", "DISABLING", "DISABLED", "FAILED"] | None
+    ) = None
+    IndexName: (
+        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+") | None
+    ) = None
+    TableName: (
+        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+") | None
+    ) = None

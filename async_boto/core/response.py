@@ -1,4 +1,4 @@
-from typing import Dict, Any, Optional
+from typing import Any
 
 from .errors import ErrorFactory
 
@@ -24,9 +24,9 @@ class AsyncRequestResponse:
         self,
         status_code: int,
         url: str,
-        headers: Optional[Dict[str, Any]] = None,
-        json: Optional[Dict[str, Any]] = None,
-        text: Optional[str] = None,
+        headers: dict[str, Any] | None = None,
+        json: dict[str, Any] | None = None,
+        text: str | None = None,
     ):
         self.url = url
         self._status_code = status_code

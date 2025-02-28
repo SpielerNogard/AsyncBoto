@@ -1,5 +1,6 @@
+from typing import Literal
+
 from pydantic import BaseModel, conint
-from typing import Literal, Optional
 
 
 class GlobalSecondaryIndexWarmThroughputDescription(BaseModel):
@@ -9,13 +10,16 @@ class GlobalSecondaryIndexWarmThroughputDescription(BaseModel):
     Attributes
     ----------
     ReadUnitsPerSecond : Optional[conint(ge=1)]
-        Represents warm throughput read units per second value for a global secondary index.
+        Represents warm throughput read units per second value for a global
+        secondary index.
     Status : Optional[Literal['CREATING', 'UPDATING', 'DELETING', 'ACTIVE']]
-        Represents the warm throughput status being created or updated on a global secondary index.
+        Represents the warm throughput status being created or updated on a global
+        secondary index.
     WriteUnitsPerSecond : Optional[conint(ge=1)]
-        Represents warm throughput write units per second value for a global secondary index.
+        Represents warm throughput write units per second value for a global secondary
+        index.
     """
 
-    ReadUnitsPerSecond: Optional[conint(ge=1)] = None
-    Status: Optional[Literal["CREATING", "UPDATING", "DELETING", "ACTIVE"]] = None
-    WriteUnitsPerSecond: Optional[conint(ge=1)] = None
+    ReadUnitsPerSecond: conint(ge=1) | None = None
+    Status: Literal["CREATING", "UPDATING", "DELETING", "ACTIVE"] | None = None
+    WriteUnitsPerSecond: conint(ge=1) | None = None

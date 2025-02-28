@@ -1,5 +1,5 @@
 from pydantic import BaseModel, conint
-from typing import Optional
+
 
 class OnDemandThroughput(BaseModel):
     """
@@ -12,5 +12,6 @@ class OnDemandThroughput(BaseModel):
     MaxWriteRequestUnits : Optional[int]
         Maximum number of write request units for the specified table.
     """
-    MaxReadRequestUnits: Optional[conint(ge=-1)] = None
-    MaxWriteRequestUnits: Optional[conint(ge=-1)] = None
+
+    MaxReadRequestUnits: conint(ge=-1) | None = None
+    MaxWriteRequestUnits: conint(ge=-1) | None = None

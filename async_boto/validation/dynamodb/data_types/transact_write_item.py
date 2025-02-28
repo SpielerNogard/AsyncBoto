@@ -1,13 +1,15 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .condition_check import ConditionCheck as ConditionCheckModel
 from .delete import Delete as DeleteModel
 from .put import Put as PutModel
 from .update import Update as UpdateModel
 
+
 class TransactWriteItem(BaseModel):
     """
-    A list of requests that can perform update, put, delete, or check operations on multiple items in one or more tables atomically.
+    A list of requests that can perform update, put, delete, or check operations on
+    multiple items in one or more tables atomically.
 
     Attributes
     ----------
@@ -21,7 +23,7 @@ class TransactWriteItem(BaseModel):
         A request to perform an UpdateItem operation.
     """
 
-    ConditionCheck: Optional[ConditionCheckModel] = None
-    Delete: Optional[DeleteModel] = None
-    Put: Optional[PutModel] = None
-    Update: Optional[UpdateModel] = None
+    ConditionCheck: ConditionCheckModel | None = None
+    Delete: DeleteModel | None = None
+    Put: PutModel | None = None
+    Update: UpdateModel | None = None

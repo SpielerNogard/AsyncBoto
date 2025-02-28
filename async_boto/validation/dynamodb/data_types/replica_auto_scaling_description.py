@@ -1,9 +1,12 @@
+# ruff: noqa: E501
+from typing import Literal
+
 from pydantic import BaseModel, constr
-from typing import List, Optional, Literal
+
+from .auto_scaling_settings_description import AutoScalingSettingsDescription
 from .replica_global_secondary_index_auto_scaling_description import (
     ReplicaGlobalSecondaryIndexAutoScalingDescription,
 )
-from .auto_scaling_settings_description import AutoScalingSettingsDescription
 
 
 class ReplicaAutoScalingDescription(BaseModel):
@@ -24,17 +27,17 @@ class ReplicaAutoScalingDescription(BaseModel):
         The current state of the replica.
     """
 
-    GlobalSecondaryIndexes: Optional[
-        List[ReplicaGlobalSecondaryIndexAutoScalingDescription]
-    ] = None
-    RegionName: Optional[constr(min_length=1)] = None
-    ReplicaProvisionedReadCapacityAutoScalingSettings: Optional[
-        AutoScalingSettingsDescription
-    ] = None
-    ReplicaProvisionedWriteCapacityAutoScalingSettings: Optional[
-        AutoScalingSettingsDescription
-    ] = None
-    ReplicaStatus: Optional[
+    GlobalSecondaryIndexes: (
+        list[ReplicaGlobalSecondaryIndexAutoScalingDescription] | None
+    ) = None
+    RegionName: constr(min_length=1) | None = None
+    ReplicaProvisionedReadCapacityAutoScalingSettings: (
+        AutoScalingSettingsDescription | None
+    ) = None
+    ReplicaProvisionedWriteCapacityAutoScalingSettings: (
+        AutoScalingSettingsDescription | None
+    ) = None
+    ReplicaStatus: (
         Literal[
             "CREATING",
             "CREATION_FAILED",
@@ -44,4 +47,5 @@ class ReplicaAutoScalingDescription(BaseModel):
             "REGION_DISABLED",
             "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
         ]
-    ] = None
+        | None
+    ) = None

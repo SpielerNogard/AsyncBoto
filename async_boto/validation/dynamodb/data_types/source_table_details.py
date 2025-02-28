@@ -1,9 +1,11 @@
-from pydantic import BaseModel, constr
-from typing import List, Optional, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, constr
+
 from .key_schema_element import KeySchemaElement
-from .provisioned_throughput import ProvisionedThroughput as ProvisionedThroughputModel
 from .on_demand_throughput import OnDemandThroughput as OnDemandThroughputModel
+from .provisioned_throughput import ProvisionedThroughput as ProvisionedThroughputModel
 
 
 class SourceTableDetails(BaseModel):
@@ -23,26 +25,28 @@ class SourceTableDetails(BaseModel):
     TableName : str
         The name of the table for which the backup was created.
     BillingMode : Optional[Literal['PROVISIONED', 'PAY_PER_REQUEST']]
-        Controls how you are charged for read and write throughput and how you manage capacity.
+        Controls how you are charged for read and write throughput and how you manage
+        capacity.
     ItemCount : Optional[int]
         Number of items in the table. Note that this is an approximate value.
     OnDemandThroughput : Optional[OnDemandThroughput]
-        Sets the maximum number of read and write units for the specified on-demand table.
+        Sets the maximum number of read and write units for the specified on-demand
+        table.
     TableArn : Optional[constr(min_length=1, max_length=1024)]
         ARN of the table for which backup was created.
     TableSizeBytes : Optional[int]
         Size of the table in bytes. Note that this is an approximate value.
     """
 
-    KeySchema: List[KeySchemaElement]
+    KeySchema: list[KeySchemaElement]
     ProvisionedThroughput: ProvisionedThroughputModel
     TableCreationDateTime: datetime
     TableId: constr(
         pattern=r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
     )
     TableName: constr(min_length=3, max_length=255, pattern=r"^[a-zA-Z0-9_.-]+$")
-    BillingMode: Optional[Literal["PROVISIONED", "PAY_PER_REQUEST"]] = None
-    ItemCount: Optional[int] = None
-    OnDemandThroughput: Optional[OnDemandThroughputModel] = None
-    TableArn: Optional[constr(min_length=1, max_length=1024)] = None
-    TableSizeBytes: Optional[int] = None
+    BillingMode: Literal["PROVISIONED", "PAY_PER_REQUEST"] | None = None
+    ItemCount: int | None = None
+    OnDemandThroughput: OnDemandThroughputModel | None = None
+    TableArn: constr(min_length=1, max_length=1024) | None = None
+    TableSizeBytes: int | None = None

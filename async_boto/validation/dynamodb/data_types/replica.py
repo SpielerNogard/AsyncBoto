@@ -1,5 +1,4 @@
 from pydantic import BaseModel, constr
-from typing import Optional
 
 
 class Replica(BaseModel):
@@ -12,4 +11,4 @@ class Replica(BaseModel):
         The Region where the replica needs to be created.
     """
 
-    RegionName: Optional[constr(min_length=1)] = None
+    RegionName: constr(min_length=1) | None = None

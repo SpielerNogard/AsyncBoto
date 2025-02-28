@@ -1,6 +1,6 @@
-from pydantic import BaseModel, constr
-from typing import Optional
 from typing import Literal
+
+from pydantic import BaseModel
 
 
 class SSESpecification(BaseModel):
@@ -10,13 +10,14 @@ class SSESpecification(BaseModel):
     Attributes
     ----------
     Enabled : Optional[bool]
-        Indicates whether server-side encryption is done using an AWS managed key or an AWS owned key.
+        Indicates whether server-side encryption is done using an AWS managed key
+        or an AWS owned key.
     KMSMasterKeyId : Optional[str]
         The AWS KMS key that should be used for the AWS KMS encryption.
     SSEType : Optional[Literal['AES256', 'KMS']]
         Server-side encryption type.
     """
 
-    Enabled: Optional[bool] = None
-    KMSMasterKeyId: Optional[str] = None
-    SSEType: Optional[Literal["AES256", "KMS"]] = None
+    Enabled: bool | None = None
+    KMSMasterKeyId: str | None = None
+    SSEType: Literal["AES256", "KMS"] | None = None

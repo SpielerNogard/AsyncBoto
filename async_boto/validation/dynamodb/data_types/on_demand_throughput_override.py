@@ -1,5 +1,4 @@
 from pydantic import BaseModel, conint
-from typing import Optional
 
 
 class OnDemandThroughputOverride(BaseModel):
@@ -12,4 +11,4 @@ class OnDemandThroughputOverride(BaseModel):
         Maximum number of read request units for the specified replica table.
     """
 
-    MaxReadRequestUnits: Optional[conint(ge=-1)] = None
+    MaxReadRequestUnits: conint(ge=-1) | None = None

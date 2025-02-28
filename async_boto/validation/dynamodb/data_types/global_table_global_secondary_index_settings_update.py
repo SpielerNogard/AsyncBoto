@@ -1,5 +1,6 @@
-from pydantic import BaseModel, constr, conint
-from typing import Optional
+# ruff: noqa: E501
+from pydantic import BaseModel, conint, constr
+
 from .auto_scaling_settings_update import AutoScalingSettingsUpdate
 
 
@@ -18,7 +19,7 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdate(BaseModel):
     """
 
     IndexName: constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ProvisionedWriteCapacityAutoScalingSettingsUpdate: Optional[
-        AutoScalingSettingsUpdate
-    ] = None
-    ProvisionedWriteCapacityUnits: Optional[conint(ge=1)] = None
+    ProvisionedWriteCapacityAutoScalingSettingsUpdate: (
+        AutoScalingSettingsUpdate | None
+    ) = None
+    ProvisionedWriteCapacityUnits: conint(ge=1) | None = None

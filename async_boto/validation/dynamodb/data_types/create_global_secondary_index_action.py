@@ -1,11 +1,11 @@
-from pydantic import BaseModel, constr, conlist
-from typing import List, Optional
-from typing_extensions import Literal
+from pydantic import BaseModel, conlist, constr
+
 from .key_schema_element import KeySchemaElement
-from .projection import Projection as ProjectionModel
 from .on_demand_throughput import OnDemandThroughput as OnDemandThroughputModel
+from .projection import Projection as ProjectionModel
 from .provisioned_throughput import ProvisionedThroughput as ProvisionedThroughputModel
 from .warm_throughput import WarmThroughput as WarmThroughputModel
+
 
 class CreateGlobalSecondaryIndexAction(BaseModel):
     """
@@ -20,15 +20,19 @@ class CreateGlobalSecondaryIndexAction(BaseModel):
     Projection : ProjectionModel
         Represents attributes that are copied (projected) from the table into an index.
     OnDemandThroughput : Optional[OnDemandThroughputModel]
-        The maximum number of read and write units for the global secondary index being created.
+        The maximum number of read and write units for the global secondary index
+        being created.
     ProvisionedThroughput : Optional[ProvisionedThroughputModel]
-        Represents the provisioned throughput settings for the specified global secondary index.
+        Represents the provisioned throughput settings for the specified global
+        secondary index.
     WarmThroughput : Optional[WarmThroughputModel]
-        Represents the warm throughput value (in read units per second and write units per second) when creating a secondary index.
+        Represents the warm throughput value (in read units per second and write units
+        per second) when creating a secondary index.
     """
+
     IndexName: constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
     KeySchema: conlist(KeySchemaElement, min_length=1, max_length=2)
     Projection: ProjectionModel
-    OnDemandThroughput: Optional[OnDemandThroughputModel] = None
-    ProvisionedThroughput: Optional[ProvisionedThroughputModel] = None
-    WarmThroughput: Optional[WarmThroughputModel] = None
+    OnDemandThroughput: OnDemandThroughputModel | None = None
+    ProvisionedThroughput: ProvisionedThroughputModel | None = None
+    WarmThroughput: WarmThroughputModel | None = None

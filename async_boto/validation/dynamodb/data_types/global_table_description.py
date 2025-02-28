@@ -1,6 +1,9 @@
-from pydantic import BaseModel, constr
-from typing import List, Literal, Optional
+# ruff: noqa: E501
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, constr
+
 from .replica_description import ReplicaDescription
 
 
@@ -22,12 +25,12 @@ class GlobalTableDescription(BaseModel):
         The Regions where the global table has replicas.
     """
 
-    CreationDateTime: Optional[datetime] = None
-    GlobalTableArn: Optional[str] = None
-    GlobalTableName: Optional[
-        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ] = None
-    GlobalTableStatus: Optional[
-        Literal["CREATING", "ACTIVE", "DELETING", "UPDATING"]
-    ] = None
-    ReplicationGroup: Optional[List[ReplicaDescription]] = None
+    CreationDateTime: datetime | None = None
+    GlobalTableArn: str | None = None
+    GlobalTableName: (
+        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+") | None
+    ) = None
+    GlobalTableStatus: Literal["CREATING", "ACTIVE", "DELETING", "UPDATING"] | None = (
+        None
+    )
+    ReplicationGroup: list[ReplicaDescription] | None = None

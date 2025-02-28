@@ -1,7 +1,11 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional
-from typing_extensions import Literal
-from .point_in_time_recovery_description import PointInTimeRecoveryDescription as PointInTimeRecoveryDescriptionModel
+
+from .point_in_time_recovery_description import (
+    PointInTimeRecoveryDescription as PointInTimeRecoveryDescriptionModel,
+)
+
 
 class ContinuousBackupsDescription(BaseModel):
     """
@@ -14,5 +18,6 @@ class ContinuousBackupsDescription(BaseModel):
     PointInTimeRecoveryDescription : Optional[PointInTimeRecoveryDescription]
         The description of the point in time recovery settings applied to the table.
     """
+
     ContinuousBackupsStatus: Literal["ENABLED", "DISABLED"]
-    PointInTimeRecoveryDescription: Optional[PointInTimeRecoveryDescriptionModel] = None
+    PointInTimeRecoveryDescription: PointInTimeRecoveryDescriptionModel | None = None

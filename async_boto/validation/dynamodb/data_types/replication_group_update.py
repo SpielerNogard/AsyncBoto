@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .create_replication_group_member_action import CreateReplicationGroupMemberAction
 from .delete_replication_group_member_action import DeleteReplicationGroupMemberAction
 from .update_replication_group_member_action import UpdateReplicationGroupMemberAction
@@ -22,6 +22,6 @@ class ReplicationGroupUpdate(BaseModel):
         The parameters required for updating a replica for the table.
     """
 
-    Create: Optional[CreateReplicationGroupMemberAction] = None
-    Delete: Optional[DeleteReplicationGroupMemberAction] = None
-    Update: Optional[UpdateReplicationGroupMemberAction] = None
+    Create: CreateReplicationGroupMemberAction | None = None
+    Delete: DeleteReplicationGroupMemberAction | None = None
+    Update: UpdateReplicationGroupMemberAction | None = None

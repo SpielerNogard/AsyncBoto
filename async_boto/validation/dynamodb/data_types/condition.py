@@ -1,6 +1,8 @@
+# ruff: noqa: E501
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import List, Optional
-from typing_extensions import Literal
+
 from .attribute_value import AttributeValue
 
 
@@ -25,9 +27,11 @@ class Condition(BaseModel):
         - NULL: The attribute does not exist. Supported for all data types, including lists and maps.
         - CONTAINS: Checks for a subsequence, or value in a set.
         - NOT_CONTAINS: Checks for absence of a subsequence, or absence of a value in a set.
-        - BEGINS_WITH: Checks for a prefix. Supported for String or Binary (not a Number or a set type).
+        - BEGINS_WITH: Checks for a prefix. Supported for String or Binary
+        (not a Number or a set type).
     AttributeValueList : Optional[List[AttributeValue]]
-        One or more values to evaluate against the supplied attribute. The number of values in the list depends on the ComparisonOperator being used.
+        One or more values to evaluate against the supplied attribute. The number of
+        values in the list depends on the ComparisonOperator being used.
     """
 
     ComparisonOperator: Literal[
@@ -45,4 +49,4 @@ class Condition(BaseModel):
         "NOT_CONTAINS",
         "BEGINS_WITH",
     ]
-    AttributeValueList: Optional[List[AttributeValue]] = None
+    AttributeValueList: list[AttributeValue] | None = None

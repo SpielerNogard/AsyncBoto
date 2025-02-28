@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+
 from .auto_scaling_policy_description import AutoScalingPolicyDescription
 
 
@@ -14,17 +14,19 @@ class AutoScalingSettingsDescription(BaseModel):
     AutoScalingRoleArn : Optional[str]
         Role ARN used for configuring the auto scaling policy.
     MaximumUnits : Optional[int]
-        The maximum capacity units that a global table or global secondary index should be scaled up to.
+        The maximum capacity units that a global table or global secondary index should
+        be scaled up to.
         Valid Range: Minimum value of 1.
     MinimumUnits : Optional[int]
-        The minimum capacity units that a global table or global secondary index should be scaled down to.
+        The minimum capacity units that a global table or global secondary index should
+        be scaled down to.
         Valid Range: Minimum value of 1.
     ScalingPolicies : Optional[List[AutoScalingPolicyDescription]]
         Information about the scaling policies.
     """
 
-    AutoScalingDisabled: Optional[bool] = None
-    AutoScalingRoleArn: Optional[str] = None
-    MaximumUnits: Optional[int] = Field(None, ge=1)
-    MinimumUnits: Optional[int] = Field(None, ge=1)
-    ScalingPolicies: Optional[List[AutoScalingPolicyDescription]] = None
+    AutoScalingDisabled: bool | None = None
+    AutoScalingRoleArn: str | None = None
+    MaximumUnits: int | None = Field(None, ge=1)
+    MinimumUnits: int | None = Field(None, ge=1)
+    ScalingPolicies: list[AutoScalingPolicyDescription] | None = None

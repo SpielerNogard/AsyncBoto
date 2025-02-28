@@ -1,5 +1,7 @@
+# ruff: noqa: E501
+from typing import Literal
+
 from pydantic import BaseModel, constr
-from typing import Literal, Optional
 
 
 class KinesisDataStreamDestination(BaseModel):
@@ -18,13 +20,14 @@ class KinesisDataStreamDestination(BaseModel):
         The ARN for a specific Kinesis data stream.
     """
 
-    ApproximateCreationDateTimePrecision: Optional[
-        Literal["MILLISECOND", "MICROSECOND"]
-    ] = None
-    DestinationStatus: Optional[
+    ApproximateCreationDateTimePrecision: (
+        Literal["MILLISECOND", "MICROSECOND"] | None
+    ) = None  # noqa: E501
+    DestinationStatus: (
         Literal[
             "ENABLING", "ACTIVE", "DISABLING", "DISABLED", "ENABLE_FAILED", "UPDATING"
         ]
-    ] = None
-    DestinationStatusDescription: Optional[str] = None
-    StreamArn: Optional[constr(min_length=37, max_length=1024)] = None
+        | None
+    ) = None  # noqa: E501
+    DestinationStatusDescription: str | None = None
+    StreamArn: constr(min_length=37, max_length=1024) | None = None

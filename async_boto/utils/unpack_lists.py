@@ -1,7 +1,7 @@
-from typing import List, Any
+from typing import Any
 
 
-def unpack_lists(list_: List[Any]) -> List[Any]:
+def unpack_lists(list_: list[Any]) -> list[Any]:
     unpacked_list = []
     for item in list_:
         if isinstance(item, list):

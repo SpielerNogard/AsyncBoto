@@ -1,20 +1,21 @@
-from pydantic import BaseModel, Field
-from typing import Optional, Dict, List, Union, Literal
+from typing import Literal
 
-from .data_types.consumed_capacity import ConsumedCapacity
+from pydantic import BaseModel, Field
+
 from .data_types.attribute_value import AttributeValueDict
+from .data_types.consumed_capacity import ConsumedCapacity
 
 
 class GetItemRequest(BaseModel):
     Key: AttributeValueDict
     TableName: str = Field(..., min_length=1, max_length=1024)
-    AttributesToGet: Optional[List[str]] = None
-    ConsistentRead: Optional[bool] = None
-    ExpressionAttributeNames: Optional[Dict[str, str]] = None
-    ProjectionExpression: Optional[str] = None
-    ReturnConsumedCapacity: Optional[Literal["INDEXES", "TOTAL", "NONE"]] = None
+    AttributesToGet: list[str] | None = None
+    ConsistentRead: bool | None = None
+    ExpressionAttributeNames: dict[str, str] | None = None
+    ProjectionExpression: str | None = None
+    ReturnConsumedCapacity: Literal["INDEXES", "TOTAL", "NONE"] | None = None
 
 
 class GetItemResponse(BaseModel):
-    ConsumedCapacity: Optional[ConsumedCapacity] = None
-    Item: Optional[AttributeValueDict] = None
+    ConsumedCapacity: ConsumedCapacity | None = None
+    Item: AttributeValueDict | None = None

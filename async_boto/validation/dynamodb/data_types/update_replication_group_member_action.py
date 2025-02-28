@@ -1,12 +1,14 @@
-from pydantic import BaseModel, constr
-from typing import List, Optional, Literal
-from .replica_global_secondary_index import ReplicaGlobalSecondaryIndex
+from typing import Literal
+
+from pydantic import BaseModel
+
 from .on_demand_throughput_override import (
     OnDemandThroughputOverride as OnDemandThroughputOverrideModel,
 )
 from .provisioned_throughput_override import (
     ProvisionedThroughputOverride as ProvisionedThroughputOverrideModel,
 )
+from .replica_global_secondary_index import ReplicaGlobalSecondaryIndex
 
 
 class UpdateReplicationGroupMemberAction(BaseModel):
@@ -30,10 +32,8 @@ class UpdateReplicationGroupMemberAction(BaseModel):
     """
 
     RegionName: str
-    GlobalSecondaryIndexes: Optional[List[ReplicaGlobalSecondaryIndex]] = None
-    KMSMasterKeyId: Optional[str] = None
-    OnDemandThroughputOverride: Optional[OnDemandThroughputOverrideModel] = None
-    ProvisionedThroughputOverride: Optional[ProvisionedThroughputOverrideModel] = None
-    TableClassOverride: Optional[
-        Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"]
-    ] = None
+    GlobalSecondaryIndexes: list[ReplicaGlobalSecondaryIndex] | None = None
+    KMSMasterKeyId: str | None = None
+    OnDemandThroughputOverride: OnDemandThroughputOverrideModel | None = None
+    ProvisionedThroughputOverride: ProvisionedThroughputOverrideModel | None = None
+    TableClassOverride: Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"] | None = None

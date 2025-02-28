@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel, Field, constr
-from typing import Dict, Optional, Literal
+
 from .attribute_value import AttributeValueDict
 
 
@@ -10,7 +12,8 @@ class Put(BaseModel):
     Attributes
     ----------
     Item : Dict[str, AttributeValue]
-        A map of attribute name to attribute values, representing the primary key of the item to be written by PutItem.
+        A map of attribute name to attribute values, representing the primary key of
+        the item to be written by PutItem.
     TableName : str
         Name of the table in which to write the item.
     ConditionExpression : Optional[str]
@@ -20,12 +23,13 @@ class Put(BaseModel):
     ExpressionAttributeValues : Optional[Dict[str, AttributeValue]]
         One or more values that can be substituted in an expression.
     ReturnValuesOnConditionCheckFailure : Optional[Literal['ALL_OLD', 'NONE']]
-        Use ReturnValuesOnConditionCheckFailure to get the item attributes if the Put condition fails.
+        Use ReturnValuesOnConditionCheckFailure to get the item attributes if the
+        Put condition fails.
     """
 
     Item: AttributeValueDict = Field(..., max_length=65535)
     TableName: constr(min_length=1, max_length=1024)
-    ConditionExpression: Optional[str] = None
-    ExpressionAttributeNames: Optional[Dict[str, str]] = None
-    ExpressionAttributeValues: Optional[AttributeValueDict] = None
-    ReturnValuesOnConditionCheckFailure: Optional[Literal["ALL_OLD", "NONE"]] = None
+    ConditionExpression: str | None = None
+    ExpressionAttributeNames: dict[str, str] | None = None
+    ExpressionAttributeValues: AttributeValueDict | None = None
+    ReturnValuesOnConditionCheckFailure: Literal["ALL_OLD", "NONE"] | None = None

@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
 class FailureException(BaseModel):
@@ -14,5 +13,5 @@ class FailureException(BaseModel):
         Exception name.
     """
 
-    ExceptionDescription: Optional[str] = None
-    ExceptionName: Optional[str] = None
+    ExceptionDescription: str | None = None
+    ExceptionName: str | None = None

@@ -1,4 +1,4 @@
-from typing import Optional, Dict, List, Literal
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -8,11 +8,11 @@ from .data_types.keys_and_attributes import KeysAndAttributes
 
 
 class BatchGetItemRequest(BaseModel):
-    RequestItems: Dict[str, KeysAndAttributes]
-    ReturnConsumedCapacity: Optional[Literal["INDEXES", "TOTAL", "NONE"]] = None
+    RequestItems: dict[str, KeysAndAttributes]
+    ReturnConsumedCapacity: Literal["INDEXES", "TOTAL", "NONE"] | None = None
 
 
 class BatchGetItemResponse(BaseModel):
-    ConsumedCapacity: Optional[List[ConsumedCapacity]] = None
-    Responses: Optional[Dict[str, List[AttributeValueDict]]] = None
-    UnprocessedKeys: Optional[Dict[str, KeysAndAttributes]] = None
+    ConsumedCapacity: list[ConsumedCapacity] | None = None
+    Responses: dict[str, list[AttributeValueDict]] | None = None
+    UnprocessedKeys: dict[str, KeysAndAttributes] | None = None

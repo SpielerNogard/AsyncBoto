@@ -1,19 +1,26 @@
+# ruff: noqa: E501
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import List, Optional
-from typing_extensions import Literal
+
 from .attribute_value import AttributeValue
 
 
 class ExpectedAttributeValue(BaseModel):
     """
-    Represents a condition to be compared with an attribute value. This condition can be used with DeleteItem, PutItem, or UpdateItem operations; if the comparison evaluates to true, the operation succeeds; if not, the operation fails.
+    Represents a condition to be compared with an attribute value. This condition can be
+    used with DeleteItem, PutItem, or UpdateItem operations; if the comparison evaluates
+    to true, the operation succeeds; if not, the operation fails.
 
     Attributes
     ----------
     AttributeValueList : Optional[List[AttributeValue]]
-        One or more values to evaluate against the supplied attribute. The number of values in the list depends on the ComparisonOperator being used.
+        One or more values to evaluate against the supplied attribute.
+        The number of values in the list depends on the ComparisonOperator being used.
     ComparisonOperator : Optional[Literal["EQ", "NE", "LE", "LT", "GE", "GT", "NOT_NULL", "NULL", "CONTAINS", "NOT_CONTAINS", "BEGINS_WITH", "IN", "BETWEEN"]]
-        A comparator for evaluating attributes in the AttributeValueList. Valid values are EQ, NE, LE, LT, GE, GT, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS, BEGINS_WITH, IN, BETWEEN.
+        A comparator for evaluating attributes in the AttributeValueList.
+        Valid values are EQ, NE, LE, LT, GE, GT, NOT_NULL, NULL, CONTAINS,
+        NOT_CONTAINS, BEGINS_WITH, IN, BETWEEN.
         - EQ: Equal. Supported for all data types, including lists and maps.
         - NE: Not equal. Supported for all data types, including lists and maps.
         - LE: Less than or equal. Supported for String, Number, or Binary (not a set type).
@@ -33,8 +40,8 @@ class ExpectedAttributeValue(BaseModel):
         Represents the data for the expected attribute.
     """
 
-    AttributeValueList: Optional[List[AttributeValue]] = None
-    ComparisonOperator: Optional[
+    AttributeValueList: list[AttributeValue] | None = None
+    ComparisonOperator: (
         Literal[
             "EQ",
             "NE",
@@ -50,6 +57,7 @@ class ExpectedAttributeValue(BaseModel):
             "IN",
             "BETWEEN",
         ]
-    ] = None
-    Exists: Optional[bool] = None
-    Value: Optional[AttributeValue] = None
+        | None
+    ) = None
+    Exists: bool | None = None
+    Value: AttributeValue | None = None

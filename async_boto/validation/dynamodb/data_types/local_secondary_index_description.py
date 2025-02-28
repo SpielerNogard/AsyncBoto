@@ -1,5 +1,5 @@
-from pydantic import BaseModel, constr, conlist
-from typing import List, Optional
+from pydantic import BaseModel, conlist, constr
+
 from .key_schema_element import KeySchemaElement
 from .projection import Projection as ProjectionModel
 
@@ -21,14 +21,15 @@ class LocalSecondaryIndexDescription(BaseModel):
     KeySchema : Optional[List[KeySchemaElement]]
         The complete key schema for the local secondary index.
     Projection : Optional[ProjectionModel]
-        Represents attributes that are copied (projected) from the table into the global secondary index.
+        Represents attributes that are copied (projected) from the table into the
+        global secondary index.
     """
 
-    IndexArn: Optional[str] = None
-    IndexName: Optional[
-        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ] = None
-    IndexSizeBytes: Optional[int] = None
-    ItemCount: Optional[int] = None
-    KeySchema: Optional[conlist(KeySchemaElement, min_length=1, max_length=2)] = None
-    Projection: Optional[ProjectionModel] = None
+    IndexArn: str | None = None
+    IndexName: (
+        constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+") | None
+    ) = None  # noqa: E501
+    IndexSizeBytes: int | None = None
+    ItemCount: int | None = None
+    KeySchema: conlist(KeySchemaElement, min_length=1, max_length=2) | None = None
+    Projection: ProjectionModel | None = None

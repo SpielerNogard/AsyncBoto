@@ -2,7 +2,7 @@ import datetime
 import hashlib
 import hmac
 import urllib
-from typing import Dict, Any, List, Tuple
+from typing import Any
 
 import boto3
 
@@ -24,8 +24,8 @@ def aws_sig_v4_headers(
     service: str,
     url: str,
     method: str,
-    headers: Dict[str, Any] = None,
-    query: List[Tuple[str, str]] = None,
+    headers: dict[str, Any] = None,
+    query: list[tuple[str, str]] = None,
     payload: str = None,
 ):
     if not headers:
@@ -45,13 +45,13 @@ def aws_sig_v4_headers(
             [f"{query_[0]}={query_[1]}" for query_ in query]
         )
     canonical_headers = (
-        f"content-type:{headers.get('Content-Type','application/json')}\n"
+        f"content-type:{headers.get('Content-Type', 'application/json')}\n"
         f"host:{parsed_url.hostname}\n"
         f"x-amz-date:{amz_date}\n"
     )
     signed_headers = "content-type;host;x-amz-date"
     if payload is None:
-        payload_hash = hashlib.sha256("".encode("utf-8")).hexdigest()
+        payload_hash = hashlib.sha256(b"").hexdigest()
     else:
         payload_hash = hashlib.sha256(payload.encode("utf-8")).hexdigest()
 

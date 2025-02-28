@@ -8,9 +8,11 @@ class ProvisionedThroughput(BaseModel):
     Attributes
     ----------
     ReadCapacityUnits : int
-        The maximum number of strongly consistent reads consumed per second before DynamoDB returns a ThrottlingException.
+        The maximum number of strongly consistent reads consumed per second before
+        DynamoDB returns a ThrottlingException.
     WriteCapacityUnits : int
-        The maximum number of writes consumed per second before DynamoDB returns a ThrottlingException.
+        The maximum number of writes consumed per second before DynamoDB returns a
+        ThrottlingException.
     """
 
     ReadCapacityUnits: conint(ge=0)

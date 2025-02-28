@@ -1,8 +1,11 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .backup_details import BackupDetails as BackupDetailsModel
 from .source_table_details import SourceTableDetails as SourceTableDetailsModel
-from .source_table_feature_details import SourceTableFeatureDetails as SourceTableFeatureDetailsModel
+from .source_table_feature_details import (
+    SourceTableFeatureDetails as SourceTableFeatureDetailsModel,
+)
+
 
 class BackupDescription(BaseModel):
     """
@@ -15,8 +18,10 @@ class BackupDescription(BaseModel):
     SourceTableDetails : Optional[SourceTableDetails]
         Contains the details of the table when the backup was created.
     SourceTableFeatureDetails : Optional[SourceTableFeatureDetails]
-        Contains the details of the features enabled on the table when the backup was created. For example, LSIs, GSIs, streams, TTL.
+        Contains the details of the features enabled on the table when the backup
+        was created. For example, LSIs, GSIs, streams, TTL.
     """
-    BackupDetails: Optional[BackupDetailsModel] = None
-    SourceTableDetails: Optional[SourceTableDetailsModel] = None
-    SourceTableFeatureDetails: Optional[SourceTableFeatureDetailsModel] = None
+
+    BackupDetails: BackupDetailsModel | None = None
+    SourceTableDetails: SourceTableDetailsModel | None = None
+    SourceTableFeatureDetails: SourceTableFeatureDetailsModel | None = None

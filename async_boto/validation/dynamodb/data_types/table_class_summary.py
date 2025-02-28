@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Optional, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel
 
 
 class TableClassSummary(BaseModel):
@@ -15,5 +16,5 @@ class TableClassSummary(BaseModel):
         The table class of the specified table.
     """
 
-    LastUpdateDateTime: Optional[datetime] = None
-    TableClass: Optional[Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"]] = None
+    LastUpdateDateTime: datetime | None = None
+    TableClass: Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"] | None = None

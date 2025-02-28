@@ -1,6 +1,7 @@
-from pydantic import BaseModel, conint
-from typing import Optional, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, conint
 
 
 class PointInTimeRecoveryDescription(BaseModel):
@@ -16,10 +17,11 @@ class PointInTimeRecoveryDescription(BaseModel):
     PointInTimeRecoveryStatus : Optional[str]
         The current state of point in time recovery.
     RecoveryPeriodInDays : Optional[int]
-        The number of preceding days for which continuous backups are taken and maintained.
+        The number of preceding days for which continuous backups are taken and
+        maintained.
     """
 
-    EarliestRestorableDateTime: Optional[datetime] = None
-    LatestRestorableDateTime: Optional[datetime] = None
-    PointInTimeRecoveryStatus: Optional[Literal["ENABLED", "DISABLED"]] = None
-    RecoveryPeriodInDays: Optional[conint(ge=1, le=35)] = None
+    EarliestRestorableDateTime: datetime | None = None
+    LatestRestorableDateTime: datetime | None = None
+    PointInTimeRecoveryStatus: Literal["ENABLED", "DISABLED"] | None = None
+    RecoveryPeriodInDays: conint(ge=1, le=35) | None = None

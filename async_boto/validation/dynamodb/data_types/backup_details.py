@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
-from typing import Optional, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, Field
 
 
 class BackupDetails(BaseModel):
@@ -21,12 +22,17 @@ class BackupDetails(BaseModel):
     BackupType : Literal['USER', 'SYSTEM', 'AWS_BACKUP']
         BackupType:
         USER - You create and manage these using the on-demand backup feature.
-        SYSTEM - If you delete a table with point-in-time recovery enabled, a SYSTEM backup is automatically created and is retained for 35 days (at no additional cost). System backups allow you to restore the deleted table to the state it was in just before the point of deletion.
+        SYSTEM - If you delete a table with point-in-time recovery enabled, a SYSTEM
+        backup is automatically created and is retained for 35 days
+        (at no additional cost). System backups allow you to restore the
+        deleted table to the state it was in just before the point of deletion.
         AWS_BACKUP - On-demand backup created by you from AWS Backup service.
     BackupExpiryDateTime : Optional[datetime]
-        Time at which the automatic on-demand backup created by DynamoDB will expire. This SYSTEM on-demand backup expires automatically 35 days after its creation.
+        Time at which the automatic on-demand backup created by DynamoDB will expire.
+        This SYSTEM on-demand backup expires automatically 35 days after its creation.
     BackupSizeBytes : Optional[int]
-        Size of the backup in bytes. DynamoDB updates this value approximately every six hours. Recent changes might not be reflected in this value.
+        Size of the backup in bytes. DynamoDB updates this value approximately every
+        six hours. Recent changes might not be reflected in this value.
         Valid Range: Minimum value of 0.
     """
 
@@ -37,5 +43,5 @@ class BackupDetails(BaseModel):
     )
     BackupStatus: Literal["CREATING", "DELETED", "AVAILABLE"]
     BackupType: Literal["USER", "SYSTEM", "AWS_BACKUP"]
-    BackupExpiryDateTime: Optional[datetime] = None
-    BackupSizeBytes: Optional[int] = Field(None, ge=0)
+    BackupExpiryDateTime: datetime | None = None
+    BackupSizeBytes: int | None = Field(None, ge=0)

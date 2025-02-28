@@ -1,7 +1,7 @@
-from typing import Dict, Any, Tuple, List
+from typing import Any
 
 
-def generate_param_tuple(params: Dict[str, Any]) -> List[Tuple]:
+def generate_param_tuple(params: dict[str, Any]) -> list[tuple]:
     """
     To support MultiValueQueryParameters these cant be given using a dict.
     We convert these dict to a list of key value pairs and let aiohttp and

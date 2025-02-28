@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Literal, Optional
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel
 
 
 class IncrementalExportSpecification(BaseModel):
@@ -10,15 +11,17 @@ class IncrementalExportSpecification(BaseModel):
     Attributes
     ----------
     ExportFromTime : Optional[datetime]
-        Time in the past which provides the inclusive start range for the export table's data.
+        Time in the past which provides the inclusive start range for the export table's
+         data.
     ExportToTime : Optional[datetime]
-        Time in the past which provides the exclusive end range for the export table's data.
+        Time in the past which provides the exclusive end range for the export table's
+        data.
     ExportViewType : Optional[Literal['NEW_IMAGE', 'NEW_AND_OLD_IMAGES']]
         The view type that was chosen for the export.
     """
 
-    ExportFromTime: Optional[datetime] = None
-    ExportToTime: Optional[datetime] = None
-    ExportViewType: Optional[
-        Literal["NEW_IMAGE", "NEW_AND_OLD_IMAGES"]
-    ] = "NEW_AND_OLD_IMAGES"
+    ExportFromTime: datetime | None = None
+    ExportToTime: datetime | None = None
+    ExportViewType: Literal["NEW_IMAGE", "NEW_AND_OLD_IMAGES"] | None = (
+        "NEW_AND_OLD_IMAGES"  # noqa: E501
+    )

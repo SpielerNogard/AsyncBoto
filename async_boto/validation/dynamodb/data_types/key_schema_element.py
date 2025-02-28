@@ -1,5 +1,6 @@
-from pydantic import BaseModel, constr
 from typing import Literal
+
+from pydantic import BaseModel, constr
 
 
 class KeySchemaElement(BaseModel):

@@ -1,11 +1,9 @@
-from pydantic import BaseModel, Field, constr
-from typing import List, Optional
-from .data_types.replica import Replica
+from pydantic import BaseModel, constr
+
 from .data_types.global_table_description import (
     GlobalTableDescription as GlobalTableDescriptionModel,
 )
-import boto3
-
+from .data_types.replica import Replica
 
 
 class CreateGlobalTableRequest(BaseModel):
@@ -21,7 +19,7 @@ class CreateGlobalTableRequest(BaseModel):
     """
 
     GlobalTableName: constr(min_length=3, max_length=255, pattern=r"[a-zA-Z0-9_.-]+")
-    ReplicationGroup: List[Replica]
+    ReplicationGroup: list[Replica]
 
 
 class CreateGlobalTableResponse(BaseModel):

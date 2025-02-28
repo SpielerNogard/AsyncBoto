@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Dict
+
 from .attribute_value import AttributeValueDict
 
 
@@ -10,7 +10,10 @@ class DeleteRequest(BaseModel):
     Attributes
     ----------
     Key : AttributeValueDict
-        A map of attribute name to attribute values, representing the primary key of the item to delete. All of the table's primary key attributes must be specified, and their data types must match those of the table's key schema.
+        A map of attribute name to attribute values, representing the
+        primary key of the item to delete. All of the table's primary key
+        attributes must be specified, and their data types must match those of
+        the table's key schema.
     """
 
     Key: AttributeValueDict

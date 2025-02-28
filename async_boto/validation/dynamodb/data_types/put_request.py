@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
-from typing import Dict
+from pydantic import BaseModel
+
 from .attribute_value import AttributeValueDict
 
 
@@ -10,7 +10,8 @@ class PutRequest(BaseModel):
     Attributes
     ----------
     Item : Dict[str, AttributeValue]
-        A map of attribute name to attribute values, representing the primary key of an item to be processed by PutItem.
+        A map of attribute name to attribute values, representing the primary key of
+        an item to be processed by PutItem.
     """
 
     Item: AttributeValueDict

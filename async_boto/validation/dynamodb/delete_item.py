@@ -1,26 +1,28 @@
+from typing import Literal
+
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Literal, List
-from .data_types.attribute_value import AttributeValueDict, AttributeValue
+
+from .data_types.attribute_value import AttributeValueDict
 from .data_types.consumed_capacity import ConsumedCapacity
-from .data_types.item_collection_metrics import ItemCollectionMetrics
 from .data_types.expected_attribute_value import ExpectedAttributeValue
+from .data_types.item_collection_metrics import ItemCollectionMetrics
 
 
 class DeleteItemRequest(BaseModel):
     TableName: str = Field(..., min_length=1, max_length=1024)
     Key: AttributeValueDict
-    ConditionalOperator: Optional[Literal["AND", "OR"]] = None
-    ConditionExpression: Optional[str] = None
-    Expected: Optional[Dict[str, ExpectedAttributeValue]] = None
-    ExpressionAttributeNames: Optional[Dict[str, str]] = None
-    ExpressionAttributeValues: Optional[AttributeValueDict] = None
-    ReturnConsumedCapacity: Optional[Literal["INDEXES", "TOTAL", "NONE"]] = None
-    ReturnItemCollectionMetrics: Optional[Literal["SIZE", "NONE"]] = None
-    ReturnValues: Optional[Literal["NONE", "ALL_OLD"]] = None
-    ReturnValuesOnConditionCheckFailure: Optional[Literal["ALL_OLD", "NONE"]] = None
+    ConditionalOperator: Literal["AND", "OR"] | None = None
+    ConditionExpression: str | None = None
+    Expected: dict[str, ExpectedAttributeValue] | None = None
+    ExpressionAttributeNames: dict[str, str] | None = None
+    ExpressionAttributeValues: AttributeValueDict | None = None
+    ReturnConsumedCapacity: Literal["INDEXES", "TOTAL", "NONE"] | None = None
+    ReturnItemCollectionMetrics: Literal["SIZE", "NONE"] | None = None
+    ReturnValues: Literal["NONE", "ALL_OLD"] | None = None
+    ReturnValuesOnConditionCheckFailure: Literal["ALL_OLD", "NONE"] | None = None
 
 
 class DeleteItemResponse(BaseModel):
-    Attributes: Optional[AttributeValueDict] = None
-    ConsumedCapacity: Optional[ConsumedCapacity] = None
-    ItemCollectionMetrics: Optional[ItemCollectionMetrics] = None
+    Attributes: AttributeValueDict | None = None
+    ConsumedCapacity: ConsumedCapacity | None = None
+    ItemCollectionMetrics: ItemCollectionMetrics | None = None

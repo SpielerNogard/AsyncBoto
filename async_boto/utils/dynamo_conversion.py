@@ -1,53 +1,57 @@
 import datetime
-from collections.abc import Set
+from collections.abc import Callable, Set
 from decimal import Decimal
 from enum import Enum
-from typing import Dict, Callable, Any, Type
+from typing import Any
 from uuid import UUID
 
+
 def serialize_dict(v, serialize):
-    return {
-        'M': {
-            k_: serialize(v_)
-            for k_, v_ in v.items()
-        }
-    }
+    return {"M": {k_: serialize(v_) for k_, v_ in v.items()}}
 
 
 def serialize_list(v, serialize):
-    return {'L': [serialize(item) for item in v]}
+    return {"L": [serialize(item) for item in v]}
 
 
 def serialize_set(v):
-    if all(isinstance(item, (int, float, Decimal)) for item in v):
-        return {'NS': [str(item) for item in v]}
+    if all(isinstance(item, int | float | Decimal) for item in v):
+        return {"NS": [str(item) for item in v]}
     elif all(isinstance(item, str) for item in v):
-        return {'SS': [str(item) for item in v]}
-    elif all(isinstance(item, (bytearray, bytes)) for item in v):
-        return {'BS': [item if isinstance(item, bytes) else bytearray(item) for item in v]}
+        return {"SS": [str(item) for item in v]}
+    elif all(isinstance(item, bytearray | bytes) for item in v):
+        return {
+            "BS": [item if isinstance(item, bytes) else bytearray(item) for item in v]
+        }
 
-    raise TypeError("All values in a set must be of the same family of types (numbers, strings or bytes)")
+    raise TypeError(
+        "All values in a set must be of the same family of"
+        "types (numbers, strings or bytes)"
+    )
 
-serialize_as_string = lambda v: {'S': str(v)}
-serialize_as_number = lambda v: {'N': str(v)}
 
-DYNAMODB_ENCODERS: Dict[Type[Any], Callable[[Any], Any]] = {
-    bool: lambda v: {'BOOL': v},
+def serialize_as_string(v):
+    return {"S": str(v)}
+
+
+def serialize_as_number(v):
+    return {"N": str(v)}
+
+
+DYNAMODB_ENCODERS: dict[type[Any], Callable[[Any], Any]] = {
+    bool: lambda v: {"BOOL": v},
     str: serialize_as_string,
     int: serialize_as_number,
     float: serialize_as_number,
-    type(None): lambda v: {'NULL': True},
-
+    type(None): lambda v: {"NULL": True},
     list: serialize_list,
     tuple: serialize_list,
     dict: serialize_dict,
     set: serialize_set,
     Set: serialize_set,
-
-    bytes: lambda b: {'B': b},
-    bytearray: lambda ba: {'B': bytes(ba)},
+    bytes: lambda b: {"B": b},
+    bytearray: lambda ba: {"B": bytes(ba)},
     Decimal: serialize_as_number,
-
     datetime.date: lambda d: serialize_as_string(d.isoformat()),
     datetime.datetime: lambda d: serialize_as_string(d.isoformat()),
     datetime.time: lambda d: serialize_as_string(d.isoformat()),
@@ -57,23 +61,27 @@ DYNAMODB_ENCODERS: Dict[Type[Any], Callable[[Any], Any]] = {
 }
 
 DYNAMODB_TYPES = {
-    'NULL': lambda v, serialize: None,
-    'BOOL': lambda v, serialize: v,
-    'N': lambda v, serialize: Decimal(v),
-    'S': lambda v, serialize: v,
-    'B': lambda v, serialize: v,
-    'NS': lambda v, serialize: set(Decimal(item) for item in v),
-    'SS': lambda v, serialize: set(v),
-    'BS': lambda v, serialize: set(v),
-    'L': lambda v, serialize: [serialize(item) for item in v],
-    'M': lambda v, serialize: {k_: serialize(v_) for k_, v_ in v.items()}
+    "NULL": lambda v, serialize: None,
+    "BOOL": lambda v, serialize: v,
+    "N": lambda v, serialize: Decimal(v),
+    "S": lambda v, serialize: v,
+    "B": lambda v, serialize: v,
+    "NS": lambda v, serialize: set(Decimal(item) for item in v),
+    "SS": lambda v, serialize: set(v),
+    "BS": lambda v, serialize: set(v),
+    "L": lambda v, serialize: [serialize(item) for item in v],
+    "M": lambda v, serialize: {k_: serialize(v_) for k_, v_ in v.items()},
 }
+
 
 def decode_dynamodb_primative(value):
     _type = next(iter(value))
 
     if _type not in DYNAMODB_TYPES:
-        raise TypeError(f'DynamoDB does not have a type {_type}. Use one of {list(DYNAMODB_TYPES.keys())}')
+        raise TypeError(
+            f'DynamoDB does not have a type {_type}."'
+            f'"Use one of {list(DYNAMODB_TYPES.keys())}'
+        )
 
     return DYNAMODB_TYPES[_type](value[_type], decode_dynamodb_primative)
 
@@ -81,14 +89,15 @@ def decode_dynamodb_primative(value):
 def decode_dynamodb_json(v):
     try:
         key = next(iter(v))
-    except StopIteration: # Empty dict
+    except StopIteration:  # Empty dict
         return {}
 
     # Convert root level attribute map into {"M": ...}
     if len(v) > 1 or (len(v) == 1 and key not in DYNAMODB_TYPES):
-        v = {'M': v}
+        v = {"M": v}
 
     return decode_dynamodb_primative(v)
+
 
 def to_dynamodb_json(python_dict):
     """
@@ -128,7 +137,7 @@ if __name__ == "__main__":
         "tags": ["tag1", "tag2"],
         "details": {"color": "red", "size": "M"},
         "is_available": True,
-        "quantity": None
+        "quantity": None,
     }
 
     # Convert to DynamoDB JSON

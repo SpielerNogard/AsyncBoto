@@ -1,42 +1,26 @@
 import logging
-from typing import Type, TypeVar
+from typing import TypeVar
 
 import boto3
 from pydantic import BaseModel
 
 from async_boto.core.base_client import BaseClient
-from async_boto.validation.dynamodb.describe_enpoints import DescribeEndpointsResponse
-from async_boto.validation.dynamodb.batch_write_items import (
-    BatchWriteItemRequest,
-    BatchWriteItemsResponse,
+from async_boto.utils.paginate import paginate
+from async_boto.validation.dynamodb.batch_execute_statement import (
+    BatchExecuteStatementRequest,
+    BatchExecuteStatementResponse,
 )
-from async_boto.validation.dynamodb.put_item import PutItemRequest, PutItemResponse
-from async_boto.validation.dynamodb.scan import ScanRequest, ScanResponse
-from async_boto.validation.dynamodb.query import QueryRequest, QueryResponse
-from async_boto.validation.dynamodb.describe_table import (
-    DescribeTableRequest,
-    DescribeTableResponse,
-)
-from async_boto.validation.dynamodb.list_tables import (
-    ListTablesRequest,
-    ListTablesResponse,
-)
-from async_boto.validation.dynamodb.get_item import GetItemRequest, GetItemResponse
 from async_boto.validation.dynamodb.batch_get_item import (
     BatchGetItemRequest,
     BatchGetItemResponse,
 )
-from async_boto.validation.dynamodb.delete_item import (
-    DeleteItemRequest,
-    DeleteItemResponse,
+from async_boto.validation.dynamodb.batch_write_items import (
+    BatchWriteItemRequest,
+    BatchWriteItemsResponse,
 )
 from async_boto.validation.dynamodb.create_backup import (
     CreateBackupRequest,
     CreateBackupResponse,
-)
-from async_boto.validation.dynamodb.batch_execute_statement import (
-    BatchExecuteStatementRequest,
-    BatchExecuteStatementResponse,
 )
 from async_boto.validation.dynamodb.create_global_table import (
     CreateGlobalTableRequest,
@@ -50,13 +34,188 @@ from async_boto.validation.dynamodb.delete_backup import (
     DeleteBackupRequest,
     DeleteBackupResponse,
 )
-from async_boto.validation.dynamodb.delete_resource_policy import (
-    DeleteResourcePolicyResponse,
-    DeleteResourcePolicyRequest,
+from async_boto.validation.dynamodb.delete_item import (
+    DeleteItemRequest,
+    DeleteItemResponse,
 )
-from async_boto.validation.dynamodb.delete_table import DeleteTableRequest, DeleteTableResponse
-from async_boto.validation.dynamodb.describe_backup import DescribeBackupRequest, DescribeBackupResponse
-from async_boto.validation.dynamodb.describe_continous_backups import DescribeContinuousBackupsRequest, DescribeContinuousBackupsResponse
+from async_boto.validation.dynamodb.delete_resource_policy import (
+    DeleteResourcePolicyRequest,
+    DeleteResourcePolicyResponse,
+)
+from async_boto.validation.dynamodb.delete_table import (
+    DeleteTableRequest,
+    DeleteTableResponse,
+)
+from async_boto.validation.dynamodb.describe_backup import (
+    DescribeBackupRequest,
+    DescribeBackupResponse,
+)
+from async_boto.validation.dynamodb.describe_continous_backups import (
+    DescribeContinuousBackupsRequest,
+    DescribeContinuousBackupsResponse,
+)
+from async_boto.validation.dynamodb.describe_contributor_insights import (
+    DescribeContributorInsightsRequest,
+    DescribeContributorInsightsResponse,
+)
+from async_boto.validation.dynamodb.describe_enpoints import DescribeEndpointsResponse
+from async_boto.validation.dynamodb.describe_export import (
+    DescribeExportRequest,
+    DescribeExportResponse,
+)
+from async_boto.validation.dynamodb.describe_global_table import (
+    DescribeGlobalTableRequest,
+    DescribeGlobalTableResponse,
+)
+from async_boto.validation.dynamodb.describe_global_table_settings import (
+    DescribeGlobalTableSettingsRequest,
+    DescribeGlobalTableSettingsResponse,
+)
+from async_boto.validation.dynamodb.describe_import import (
+    DescribeImportRequest,
+    DescribeImportResponse,
+)
+from async_boto.validation.dynamodb.describe_kinesis_streaming_destination import (
+    DescribeKinesisStreamingDestinationRequest,
+    DescribeKinesisStreamingDestinationResponse,
+)
+from async_boto.validation.dynamodb.describe_table import (
+    DescribeTableRequest,
+    DescribeTableResponse,
+)
+from async_boto.validation.dynamodb.describe_table_replica_auto_scaling import (
+    DescribeTableReplicaAutoScalingRequest,
+    DescribeTableReplicaAutoScalingResponse,
+)
+from async_boto.validation.dynamodb.describe_time_to_live import (
+    DescribeTimeToLiveRequest,
+    DescribeTimeToLiveResponse,
+)
+from async_boto.validation.dynamodb.disable_kinesis_streaming_destination import (
+    DisableKinesisStreamingDestinationRequest,
+    DisableKinesisStreamingDestinationResponse,
+)
+from async_boto.validation.dynamodb.enable_kinesis_streaming_destination import (
+    EnableKinesisStreamingDestinationRequest,
+    EnableKinesisStreamingDestinationResponse,
+)
+from async_boto.validation.dynamodb.execute_statement import (
+    ExecuteStatementRequest,
+    ExecuteStatementResponse,
+)
+from async_boto.validation.dynamodb.execute_transaction import (
+    ExecuteTransactionRequest,
+    ExecuteTransactionResponse,
+)
+from async_boto.validation.dynamodb.export_table_to_point_in_time import (
+    ExportTableToPointInTimeRequest,
+    ExportTableToPointInTimeResponse,
+)
+from async_boto.validation.dynamodb.get_item import GetItemRequest, GetItemResponse
+from async_boto.validation.dynamodb.get_resource_policy import (
+    GetResourcePolicyRequest,
+    GetResourcePolicyResponse,
+)
+from async_boto.validation.dynamodb.import_table import (
+    ImportTableRequest,
+    ImportTableResponse,
+)
+from async_boto.validation.dynamodb.list_backups import (
+    ListBackupsRequest,
+    ListBackupsResponse,
+)
+from async_boto.validation.dynamodb.list_contributor_insights import (
+    ListContributorInsightsRequest,
+    ListContributorInsightsResponse,
+)
+from async_boto.validation.dynamodb.list_exports import (
+    ListExportsRequest,
+    ListExportsResponse,
+)
+from async_boto.validation.dynamodb.list_global_tables import (
+    ListGlobalTablesRequest,
+    ListGlobalTablesResponse,
+)
+from async_boto.validation.dynamodb.list_imports import (
+    ListImportsRequest,
+    ListImportsResponse,
+)
+from async_boto.validation.dynamodb.list_tables import (
+    ListTablesRequest,
+    ListTablesResponse,
+)
+from async_boto.validation.dynamodb.list_tags_of_resource import (
+    ListTagsOfResourceRequest,
+    ListTagsOfResourceResponse,
+)
+from async_boto.validation.dynamodb.put_item import PutItemRequest, PutItemResponse
+from async_boto.validation.dynamodb.put_resource_policy import (
+    PutResourcePolicyRequest,
+    PutResourcePolicyResponse,
+)
+from async_boto.validation.dynamodb.query import QueryRequest, QueryResponse
+from async_boto.validation.dynamodb.restore_table_from_backup import (
+    RestoreTableFromBackupRequest,
+    RestoreTableFromBackupResponse,
+)
+from async_boto.validation.dynamodb.restore_table_to_point_in_time import (
+    RestoreTableToPointInTimeRequest,
+    RestoreTableToPointInTimeResponse,
+)
+from async_boto.validation.dynamodb.scan import ScanRequest, ScanResponse
+from async_boto.validation.dynamodb.tag_resource import (
+    TagResourceRequest,
+    TagResourceResponse,
+)
+from async_boto.validation.dynamodb.transact_get_items import (
+    TransactGetItemsRequest,
+    TransactGetItemsResponse,
+)
+from async_boto.validation.dynamodb.transact_write_items import (
+    TransactWriteItemsRequest,
+    TransactWriteItemsResponse,
+)
+from async_boto.validation.dynamodb.untag_resource import (
+    UntagResourceRequest,
+    UntagResourceResponse,
+)
+from async_boto.validation.dynamodb.update_continuous_backups import (
+    UpdateContinuousBackupsRequest,
+    UpdateContinuousBackupsResponse,
+)
+from async_boto.validation.dynamodb.update_contributor_insights import (
+    UpdateContributorInsightsRequest,
+    UpdateContributorInsightsResponse,
+)
+from async_boto.validation.dynamodb.update_global_table import (
+    UpdateGlobalTableRequest,
+    UpdateGlobalTableResponse,
+)
+from async_boto.validation.dynamodb.update_global_table_settings import (
+    UpdateGlobalTableSettingsRequest,
+    UpdateGlobalTableSettingsResponse,
+)
+from async_boto.validation.dynamodb.update_item import (
+    UpdateItemRequest,
+    UpdateItemResponse,
+)
+from async_boto.validation.dynamodb.update_kinesis_streaming_destination import (
+    UpdateKinesisStreamingDestinationRequest,
+    UpdateKinesisStreamingDestinationResponse,
+)
+from async_boto.validation.dynamodb.update_table import (
+    UpdateTableRequest,
+    UpdateTableResponse,
+)
+from async_boto.validation.dynamodb.update_table_replica_auto_scaling import (
+    UpdateTableReplicaAutoScalingRequest,
+    UpdateTableReplicaAutoScalingResponse,
+)
+from async_boto.validation.dynamodb.update_time_to_live import (
+    UpdateTimeToLiveRequest,
+    UpdateTimeToLiveResponse,
+)
+
 logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseModel)
@@ -68,7 +227,7 @@ class AsyncDynamoDBClient(BaseClient):
         self._url = f"https://dynamodb.{self._aws_session.region_name}.amazonaws.com"
 
     async def _make_request(
-        self, target: str, request: BaseModel, response_cls: Type[T]
+        self, target: str, request: BaseModel, response_cls: type[T]
     ) -> T:
         headers = {
             "Content-Type": "application/x-amz-json-1.0",
@@ -184,218 +343,350 @@ class AsyncDynamoDBClient(BaseClient):
             "DynamoDB_20120810.DeleteTable", request, DeleteTableResponse
         )
 
-    async def describe_backup(self, request: DescribeBackupRequest) -> DescribeBackupResponse:
+    async def describe_backup(
+        self, request: DescribeBackupRequest
+    ) -> DescribeBackupResponse:
         return await self._make_request(
             "DynamoDB_20120810.DescribeBackup", request, DescribeBackupResponse
         )
 
-    async def describe_continuous_backups(self, request: DescribeContinuousBackupsRequest) -> DescribeContinuousBackupsResponse:
+    async def describe_continuous_backups(
+        self, request: DescribeContinuousBackupsRequest
+    ) -> DescribeContinuousBackupsResponse:
         return await self._make_request(
-            "DynamoDB_20120810.DescribeContinuousBackups", request, DescribeContinuousBackupsResponse
+            "DynamoDB_20120810.DescribeContinuousBackups",
+            request,
+            DescribeContinuousBackupsResponse,
         )
 
-
-if __name__ == "__main__":
-    import asyncio
-    from async_boto.core.errors import APIResponseException
-
-    my_session = boto3.Session(profile_name="bestoraged-lab-crmuelle")
-    client = AsyncDynamoDBClient(aws_session=my_session)
-
-    loop = asyncio.get_event_loop()
-
-    # # Example usage of batch_write_items
-    # from async_boto.validation.dynamodb.data_types.write_request import WriteRequest
-    # from async_boto.validation.dynamodb.data_types.put_request import PutRequest
-    # items_to_write = [
-    #     PutRequest.from_python_dict({"hash": "1", "sort": "Item 1"}),
-    #     PutRequest.from_python_dict({"hash": "2", "sort": "Item 2"}),
-    # ]
-    #
-    # try:
-    #     resp = loop.run_until_complete(
-    #         client.batch_write_items(
-    #             BatchWriteItemRequest(
-    #                 RequestItems={
-    #                     "user_testing": [
-    #                         WriteRequest.from_item(item) for item in items_to_write
-    #                     ]
-    #                 }
-    #             )
-    #         )
-    #     )
-    #     print(resp.model_dump())
-    # except APIResponseException as e:
-    #     print("Error")
-    #     print(f"{e}")
-    #     print(e.error_type)
-
-    # # Example to put an item
-    # item_to_put = {"hash": "123", "sort": "Sample Item", "value": 42}
-    # put_resp = loop.run_until_complete(
-    #     client.put_item(
-    #         PutItemRequest.from_python_dict(item_to_put, TableName="user_testing")
-    #     )
-    # )
-    # print("Put Item Response:", put_resp)
-    #
-    # # Example to scan table
-    # item_to_put = {"hash": "123", "sort": "Sample Item", "value": 42}
-    # put_resp = loop.run_until_complete(client.scan(
-    #     ScanRequest(TableName="user_testing")))
-    # [print(item.to_python_dict()) for item in put_resp.Items]
-    # print("Put Item Response:", put_resp)
-
-    # # Example of query items
-    # query_resp = loop.run_until_complete(client.query(
-    #     QueryRequest(TableName="user_testing", KeyConditionExpression="#hash = :hash",
-    #         ExpressionAttributeNames={"#hash": "hash"},
-    #         ExpressionAttributeValues={":hash": {"S": "123"}}, )
-    # ))
-    # print([item.to_python_dict() for item in query_resp.Items])
-    # print("Query Response:", query_resp)
-    #
-    # # Example of describe table
-    # describe_table_resp = loop.run_until_complete(client.describe_table(
-    #     DescribeTableRequest(TableName="user_testing")
-    # ))
-    # print(describe_table_resp)
-
-    # Example of list tables
-    # list_tables_resp = loop.run_until_complete(client.list_tables(ListTablesRequest()))
-    # print(list_tables_resp)
-    #
-    # # Example of get item
-    # get_item_resp = loop.run_until_complete(
-    #     client.get_item(
-    #         GetItemRequest(
-    #             TableName="user_testing",
-    #             Key={"hash": {"S": "123"}, "sort": {"S": "Sample Item"}},
-    #         )
-    #     )
-    # )
-    # print(get_item_resp)
-
-    # # Example of batch get item
-    # batch_get_item_resp = loop.run_until_complete(
-    #     client.batch_get_item(
-    #         BatchGetItemRequest(
-    #             RequestItems={
-    #                 "user_testing": {
-    #                     "Keys": [
-    #                         {"hash": {"S": "123"}, "sort": {"S": "Sample Item"}},
-    #                         {"hash": {"S": "1"}, "sort": {"S": "Item 1"}},
-    #                     ]
-    #                 }
-    #             }
-    #         )
-    #     )
-    # )
-    # print(batch_get_item_resp)
-
-    # # Example of delete item
-    # delete_item_resp = loop.run_until_complete(
-    #     client.delete_item(
-    #         DeleteItemRequest(
-    #             TableName="user_testing",
-    #             Key={"hash": {"S": "123"}, "sort": {"S": "Sample Item"}},
-    #         )
-    #     )
-    # )
-    # print(delete_item_resp)
-
-    # # Example of create backup
-    # create_backup_resp = loop.run_until_complete(
-    #     client.create_backup(
-    #         CreateBackupRequest(
-    #             BackupName="backup-1",
-    #             TableName="user_testing",
-    #         )
-    #     )
-    # )
-    # print(create_backup_resp)
-
-    # # Example of batch execute statement
-    # batch_execute_statement_resp = loop.run_until_complete(
-    #     client.batch_execute_statement(
-    #         BatchExecuteStatementRequest(
-    #             Statements=[
-    #                 {
-    #                     "Statement": "SELECT * FROM user_testing where HASH = '123'",
-    #                     "ConsistentRead": True,
-    #                 }
-    #             ]
-    #         )
-    #     )
-    # )
-    # print(batch_execute_statement_resp)
-
-    # # Example of create global table
-    # create_global_table_resp = loop.run_until_complete(
-    #     client.create_global_table(
-    #         CreateGlobalTableRequest(
-    #             GlobalTableName="user_testing",
-    #             ReplicationGroup=[
-    #                 {
-    #                     "RegionName": "eu-central-1",
-    #                 }
-    #             ],
-    #         )
-    #     )
-    # )
-    # print(create_global_table_resp)
-
-    # # Example of create table
-    # create_table_resp = loop.run_until_complete(
-    #     client.create_table(
-    #         CreateTableRequest(
-    #             TableName="user_testing_async",
-    #             KeySchema=[
-    #                 {"AttributeName": "hash", "KeyType": "HASH"},
-    #                 {"AttributeName": "sort", "KeyType": "RANGE"},
-    #             ],
-    #             AttributeDefinitions=[
-    #                 {"AttributeName": "hash", "AttributeType": "S"},
-    #                 {"AttributeName": "sort", "AttributeType": "S"},
-    #             ],
-    #             BillingMode="PAY_PER_REQUEST"
-    #         )
-    #     )
-    # )
-    # print(create_table_resp)
-
-    # # Example of delete backup
-    # delete_backup_resp = loop.run_until_complete(
-    #     client.delete_backup(
-    #         DeleteBackupRequest(BackupArn=create_backup_resp.BackupDetails.BackupArn)
-    #     )
-    # )
-    # print(delete_backup_resp)
-
-    # # Example of delete table
-    # delete_table_resp = loop.run_until_complete(
-    #     client.delete_table(
-    #         DeleteTableRequest(TableName="user_testing_async")
-    #     )
-    # )
-    # print(delete_table_resp)
-
-    # Example of describe backup
-    backup_description = loop.run_until_complete(
-        client.describe_backup(
-            DescribeBackupRequest(BackupArn="arn:aws:dynamodb:eu-central-1:654654421974:table/user_testing/backup/01740392783544-d59f8800")
+    async def describe_contributor_insights(
+        self, request: DescribeContributorInsightsRequest
+    ) -> DescribeContributorInsightsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeContributorInsights",
+            request,
+            DescribeContributorInsightsResponse,
         )
-    )
-    print(backup_description)
 
-    # Example of describe continuous backups
-    continuous_backups_description = loop.run_until_complete(
-        client.describe_continuous_backups(
-            DescribeContinuousBackupsRequest(TableName="user_testing")
+    async def describe_export(
+        self, request: DescribeExportRequest
+    ) -> DescribeExportResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeExport", request, DescribeExportResponse
         )
-    )
-    loop.close()
 
+    async def describe_global_table(
+        self, request: DescribeGlobalTableRequest
+    ) -> DescribeGlobalTableResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeGlobalTable",
+            request,
+            DescribeGlobalTableResponse,
+        )
 
-# TODO
-# async_boto.core.errors.APIResponseException: https://dynamodb.eu-central-1.amazonaws.com returned 400, content:{"__type":"com.amazon.coral.validate#ValidationException","message":"Supplied AttributeValue has more than one datatypes set, must contain exactly one of the supported datatypes"}, json:{'__type': 'com.amazon.coral.validate#ValidationException', 'message': 'Supplied AttributeValue has more than one datatypes set, must contain exactly one of the supported datatypes'}
+    async def describe_global_table_settings(
+        self, request: DescribeGlobalTableSettingsRequest
+    ) -> DescribeGlobalTableSettingsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeGlobalTableSettings",
+            request,
+            DescribeGlobalTableSettingsResponse,
+        )
+
+    async def describe_import(
+        self, request: DescribeImportRequest
+    ) -> DescribeImportResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeImport", request, DescribeImportResponse
+        )
+
+    async def describe_kinesis_streaming_destination(
+        self, request: DescribeKinesisStreamingDestinationRequest
+    ) -> DescribeKinesisStreamingDestinationResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeKinesisStreamingDestination",
+            request,
+            DescribeKinesisStreamingDestinationResponse,
+        )
+
+    async def describe_table_replica_auto_scaling(
+        self, request: DescribeTableReplicaAutoScalingRequest
+    ) -> DescribeTableReplicaAutoScalingResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeTableReplicaAutoScaling",
+            request,
+            DescribeTableReplicaAutoScalingResponse,
+        )
+
+    async def describe_time_to_live(
+        self, request: DescribeTimeToLiveRequest
+    ) -> DescribeTimeToLiveResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DescribeTimeToLive", request, DescribeTimeToLiveResponse
+        )
+
+    async def disable_kinesis_streaming_destination(
+        self, request: DisableKinesisStreamingDestinationRequest
+    ) -> DisableKinesisStreamingDestinationResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.DisableKinesisStreamingDestination",
+            request,
+            DisableKinesisStreamingDestinationResponse,
+        )
+
+    async def enable_kinesis_streaming_destination(
+        self, request: EnableKinesisStreamingDestinationRequest
+    ) -> EnableKinesisStreamingDestinationResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.EnableKinesisStreamingDestination",
+            request,
+            EnableKinesisStreamingDestinationResponse,
+        )
+
+    async def execute_statement(
+        self, request: ExecuteStatementRequest
+    ) -> ExecuteStatementResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ExecuteStatement", request, ExecuteStatementResponse
+        )
+
+    async def execute_transaction(
+        self, request: ExecuteTransactionRequest
+    ) -> ExecuteTransactionResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ExecuteTransaction", request, ExecuteTransactionResponse
+        )
+
+    async def export_table_to_point_in_time(
+        self, request: ExportTableToPointInTimeRequest
+    ) -> ExportTableToPointInTimeResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ExportTableToPointInTime",
+            request,
+            ExportTableToPointInTimeResponse,
+        )
+
+    async def get_resource_policy(
+        self, request: GetResourcePolicyRequest
+    ) -> GetResourcePolicyResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.GetResourcePolicy", request, GetResourcePolicyResponse
+        )
+
+    async def import_table(self, request: ImportTableRequest) -> ImportTableResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ImportTable", request, ImportTableResponse
+        )
+
+    async def list_backups(self, request: ListBackupsRequest) -> ListBackupsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListBackups", request, ListBackupsResponse
+        )
+
+    async def list_contributor_insights(
+        self, request: ListContributorInsightsRequest
+    ) -> ListContributorInsightsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListContributorInsights",
+            request,
+            ListContributorInsightsResponse,
+        )
+
+    async def list_exports(self, request: ListExportsRequest) -> ListExportsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListExports", request, ListExportsResponse
+        )
+
+    async def list_global_tables(
+        self, request: ListGlobalTablesRequest
+    ) -> ListGlobalTablesResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListGlobalTables", request, ListGlobalTablesResponse
+        )
+
+    async def list_imports(self, request: ListImportsRequest) -> ListImportsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListImports", request, ListImportsResponse
+        )
+
+    async def list_tags_of_resource(
+        self, request: ListTagsOfResourceRequest
+    ) -> ListTagsOfResourceResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.ListTagsOfResource", request, ListTagsOfResourceResponse
+        )
+
+    async def put_resource_policy(
+        self, request: PutResourcePolicyRequest
+    ) -> PutResourcePolicyResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.PutResourcePolicy", request, PutResourcePolicyResponse
+        )
+
+    async def restore_table_from_backup(
+        self, request: RestoreTableFromBackupRequest
+    ) -> RestoreTableFromBackupResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.RestoreTableFromBackup",
+            request,
+            RestoreTableFromBackupResponse,
+        )
+
+    async def restore_table_to_point_in_time(
+        self, request: RestoreTableToPointInTimeRequest
+    ) -> RestoreTableToPointInTimeResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.RestoreTableToPointInTime",
+            request,
+            RestoreTableToPointInTimeResponse,
+        )
+
+    async def tag_resource(self, request: TagResourceRequest) -> TagResourceResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.TagResource", request, TagResourceResponse
+        )
+
+    async def transact_get_items(
+        self, request: TransactGetItemsRequest
+    ) -> TransactGetItemsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.TransactGetItems", request, TransactGetItemsResponse
+        )
+
+    async def transact_write_items(
+        self, request: TransactWriteItemsRequest
+    ) -> TransactWriteItemsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.TransactWriteItems", request, TransactWriteItemsResponse
+        )
+
+    async def untag_resource(
+        self, request: UntagResourceRequest
+    ) -> UntagResourceResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UntagResource", request, UntagResourceResponse
+        )
+
+    async def update_continuous_backups(
+        self, request: UpdateContinuousBackupsRequest
+    ) -> UpdateContinuousBackupsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateContinuousBackups",
+            request,
+            UpdateContinuousBackupsResponse,
+        )
+
+    async def update_contributor_insights(
+        self, request: UpdateContributorInsightsRequest
+    ) -> UpdateContributorInsightsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateContributorInsights",
+            request,
+            UpdateContributorInsightsResponse,
+        )
+
+    async def update_global_table(
+        self, request: UpdateGlobalTableRequest
+    ) -> UpdateGlobalTableResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateGlobalTable", request, UpdateGlobalTableResponse
+        )
+
+    async def update_global_table_settings(
+        self, request: UpdateGlobalTableSettingsRequest
+    ) -> UpdateGlobalTableSettingsResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateGlobalTableSettings",
+            request,
+            UpdateGlobalTableSettingsResponse,
+        )
+
+    async def update_item(self, request: UpdateItemRequest) -> UpdateItemResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateItem", request, UpdateItemResponse
+        )
+
+    async def update_kinesis_streaming_destination(
+        self, request: UpdateKinesisStreamingDestinationRequest
+    ) -> UpdateKinesisStreamingDestinationResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateKinesisStreamingDestination",
+            request,
+            UpdateKinesisStreamingDestinationResponse,
+        )
+
+    async def update_table(self, request: UpdateTableRequest) -> UpdateTableResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateTable", request, UpdateTableResponse
+        )
+
+    async def update_table_replica_auto_scaling(
+        self, request: UpdateTableReplicaAutoScalingRequest
+    ) -> UpdateTableReplicaAutoScalingResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateTableReplicaAutoScaling",
+            request,
+            UpdateTableReplicaAutoScalingResponse,
+        )
+
+    async def update_time_to_live(
+        self, request: UpdateTimeToLiveRequest
+    ) -> UpdateTimeToLiveResponse:
+        return await self._make_request(
+            "DynamoDB_20120810.UpdateTimeToLive", request, UpdateTimeToLiveResponse
+        )
+
+    async def paginate(self, method_name, request: BaseModel):
+        paginators = {
+            "list_backups": {
+                "method": "list_backups",
+                "pagination_query_key": "ExclusiveStartBackupArn",
+                "pagination_response_key": "LastEvaluatedBackupArn",
+            },
+            "list_contributor_insights": {
+                "method": "list_contributor_insights",
+                "pagination_query_key": "NextToken",
+                "pagination_response_key": "NextToken",
+            },
+            "list_exports": {
+                "method": "list_exports",
+                "pagination_query_key": "NextToken",
+                "pagination_response_key": "NextToken",
+            },
+            "list_global_tables": {
+                "method": "list_global_tables",
+                "pagination_query_key": "ExclusiveStartGlobalTableName",
+                "pagination_response_key": "LastEvaluatedGlobalTableName",
+            },
+            "list_imports": {
+                "method": "list_imports",
+                "pagination_query_key": "NextToken",
+                "pagination_response_key": "NextToken",
+            },
+            "list_tables": {
+                "method": "list_tables",
+                "pagination_query_key": "ExclusiveStartTableName",
+                "pagination_response_key": "LastEvaluatedTableName",
+            },
+            "list_tags_of_resource": {
+                "method": "list_tags_of_resource",
+                "pagination_query_key": "NextToken",
+                "pagination_response_key": "NextToken",
+            },
+            "query": {
+                "method": "query",
+                "pagination_query_key": "ExclusiveStartKey",
+                "pagination_response_key": "LastEvaluatedKey",
+            },
+            "scan": {
+                "method": "scan",
+                "pagination_query_key": "ExclusiveStartKey",
+                "pagination_response_key": "LastEvaluatedKey",
+            },
+        }
+        if method_name not in paginators:
+            raise ValueError(
+                f"Method {method_name} is not paginatable."
+                f"Please use any of the following methods: {list(paginators.keys())}"
+            )
+        return paginate(self, method_name, request=request, **paginators[method_name])
