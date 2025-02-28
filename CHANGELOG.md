@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.0.3 (2025-02-28)
+
+### Fix
+
+- **async_boto/__init__.py**: added __version__ to package
+
 ## 0.0.2 (2025-02-28)
 
 ### Fix
