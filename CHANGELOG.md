@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## 0.0.2 (2025-02-28)
+
+### Fix
+
+- **.github/workflows/commitizen.yml**: trigger on main push
+- **.github/workflows/commitizen.yml**: use commitizen build
+- **README.md**: just trigger and test commitizen
+
 ## v0.0.1 (29/07/2023)
 
 - First release of `async_boto`!
