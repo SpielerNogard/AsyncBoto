@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.1.0 (2025-03-01)
+
+### Feat
+
+- **async_boto/clients/sqs.py**: Added AsyncSQSClient for interaction with SQS
+
 ## 0.0.3 (2025-02-28)
 
 ### Fix
