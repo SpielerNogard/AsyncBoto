@@ -200,9 +200,8 @@ class BaseClient:
                     url=response.url,
                     headers=response.headers,
                 )
+                return resp
         except:  # noqa: E722
             logger.error(traceback.format_exc())
         finally:
             await session.close()
-
-        return resp
