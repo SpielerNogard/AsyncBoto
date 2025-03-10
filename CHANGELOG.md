@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## 0.2.0 (2025-03-10)
+
+### Feat
+
+- **AsyncTimestreamWriteClient**: added async client for interaction with the ingest API of timestream
+- **async_boto.validation.timestream_write**: added calidation classes for interaction with timestream write
+
+### Fix
+
+- **BaseClient**: always return response
+
 ## 0.1.0 (2025-03-01)
 
 ### Feat
