@@ -14,7 +14,7 @@ from .provisioned_throughput_description import ProvisionedThroughputDescription
 from .replica_description import ReplicaDescription
 from .restore_summary import RestoreSummary as RestoreSummaryModel
 from .sse_description import SSEDescription as SSEDescriptionModel
-from .stream_specification import StreamSpecification
+from .stream_specification import StreamSpecification as StreamSpecificationModel
 from .table_class_summary import TableClassSummary as TableClassSummaryModel
 from .table_warm_throughput_description import TableWarmThroughputDescription
 
@@ -103,7 +103,7 @@ class TableDescription(BaseModel):
     Replicas: list[ReplicaDescription] | None = None
     RestoreSummary: RestoreSummaryModel | None = None
     SSEDescription: SSEDescriptionModel | None = None
-    StreamSpecification: StreamSpecification | None = None
+    StreamSpecification: StreamSpecificationModel | None = None
     TableArn: str | None = None
     TableClassSummary: TableClassSummaryModel | None = None
     TableId: (

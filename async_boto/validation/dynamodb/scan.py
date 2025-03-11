@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 from .data_types.attribute_value import AttributeValueDict
 from .data_types.condition import Condition
-from .data_types.consumed_capacity import ConsumedCapacity
+from .data_types.consumed_capacity import ConsumedCapacity as ConsumedCapacityModel
 
 
 class ScanRequest(BaseModel):
@@ -32,7 +32,7 @@ class ScanRequest(BaseModel):
 
 
 class ScanResponse(BaseModel):
-    ConsumedCapacity: ConsumedCapacity | None = None
+    ConsumedCapacity: ConsumedCapacityModel | None = None
     Count: int | None = None
     Items: list[AttributeValueDict] | None = None
     LastEvaluatedKey: AttributeValueDict | None = None

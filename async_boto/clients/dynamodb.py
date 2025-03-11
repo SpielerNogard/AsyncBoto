@@ -222,9 +222,12 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class AsyncDynamoDBClient(BaseClient):
-    def __init__(self, aws_session: boto3.Session):
+    def __init__(self, aws_session: boto3.Session, endpoint_url: str = None):
         super().__init__(aws_session=aws_session, service_name="dynamodb")
-        self._url = f"https://dynamodb.{self._aws_session.region_name}.amazonaws.com"
+        self._url = (
+            endpoint_url
+            or f"https://dynamodb.{self._aws_session.region_name}.amazonaws.com"
+        )
 
     async def _make_request(
         self, target: str, request: BaseModel, response_cls: type[T]
@@ -233,11 +236,14 @@ class AsyncDynamoDBClient(BaseClient):
             "Content-Type": "application/x-amz-json-1.0",
             "X-Amz-Target": target,
         }
-        resp = await self._post(
-            url=self._url,
-            headers=headers,
-            json=request.model_dump(exclude_defaults=True, exclude_none=True),
-        )
+        if request is not None:
+            resp = await self._post(
+                url=self._url,
+                headers=headers,
+                json=request.model_dump(exclude_defaults=True, exclude_none=True),
+            )
+        else:
+            resp = await self._post(url=self._url, headers=headers, json={})
         resp.raise_for_status()
         print(resp.json)
         return response_cls(**resp.json)
@@ -245,7 +251,7 @@ class AsyncDynamoDBClient(BaseClient):
     async def describe_endpoints(self) -> DescribeEndpointsResponse:
         return await self._make_request(
             "DynamoDB_20120810.DescribeEndpoints",
-            BaseModel(),
+            None,
             DescribeEndpointsResponse,
         )
 

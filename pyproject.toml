@@ -73,3 +73,6 @@ bump_message = "bump: $current_version → $new_version [skip-ci]"
 version_files = [
     "async_boto/__init__.py",
 ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
