@@ -6,13 +6,19 @@ from .data_types.attribute_definition import AttributeDefinition
 from .data_types.global_secondary_index import GlobalSecondaryIndex
 from .data_types.key_schema_element import KeySchemaElement
 from .data_types.local_secondary_index import LocalSecondaryIndex
-from .data_types.on_demand_throughput import OnDemandThroughput
-from .data_types.provisioned_throughput import ProvisionedThroughput
-from .data_types.sse_specification import SSESpecification
-from .data_types.stream_specification import StreamSpecification
+from .data_types.on_demand_throughput import (
+    OnDemandThroughput as OnDemandThroughputModel,
+)
+from .data_types.provisioned_throughput import (
+    ProvisionedThroughput as ProvisionedThroughputModel,
+)
+from .data_types.sse_specification import SSESpecification as SSESpecificationModel
+from .data_types.stream_specification import (
+    StreamSpecification as StreamSpecificationModel,
+)
 from .data_types.table_description import TableDescription as TableDescriptionModel
 from .data_types.tag import Tag
-from .data_types.warm_throughput import WarmThroughput
+from .data_types.warm_throughput import WarmThroughput as WarmThroughputModel
 
 
 class CreateTableRequest(BaseModel):
@@ -64,14 +70,14 @@ class CreateTableRequest(BaseModel):
     DeletionProtectionEnabled: bool | None = None
     GlobalSecondaryIndexes: list[GlobalSecondaryIndex] | None = None
     LocalSecondaryIndexes: list[LocalSecondaryIndex] | None = None
-    OnDemandThroughput: OnDemandThroughput | None = None
-    ProvisionedThroughput: ProvisionedThroughput | None = None
+    OnDemandThroughput: OnDemandThroughputModel | None = None
+    ProvisionedThroughput: ProvisionedThroughputModel | None = None
     ResourcePolicy: str | None = None
-    SSESpecification: SSESpecification | None = None
-    StreamSpecification: StreamSpecification | None = None
+    SSESpecification: SSESpecificationModel | None = None
+    StreamSpecification: StreamSpecificationModel | None = None
     TableClass: Literal["STANDARD", "STANDARD_INFREQUENT_ACCESS"] | None = None
     Tags: list[Tag] | None = None
-    WarmThroughput: WarmThroughput | None = None
+    WarmThroughput: WarmThroughputModel | None = None
 
 
 class CreateTableResponse(BaseModel):

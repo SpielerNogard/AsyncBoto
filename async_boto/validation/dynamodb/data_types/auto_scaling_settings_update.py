@@ -15,7 +15,6 @@ class AutoScalingSettingsUpdate(BaseModel):
     AutoScalingRoleArn : Optional[str]
         Role ARN used for configuring auto scaling policy. Minimum length of 1.
         Maximum length of 1600.
-        Pattern: [\u0020-\ud7ff\ue000-\ufffd\ud800\udc00-\udbff\udfff\r\n\t]*
     MaximumUnits : Optional[int]
         The maximum capacity units that a global table or global secondary index should
          be scaled up to.
@@ -34,7 +33,6 @@ class AutoScalingSettingsUpdate(BaseModel):
         None,
         min_length=1,
         max_length=1600,
-        pattern=r"[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*",
     )
     MaximumUnits: int | None = Field(None, ge=1)
     MinimumUnits: int | None = Field(None, ge=1)

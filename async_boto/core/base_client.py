@@ -182,6 +182,9 @@ class BaseClient:
             payload=data,
             method=method,
         )
+        signed_headers = {
+            key: value for key, value in signed_headers.items() if value is not None
+        }
         try:
             async with session.request(
                 method=method, params=params, data=data, url=url, headers=signed_headers

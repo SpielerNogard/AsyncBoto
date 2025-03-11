@@ -1,5 +1,8 @@
-from pydantic import BaseModel, Field, constr
-from typing import Optional, Literal
+# ruff: noqa: E501
+from typing import Literal
+
+from pydantic import BaseModel, constr
+
 
 class AddPermissionRequest(BaseModel):
     """
@@ -32,21 +35,34 @@ class AddPermissionRequest(BaseModel):
     StatementId : str
         A statement identifier that differentiates the statement from others in the same policy.
     """
+
     FunctionName: constr(
         min_length=1,
         max_length=140,
-        pattern=r"(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?"
+        pattern=r"(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?",
     )
-    Qualifier: Optional[constr(min_length=1, max_length=128, pattern=r"(|[a-zA-Z0-9$_-]+)")] = None
+    Qualifier: (
+        constr(min_length=1, max_length=128, pattern=r"(|[a-zA-Z0-9$_-]+)") | None
+    ) = None
     Action: constr(pattern=r"(lambda:[*]|lambda:[a-zA-Z]+|[*])")
-    EventSourceToken: Optional[constr(min_length=0, max_length=256, pattern=r"[a-zA-Z0-9._\-]+")] = None
-    FunctionUrlAuthType: Optional[Literal['NONE', 'AWS_IAM']] = None
+    EventSourceToken: (
+        constr(min_length=0, max_length=256, pattern=r"[a-zA-Z0-9._\-]+") | None
+    ) = None
+    FunctionUrlAuthType: Literal["NONE", "AWS_IAM"] | None = None
     Principal: constr(pattern=r"[^\s]+")
-    PrincipalOrgID: Optional[constr(min_length=12, max_length=34, pattern=r"^o-[a-z0-9]{10,32}$")] = None
-    RevisionId: Optional[str] = None
-    SourceAccount: Optional[constr(max_length=12, pattern=r"\d{12}")] = None
-    SourceArn: Optional[constr(pattern=r"arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)")] = None
+    PrincipalOrgID: (
+        constr(min_length=12, max_length=34, pattern=r"^o-[a-z0-9]{10,32}$") | None
+    ) = None
+    RevisionId: str | None = None
+    SourceAccount: constr(max_length=12, pattern=r"\d{12}") | None = None
+    SourceArn: (
+        constr(
+            pattern=r"arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)"
+        )
+        | None
+    ) = None
     StatementId: constr(min_length=1, max_length=100, pattern=r"([a-zA-Z0-9-_]+)")
+
 
 class AddPermissionResponse(BaseModel):
     """
@@ -57,4 +73,5 @@ class AddPermissionResponse(BaseModel):
     Statement : str
         The permission statement that's added to the function policy.
     """
+
     Statement: str

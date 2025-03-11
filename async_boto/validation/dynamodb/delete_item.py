@@ -3,9 +3,11 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from .data_types.attribute_value import AttributeValueDict
-from .data_types.consumed_capacity import ConsumedCapacity
+from .data_types.consumed_capacity import ConsumedCapacity as ConsumedCapacityModel
 from .data_types.expected_attribute_value import ExpectedAttributeValue
-from .data_types.item_collection_metrics import ItemCollectionMetrics
+from .data_types.item_collection_metrics import (
+    ItemCollectionMetrics as ItemCollectionMetricsModel,
+)
 
 
 class DeleteItemRequest(BaseModel):
@@ -24,5 +26,5 @@ class DeleteItemRequest(BaseModel):
 
 class DeleteItemResponse(BaseModel):
     Attributes: AttributeValueDict | None = None
-    ConsumedCapacity: ConsumedCapacity | None = None
-    ItemCollectionMetrics: ItemCollectionMetrics | None = None
+    ConsumedCapacity: ConsumedCapacityModel | None = None
+    ItemCollectionMetrics: ItemCollectionMetricsModel | None = None
