@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .data_model import DataModel
+from .data_model import DataModel as DataModelModel
 from .data_model_s3_configuration import (
     DataModelS3Configuration as DataModelS3ConfigurationModel,
 )
@@ -18,5 +18,5 @@ class DataModelConfiguration(BaseModel):
         S3 configuration for the data model.
     """
 
-    DataModel: DataModel | None = None
+    DataModel: DataModelModel | None = None
     DataModelS3Configuration: DataModelS3ConfigurationModel | None = None
