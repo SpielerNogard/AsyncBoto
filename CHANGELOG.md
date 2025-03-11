@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## 0.3.0 (2025-03-11)
+
+### Feat
+
+- **async_boto.clients**: added AsyncTimestreamQueryClient to the clients
+- **async_boto.validation**: added validation models for timestream query
+
 ## 0.2.0 (2025-03-10)
 
 ### Feat
