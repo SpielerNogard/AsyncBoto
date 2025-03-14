@@ -29,7 +29,7 @@ async def dynamodb_client():
         yield client
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 async def test_table(dynamodb_client):
     table_name = "test-table-consistent"
     # Setup: create a table
