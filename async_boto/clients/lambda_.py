@@ -17,6 +17,42 @@ from async_boto.validation.lambda_.create_alias import (
     CreateAliasRequest,
     CreateAliasResponse,
 )
+from async_boto.validation.lambda_.create_code_signing_config import (
+    CreateCodeSigningConfigRequest,
+    CreateCodeSigningConfigResponse,
+)
+from async_boto.validation.lambda_.create_event_source_mapping import (
+    CreateEventSourceMappingRequest,
+    CreateEventSourceMappingResponse,
+)
+from async_boto.validation.lambda_.create_function import (
+    CreateFunctionRequest,
+    CreateFunctionResponse,
+)
+from async_boto.validation.lambda_.create_function_url_config import (
+    CreateFunctionUrlConfigRequest,
+    CreateFunctionUrlConfigResponse,
+)
+from async_boto.validation.lambda_.delete_alias import (
+    DeleteAliasRequest,
+    DeleteAliasResponse,
+)
+from async_boto.validation.lambda_.delete_code_signing_config import (
+    DeleteCodeSigningConfigRequest,
+    DeleteCodeSigningConfigResponse,
+)
+from async_boto.validation.lambda_.delete_event_source_mapping import (
+    DeleteEventSourceMappingRequest,
+    DeleteEventSourceMappingResponse,
+)
+from async_boto.validation.lambda_.delete_function import (
+    DeleteFunctionRequest,
+    DeleteFunctionResponse,
+)
+from async_boto.validation.lambda_.delete_function_code_signing_config import (
+    DeleteFunctionCodeSigningConfigRequest,
+    DeleteFunctionCodeSigningConfigResponse,
+)
 from async_boto.validation.lambda_.list_functions import (
     ListFunctionsRequest,
     ListFunctionsResponse,
@@ -91,6 +127,164 @@ class AsyncLambdaClient(BaseClient):
         )
         resp.raise_for_status()
         return CreateAliasResponse(**resp.json)
+
+    async def create_code_signing_config(
+        self, request: CreateCodeSigningConfigRequest
+    ) -> CreateCodeSigningConfigResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + "/2020-04-22/code-signing-configs"
+        resp = await self._post(
+            url=url,
+            headers=headers,
+            json=request.model_dump(exclude_defaults=True, exclude_none=True),
+        )
+        resp.raise_for_status()
+        return CreateCodeSigningConfigResponse(**resp.json)
+
+    async def create_event_source_mapping(
+        self, request: CreateEventSourceMappingRequest
+    ) -> CreateEventSourceMappingResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + "/2015-03-31/event-source-mappings/"
+        resp = await self._post(
+            url=url,
+            headers=headers,
+            json=request.model_dump(exclude_defaults=True, exclude_none=True),
+        )
+        resp.raise_for_status()
+        return CreateEventSourceMappingResponse(**resp.json)
+
+    async def create_function(
+        self, request: CreateFunctionRequest
+    ) -> CreateFunctionResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + "/2015-03-31/functions"
+        resp = await self._post(
+            url=url,
+            headers=headers,
+            json=request.model_dump(exclude_defaults=True, exclude_none=True),
+        )
+        resp.raise_for_status()
+        return CreateFunctionResponse(**resp.json)
+
+    async def create_function_url_config(
+        self, request: CreateFunctionUrlConfigRequest
+    ) -> CreateFunctionUrlConfigResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + f"/2015-03-31/functions/{request.FunctionName}/url-config"
+        resp = await self._post(
+            url=url,
+            headers=headers,
+            json=request.model_dump(
+                exclude_defaults=True,
+                exclude_none=True,
+                exclude={"FunctionName", "Qualifier"},
+            ),
+            params={"Qualifier": request.Qualifier} if request.Qualifier else {},
+        )
+        resp.raise_for_status()
+        return CreateFunctionUrlConfigResponse(**resp.json)
+
+    async def delete_alias(self, request: DeleteAliasRequest) -> DeleteAliasResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = (
+            self._url
+            + f"/2015-03-31/functions/{request.FunctionName}/aliases/{request.Name}"
+        )
+        resp = await self._delete(
+            url=url,
+            headers=headers,
+            json=request.model_dump(exclude_defaults=True, exclude_none=True),
+        )
+        resp.raise_for_status()
+        return DeleteAliasResponse(**resp.json)
+
+    async def delete_code_signing_config(
+        self, request: DeleteCodeSigningConfigRequest
+    ) -> DeleteCodeSigningConfigResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = (
+            self._url
+            + f"/2020-04-22/code-signing-configs/{request.CodeSigningConfigArn}"
+        )
+        resp = await self._delete(
+            url=url,
+            headers=headers,
+            json=request.model_dump(
+                exclude_defaults=True,
+                exclude_none=True,
+                exclude={"CodeSigningConfigArn"},
+            ),
+        )
+        resp.raise_for_status()
+        return DeleteCodeSigningConfigResponse(**resp.json)
+
+    async def delete_event_source_mapping(
+        self, request: DeleteEventSourceMappingRequest
+    ) -> DeleteEventSourceMappingResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + f"/2015-03-31/event-source-mappings/{request.UUID}"
+        resp = await self._delete(
+            url=url,
+            headers=headers,
+            json=request.model_dump(
+                exclude_defaults=True, exclude_none=True, exclude={"UUID"}
+            ),
+        )
+        resp.raise_for_status()
+        return DeleteEventSourceMappingResponse(**resp.json)
+
+    async def delete_function(
+        self, request: DeleteFunctionRequest
+    ) -> DeleteFunctionResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = self._url + f"/2015-03-31/functions/{request.FunctionName}"
+        resp = await self._delete(
+            url=url,
+            headers=headers,
+            json=request.model_dump(
+                exclude_defaults=True, exclude_none=True, exclude={"FunctionName"}
+            ),
+            params={"Qualifier": request.Qualifier} if request.Qualifier else {},
+        )
+        resp.raise_for_status()
+        return DeleteFunctionResponse(**resp.json)
+
+    async def delete_function_code_signing_config(
+        self, request: DeleteFunctionCodeSigningConfigRequest
+    ) -> DeleteFunctionCodeSigningConfigResponse:
+        headers = {
+            "Content-Type": "application/x-amz-json-1.0",
+        }
+        url = (
+            self._url
+            + f"/2020-06-30/functions/{request.FunctionName}/code-signing-config"
+        )
+        resp = await self._delete(
+            url=url,
+            headers=headers,
+            json=request.model_dump(
+                exclude_defaults=True, exclude_none=True, exclude={"FunctionName"}
+            ),
+        )
+        resp.raise_for_status()
+        return DeleteFunctionCodeSigningConfigResponse(**resp.json)
 
     async def list_functions(
         self, request: ListFunctionsRequest
