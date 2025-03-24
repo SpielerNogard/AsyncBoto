@@ -143,4 +143,4 @@ dmypy.json
 poetry.lock
 notes.py
 
-.devcontainer/server/*ssh-key*
+*ssh-key*
