@@ -12,4 +12,4 @@ devcontainer exec --workspace-folder .. bash /server/init-ssh.sh
 # Connect
 #ssh -t -i server/temp-ssh-key -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null -p 2222 vscode@localhost exec bash
 #open /Users/spielernogard/Applications/Gateway.app --ssh --host localhost --port 2222 --user vscode --private-key server/temp-ssh-key
-open 'jetbrains-gateway://connect#idePath=/opt/pycharm&projectPath=/workspaces/AsyncBoto&host=localhost&port=2222&user=vscode&type=ssh&deploy=false&newUi=true'
+#open 'jetbrains-gateway://connect#idePath=/opt/pycharm&projectPath=/workspaces/AsyncBoto&host=localhost&port=2222&user=vscode&type=ssh&deploy=false&newUi=true'
