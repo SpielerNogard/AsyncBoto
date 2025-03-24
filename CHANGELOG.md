@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.4.0 (2025-03-24)
+
+### Feat
+
+- **devcontainer**: start devcontainters
+
 ## 0.3.0 (2025-03-11)
 
 ### Feat
