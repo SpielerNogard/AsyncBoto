@@ -1,17 +1,10 @@
+import os
+
 import pytest
-import boto3
+
 from async_boto.clients.dynamodb import (
-    AsyncDynamoDBClient,
-    DeleteTableRequest,
-    DescribeTableRequest,
     DescribeEndpointsResponse,
 )
-from async_boto.validation.dynamodb.create_table import (
-    CreateTableRequest,
-    CreateTableResponse,
-)
-import asyncio
-import os
 
 skip_special = os.getenv("SKIP_SPECIAL_TESTS") == "1"
 
