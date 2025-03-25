@@ -23,6 +23,10 @@ class DeleteItemRequest(BaseModel):
     ReturnValues: Literal["NONE", "ALL_OLD"] | None = None
     ReturnValuesOnConditionCheckFailure: Literal["ALL_OLD", "NONE"] | None = None
 
+    @classmethod
+    def from_python_dict(cls, data: dict, **kwargs):
+        return cls(Key=AttributeValueDict.from_python_dict(data), **kwargs)
+
 
 class DeleteItemResponse(BaseModel):
     Attributes: AttributeValueDict | None = None

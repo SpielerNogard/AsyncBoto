@@ -10,6 +10,8 @@ from async_boto.clients.dynamodb import (
     CreateTableRequest,
     DeleteTableRequest,
     DescribeTableRequest,
+    ListTablesRequest,
+    ListTablesResponse,
 )
 
 
