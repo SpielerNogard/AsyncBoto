@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Script to build and start the devcontainer. It also opens the selected editor.
 # You need to have installed:
 # - Docker https://docs.docker.com/engine/install/
@@ -39,19 +41,28 @@ rm -f temp-ssh-key*
 ssh-keygen -q -N '' -t rsa -f "$SCRIPT_DIR/server/temp-ssh-key"
 cd ..
 
-devcontainer up --workspace-folder .. --remove-existing-container --mount "type=bind,source=$(pwd)/server,target=/server"
+container=$(devcontainer up --workspace-folder .. --remove-existing-container --mount "type=bind,source=$(pwd)/server,target=/server")
 # add pub key to SSH allow list
 devcontainer exec --workspace-folder .. bash /server/init-ssh.sh
+
+# Extract containerId and remoteWorkspaceFolder
+container_id=$(echo "$container" | jq -r '.containerId')
+remote_workspace_folder=$(echo "$container" | jq -r '.remoteWorkspaceFolder')
+container_name=$(docker ps --filter "id=$container_id" --format "{{.Names}}")
+
+echo $container_id
+echo $remote_workspace_folder
+echo $container_name
 
 # Open the selected editor
 if [ "$EDITOR" = "code" ]; then
     vscli open --command code .
 elif [ "$EDITOR" = "pycharm" ]; then
-    open 'jetbrains-gateway://connect#idePath=/opt/pycharm&projectPath=/workspaces/AsyncBoto&host=localhost&port=2222&user=vscode&type=ssh&deploy=false&newUi=true'
+    open "jetbrains-gateway://connect#idePath=/opt/pycharm&projectPath=$remote_workspace_folder&host=$container_name.orb.local&port=2222&user=vscode&type=ssh&deploy=false&newUi=true"
 elif [ "$EDITOR" = "ssh" ]; then
-  ssh -t -i "$SCRIPT_DIR/server/temp-ssh-key" -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null -p 2222 vscode@localhost exec bash
+    ssh -t -i "$SCRIPT_DIR/server/temp-ssh-key" -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null -p 2222 vscode@$container_name.orb.local exec bash
 elif [ "$EDITOR" = "web" ]; then
-    open 'http://localhost:8000'
+    open "http://$container_name.orb.local:8000"
 else
     echo "Unsupported editor: $EDITOR"
     exit 1
