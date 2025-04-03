@@ -56,9 +56,6 @@ class DocumentDBEventSourceConfig(BaseModel):
         None,
         min_length=1,
         max_length=57,
-        pattern=r"(^(?!(system\x2e)))(^[_a-zA-Z0-9])([^$]*)",
     )
-    DatabaseName: str | None = Field(
-        None, min_length=1, max_length=63, pattern=r"[^ /\.$\x22]*"
-    )
+    DatabaseName: str | None = Field(None, min_length=1, max_length=63)
     FullDocument: Literal["UpdateLookup", "Default"] | None = None

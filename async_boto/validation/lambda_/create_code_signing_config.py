@@ -1,8 +1,10 @@
 from pydantic import BaseModel, constr
 
-from .data_types.allowed_publishers import AllowedPublishers
-from .data_types.code_signing_config import CodeSigningConfig
-from .data_types.code_signing_policies import CodeSigningPolicies
+from .data_types.allowed_publishers import AllowedPublishers as AllowedPublishersModel
+from .data_types.code_signing_config import CodeSigningConfig as CodeSigningConfigModel
+from .data_types.code_signing_policies import (
+    CodeSigningPolicies as CodeSigningPoliciesModel,
+)
 
 
 class CreateCodeSigningConfigRequest(BaseModel):
@@ -24,8 +26,8 @@ class CreateCodeSigningConfigRequest(BaseModel):
         A list of tags to add to the code signing configuration.
     """
 
-    AllowedPublishers: AllowedPublishers
-    CodeSigningPolicies: CodeSigningPolicies | None = None
+    AllowedPublishers: AllowedPublishersModel
+    CodeSigningPolicies: CodeSigningPoliciesModel | None = None
     Description: constr(min_length=0, max_length=256) | None = None
     Tags: dict[str, str] | None = None
 
@@ -40,4 +42,4 @@ class CreateCodeSigningConfigResponse(BaseModel):
         The code signing configuration.
     """
 
-    CodeSigningConfig: CodeSigningConfig
+    CodeSigningConfig: CodeSigningConfigModel

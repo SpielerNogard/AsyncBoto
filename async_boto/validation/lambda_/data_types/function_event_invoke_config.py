@@ -2,7 +2,7 @@ from typing import Annotated
 
 from pydantic import BaseModel, Field
 
-from .destination_config import DestinationConfig
+from .destination_config import DestinationConfig as DestinationConfigModel
 
 
 class FunctionEventInvokeConfig(BaseModel):
@@ -23,7 +23,7 @@ class FunctionEventInvokeConfig(BaseModel):
         The maximum number of times to retry when the function returns an error.
     """
 
-    DestinationConfig: DestinationConfig | None = None
+    DestinationConfig: DestinationConfigModel | None = None
     FunctionArn: str | None = None
     LastModified: float | None = None
     MaximumEventAgeInSeconds: Annotated[int | None, Field(ge=60, le=21600)] = None

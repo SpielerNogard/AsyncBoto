@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from .cors import Cors
+from .cors import Cors as CorsModel
 
 
 class FunctionUrlConfig(BaseModel):
@@ -32,5 +32,5 @@ class FunctionUrlConfig(BaseModel):
     FunctionArn: str
     FunctionUrl: str = Field(min_length=40, max_length=100)
     LastModifiedTime: str
-    Cors: Cors | None = None
+    Cors: CorsModel | None = None
     InvokeMode: Literal["BUFFERED", "RESPONSE_STREAM"] | None = None

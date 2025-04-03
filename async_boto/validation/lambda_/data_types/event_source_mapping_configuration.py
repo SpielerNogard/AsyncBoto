@@ -1,18 +1,29 @@
 from datetime import datetime
 
-# Import related models
-from amazon_managed_kafka_event_source_config import AmazonManagedKafkaEventSourceConfig
-from destination_config import DestinationConfig
-from document_db_event_source_config import DocumentDBEventSourceConfig
-from event_source_mapping_metrics_config import EventSourceMappingMetricsConfig
-from filter_criteria import FilterCriteria
-from filter_criteria_error import FilterCriteriaError
-from provisioned_poller_config import ProvisionedPollerConfig
 from pydantic import BaseModel
-from scaling_config import ScalingConfig
-from self_managed_event_source import SelfManagedEventSource
-from self_managed_kafka_event_source_config import SelfManagedKafkaEventSourceConfig
-from source_access_configuration import SourceAccessConfiguration
+
+# Import related models
+from .amazon_managed_kafka_event_source_config import (
+    AmazonManagedKafkaEventSourceConfig as AmazonManagedKafkaEventSourceConfigModel,
+)
+from .destination_config import DestinationConfig as DestinationConfigModel
+from .document_db_event_source_config import (
+    DocumentDBEventSourceConfig as DocumentDBEventSourceConfigModel,
+)
+from .event_source_mapping_metrics_config import EventSourceMappingMetricsConfig
+from .filter_criteria import FilterCriteria as FilterCriteriaModel
+from .filter_criteria_error import FilterCriteriaError as FilterCriteriaErrorModel
+from .provisioned_poller_config import (
+    ProvisionedPollerConfig as ProvisionedPollerConfigModel,
+)
+from .scaling_config import ScalingConfig as ScalingConfigModel
+from .self_managed_event_source import (
+    SelfManagedEventSource as SelfManagedEventSourceModel,
+)
+from .self_managed_kafka_event_source_config import (
+    SelfManagedKafkaEventSourceConfig as SelfManagedKafkaEventSourceConfigModel,
+)
+from .source_access_configuration import SourceAccessConfiguration
 
 
 class EventSourceMappingConfiguration(BaseModel):
@@ -98,17 +109,19 @@ class EventSourceMappingConfiguration(BaseModel):
         The identifier of the event source mapping.
     """
 
-    AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig | None = (
+    AmazonManagedKafkaEventSourceConfig: (
+        AmazonManagedKafkaEventSourceConfigModel | None
+    ) = (  # noqa: E501
         None
     )
     BatchSize: int | None = None
     BisectBatchOnFunctionError: bool | None = None
-    DestinationConfig: DestinationConfig | None = None
-    DocumentDBEventSourceConfig: DocumentDBEventSourceConfig | None = None
+    DestinationConfig: DestinationConfigModel | None = None
+    DocumentDBEventSourceConfig: DocumentDBEventSourceConfigModel | None = None
     EventSourceArn: str | None = None
     EventSourceMappingArn: str | None = None
-    FilterCriteria: FilterCriteria | None = None
-    FilterCriteriaError: FilterCriteriaError | None = None
+    FilterCriteria: FilterCriteriaModel | None = None
+    FilterCriteriaError: FilterCriteriaErrorModel | None = None
     FunctionArn: str | None = None
     FunctionResponseTypes: list[str] | None = None
     KMSKeyArn: str | None = None
@@ -119,11 +132,13 @@ class EventSourceMappingConfiguration(BaseModel):
     MaximumRetryAttempts: int | None = None
     MetricsConfig: EventSourceMappingMetricsConfig | None = None
     ParallelizationFactor: int | None = None
-    ProvisionedPollerConfig: ProvisionedPollerConfig | None = None
+    ProvisionedPollerConfig: ProvisionedPollerConfigModel | None = None
     Queues: list[str] | None = None
-    ScalingConfig: ScalingConfig | None = None
-    SelfManagedEventSource: SelfManagedEventSource | None = None
-    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig | None = None
+    ScalingConfig: ScalingConfigModel | None = None
+    SelfManagedEventSource: SelfManagedEventSourceModel | None = None
+    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfigModel | None = (
+        None  # noqa: E501
+    )
     SourceAccessConfigurations: list[SourceAccessConfiguration] | None = None
     StartingPosition: str | None = None
     StartingPositionTimestamp: datetime | None = None

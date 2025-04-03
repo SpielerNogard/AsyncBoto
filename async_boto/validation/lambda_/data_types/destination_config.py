@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from .on_failure import OnFailure
-from .on_success import OnSuccess
+from .on_failure import OnFailure as OnFailureModel
+from .on_success import OnSuccess as OnSuccessModel
 
 
 class DestinationConfig(BaseModel):
@@ -37,5 +37,5 @@ class DestinationConfig(BaseModel):
         only the OnFailure destination is supported.
     """
 
-    OnFailure: OnFailure | None = None
-    OnSuccess: OnSuccess | None = None
+    OnFailure: OnFailureModel | None = None
+    OnSuccess: OnSuccessModel | None = None
