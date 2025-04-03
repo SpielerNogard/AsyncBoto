@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## 0.5.0 (2025-04-03)
+
+### Feat
+
+- **AsyncLambdaClient**: added missing methods and first test
+- **lambdaclient**: more methods
+- **async_boto.clients.lambda_**: added AsyncLambdaClient
+
 ## 0.4.1 (2025-03-24)
 
 ### Fix
