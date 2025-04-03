@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.5.1 (2025-04-03)
+
+### Refactor
+
+- remove unneeded files
+
 ## 0.5.0 (2025-04-03)
 
 ### Feat
