@@ -1,21 +1,25 @@
 from pydantic import BaseModel
 
-from .data_types.dead_letter_config import DeadLetterConfig
-from .data_types.environment import Environment
+from .data_types.dead_letter_config import DeadLetterConfig as DeadLetterConfigModel
+from .data_types.environment import Environment as EnvironmentModel
 from .data_types.environment_response import EnvironmentResponse
-from .data_types.ephemeral_storage import EphemeralStorage
+from .data_types.ephemeral_storage import EphemeralStorage as EphemeralStorageModel
 from .data_types.file_system_config import FileSystemConfig
 from .data_types.function_code import FunctionCode
-from .data_types.image_config import ImageConfig
-from .data_types.image_config_response import ImageConfigResponse
+from .data_types.image_config import ImageConfig as ImageConfigModel
+from .data_types.image_config_response import (
+    ImageConfigResponse as ImageConfigResponseModel,
+)
 from .data_types.layer import Layer
-from .data_types.logging_config import LoggingConfig
-from .data_types.runtime_version_config import RuntimeVersionConfig
-from .data_types.snap_start import SnapStart
+from .data_types.logging_config import LoggingConfig as LoggingConfigModel
+from .data_types.runtime_version_config import (
+    RuntimeVersionConfig as RuntimeVersionConfigModel,
+)
+from .data_types.snap_start import SnapStart as SnapStartModel
 from .data_types.snap_start_response import SnapStartResponse
-from .data_types.tracing_config import TracingConfig
+from .data_types.tracing_config import TracingConfig as TracingConfigModel
 from .data_types.tracing_config_response import TracingConfigResponse
-from .data_types.vpc_config import VpcConfig
+from .data_types.vpc_config import VpcConfig as VpcConfigModel
 from .data_types.vpc_config_response import VpcConfigResponse
 
 
@@ -85,25 +89,25 @@ class CreateFunctionRequest(BaseModel):
     Role: str
     Architectures: list[str] | None = None
     CodeSigningConfigArn: str | None = None
-    DeadLetterConfig: DeadLetterConfig | None = None
+    DeadLetterConfig: DeadLetterConfigModel | None = None
     Description: str | None = None
-    Environment: Environment | None = None
-    EphemeralStorage: EphemeralStorage | None = None
+    Environment: EnvironmentModel | None = None
+    EphemeralStorage: EphemeralStorageModel | None = None
     FileSystemConfigs: list[FileSystemConfig] | None = None
     Handler: str | None = None
-    ImageConfig: ImageConfig | None = None
+    ImageConfig: ImageConfigModel | None = None
     KMSKeyArn: str | None = None
     Layers: list[str] | None = None
-    LoggingConfig: LoggingConfig | None = None
+    LoggingConfig: LoggingConfigModel | None = None
     MemorySize: int | None = None
     PackageType: str | None = None
     Publish: bool | None = None
     Runtime: str | None = None
-    SnapStart: SnapStart | None = None
+    SnapStart: SnapStartModel | None = None
     Tags: dict[str, str] | None = None
     Timeout: int | None = None
-    TracingConfig: TracingConfig | None = None
-    VpcConfig: VpcConfig | None = None
+    TracingConfig: TracingConfigModel | None = None
+    VpcConfig: VpcConfigModel | None = None
 
 
 class CreateFunctionResponse(BaseModel):
@@ -190,29 +194,29 @@ class CreateFunctionResponse(BaseModel):
     Architectures: list[str] | None = None
     CodeSha256: str | None = None
     CodeSize: int | None = None
-    DeadLetterConfig: DeadLetterConfig | None = None
+    DeadLetterConfig: DeadLetterConfigModel | None = None
     Description: str | None = None
     Environment: EnvironmentResponse | None = None
-    EphemeralStorage: EphemeralStorage | None = None
+    EphemeralStorage: EphemeralStorageModel | None = None
     FileSystemConfigs: list[FileSystemConfig] | None = None
     FunctionArn: str | None = None
     FunctionName: str | None = None
     Handler: str | None = None
-    ImageConfigResponse: ImageConfigResponse | None = None
+    ImageConfigResponse: ImageConfigResponseModel | None = None
     KMSKeyArn: str | None = None
     LastModified: str | None = None
     LastUpdateStatus: str | None = None
     LastUpdateStatusReason: str | None = None
     LastUpdateStatusReasonCode: str | None = None
     Layers: list[Layer] | None = None
-    LoggingConfig: LoggingConfig | None = None
+    LoggingConfig: LoggingConfigModel | None = None
     MasterArn: str | None = None
     MemorySize: int | None = None
     PackageType: str | None = None
     RevisionId: str | None = None
     Role: str | None = None
     Runtime: str | None = None
-    RuntimeVersionConfig: RuntimeVersionConfig | None = None
+    RuntimeVersionConfig: RuntimeVersionConfigModel | None = None
     SigningJobArn: str | None = None
     SigningProfileVersionArn: str | None = None
     SnapStart: SnapStartResponse | None = None

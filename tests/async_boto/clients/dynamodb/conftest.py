@@ -26,7 +26,7 @@ async def dynamodb_client():
         yield client
         # Add any necessary cleanup here
     else:
-        session = boto3.Session(profile_name=os.environ["mode"])
+        session = boto3.Session()
         client = AsyncDynamoDBClient(aws_session=session)
         yield client
 

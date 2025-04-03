@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .data_types.cors import Cors
+from .data_types.cors import Cors as CorsModel
 
 
 class CreateFunctionUrlConfigRequest(BaseModel):
@@ -35,7 +35,7 @@ class CreateFunctionUrlConfigRequest(BaseModel):
 
     # Request Body Parameters
     AuthType: str
-    Cors: Cors | None = None
+    Cors: CorsModel | None = None
     InvokeMode: str | None = None
 
 
@@ -63,5 +63,5 @@ class CreateFunctionUrlConfigResponse(BaseModel):
     CreationTime: str
     FunctionArn: str
     FunctionUrl: str
-    Cors: Cors | None = None
+    Cors: CorsModel | None = None
     InvokeMode: str | None = None

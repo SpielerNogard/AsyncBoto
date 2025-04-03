@@ -1,5 +1,6 @@
-from layer_versions_list_item import LayerVersionsListItem
 from pydantic import BaseModel
+
+from .layer_versions_list_item import LayerVersionsListItem
 
 
 class LayersListItem(BaseModel):

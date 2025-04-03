@@ -26,7 +26,7 @@ class FunctionCode(BaseModel):
     ImageUri: str | None = None
     S3Bucket: Annotated[
         str | None,
-        Field(min_length=3, max_length=63, pattern=r"^[0-9A-Za-z\.\-_]*(?<!\.)$"),
+        Field(min_length=3, max_length=63),
     ] = None
     S3Key: Annotated[str | None, Field(min_length=1, max_length=1024)] = None
     S3ObjectVersion: Annotated[str | None, Field(min_length=1, max_length=1024)] = None

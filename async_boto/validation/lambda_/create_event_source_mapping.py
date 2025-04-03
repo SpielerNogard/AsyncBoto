@@ -2,19 +2,29 @@
 from pydantic import BaseModel
 
 from .data_types.amazon_managed_kafka_event_source_config import (
-    AmazonManagedKafkaEventSourceConfig,
+    AmazonManagedKafkaEventSourceConfig as AmazonManagedKafkaEventSourceConfigModel,
 )
-from .data_types.destination_config import DestinationConfig
-from .data_types.document_db_event_source_config import DocumentDBEventSourceConfig
-from .data_types.filter_criteria import FilterCriteria
-from .data_types.filter_criteria_error import FilterCriteriaError
-from .data_types.provisioned_poller_config import ProvisionedPollerConfig
-from .data_types.scaling_config import ScalingConfig
-from .data_types.self_managed_event_source import SelfManagedEventSource
+from .data_types.destination_config import DestinationConfig as DestinationConfigModel
+from .data_types.document_db_event_source_config import (
+    DocumentDBEventSourceConfig as DocumentDBEventSourceConfigModel,
+)
+from .data_types.filter_criteria import FilterCriteria as FilterCriteriaModel
+from .data_types.filter_criteria_error import (
+    FilterCriteriaError as FilterCriteriaErrorModel,
+)
+from .data_types.provisioned_poller_config import (
+    ProvisionedPollerConfig as ProvisionedPollerConfigModel,
+)
+from .data_types.scaling_config import ScalingConfig as ScalingConfigModel
+from .data_types.self_managed_event_source import (
+    SelfManagedEventSource as SelfManagedEventSourceModel,
+)
 from .data_types.self_managed_kafka_event_source_config import (
-    SelfManagedKafkaEventSourceConfig,
+    SelfManagedKafkaEventSourceConfig as SelfManagedKafkaEventSourceConfigModel,
 )
-from .data_types.source_access_configuration import SourceAccessConfiguration
+from .data_types.source_access_configuration import (
+    SourceAccessConfiguration as SourceAccessConfigurationModel,
+)
 
 
 class CreateEventSourceMappingRequest(BaseModel):
@@ -80,16 +90,16 @@ class CreateEventSourceMappingRequest(BaseModel):
     """
 
     FunctionName: str
-    AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig | None = (
-        None
-    )
+    AmazonManagedKafkaEventSourceConfig: (
+        AmazonManagedKafkaEventSourceConfigModel | None
+    ) = None
     BatchSize: int | None = None
     BisectBatchOnFunctionError: bool | None = None
-    DestinationConfig: DestinationConfig | None = None
-    DocumentDBEventSourceConfig: DocumentDBEventSourceConfig | None = None
+    DestinationConfig: DestinationConfigModel | None = None
+    DocumentDBEventSourceConfig: DocumentDBEventSourceConfigModel | None = None
     Enabled: bool | None = None
     EventSourceArn: str | None = None
-    FilterCriteria: FilterCriteria | None = None
+    FilterCriteria: FilterCriteriaModel | None = None
     FunctionResponseTypes: list[str] | None = None
     KMSKeyArn: str | None = None
     MaximumBatchingWindowInSeconds: int | None = None
@@ -97,12 +107,14 @@ class CreateEventSourceMappingRequest(BaseModel):
     MaximumRetryAttempts: int | None = None
     MetricsConfig: dict | None = None
     ParallelizationFactor: int | None = None
-    ProvisionedPollerConfig: ProvisionedPollerConfig | None = None
+    ProvisionedPollerConfig: ProvisionedPollerConfigModel | None = None
     Queues: list[str] | None = None
-    ScalingConfig: ScalingConfig | None = None
-    SelfManagedEventSource: SelfManagedEventSource | None = None
-    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig | None = None
-    SourceAccessConfigurations: list[SourceAccessConfiguration] | None = None
+    ScalingConfig: ScalingConfigModel | None = None
+    SelfManagedEventSource: SelfManagedEventSourceModel | None = None
+    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfigModel | None = (
+        None
+    )
+    SourceAccessConfigurations: list[SourceAccessConfigurationModel] | None = None
     StartingPosition: str | None = None
     StartingPositionTimestamp: float | None = None
     Tags: dict[str, str] | None = None
@@ -182,17 +194,17 @@ class CreateEventSourceMappingResponse(BaseModel):
         The identifier of the event source mapping.
     """
 
-    AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig | None = (
-        None
-    )
+    AmazonManagedKafkaEventSourceConfig: (
+        AmazonManagedKafkaEventSourceConfigModel | None
+    ) = None
     BatchSize: int | None = None
     BisectBatchOnFunctionError: bool | None = None
-    DestinationConfig: DestinationConfig | None = None
-    DocumentDBEventSourceConfig: DocumentDBEventSourceConfig | None = None
+    DestinationConfig: DestinationConfigModel | None = None
+    DocumentDBEventSourceConfig: DocumentDBEventSourceConfigModel | None = None
     EventSourceArn: str | None = None
     EventSourceMappingArn: str | None = None
-    FilterCriteria: FilterCriteria | None = None
-    FilterCriteriaError: FilterCriteriaError | None = None
+    FilterCriteria: FilterCriteriaModel | None = None
+    FilterCriteriaError: FilterCriteriaErrorModel | None = None
     FunctionArn: str | None = None
     FunctionResponseTypes: list[str] | None = None
     KMSKeyArn: str | None = None
@@ -203,12 +215,14 @@ class CreateEventSourceMappingResponse(BaseModel):
     MaximumRetryAttempts: int | None = None
     MetricsConfig: dict | None = None
     ParallelizationFactor: int | None = None
-    ProvisionedPollerConfig: ProvisionedPollerConfig | None = None
+    ProvisionedPollerConfig: ProvisionedPollerConfigModel | None = None
     Queues: list[str] | None = None
-    ScalingConfig: ScalingConfig | None = None
-    SelfManagedEventSource: SelfManagedEventSource | None = None
-    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig | None = None
-    SourceAccessConfigurations: list[SourceAccessConfiguration] | None = None
+    ScalingConfig: ScalingConfigModel | None = None
+    SelfManagedEventSource: SelfManagedEventSourceModel | None = None
+    SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfigModel | None = (
+        None
+    )
+    SourceAccessConfigurations: list[SourceAccessConfigurationModel] | None = None
     StartingPosition: str | None = None
     StartingPositionTimestamp: float | None = None
     State: str | None = None
