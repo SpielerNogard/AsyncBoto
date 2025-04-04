@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.6.0 (2025-04-04)
+
+### Feat
+
+- **async_boto.core.session**: first experimental implementation of a session
+
 ## 0.5.1 (2025-04-03)
 
 ### Refactor
