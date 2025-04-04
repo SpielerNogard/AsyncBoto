@@ -5,6 +5,7 @@ import boto3
 from pydantic import BaseModel
 
 from async_boto.core.base_client import BaseClient
+from async_boto.core.session import AsyncAWSSession
 from async_boto.validation.lambda_.add_layer_version_permissions import (
     AddLayerVersionPermissionRequest,
     AddLayerVersionPermissionResponse,
@@ -271,7 +272,9 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class AsyncLambdaClient(BaseClient):
-    def __init__(self, aws_session: boto3.Session, endpoint_url: str = None):
+    def __init__(
+        self, aws_session: boto3.Session | AsyncAWSSession, endpoint_url: str = None
+    ):
         super().__init__(aws_session=aws_session, service_name="dynamodb")
         self._url = (
             endpoint_url

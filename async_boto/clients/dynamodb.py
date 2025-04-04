@@ -5,6 +5,7 @@ import boto3
 from pydantic import BaseModel
 
 from async_boto.core.base_client import BaseClient
+from async_boto.core.session import AsyncAWSSession
 from async_boto.utils.paginate import paginate
 from async_boto.validation.dynamodb.batch_execute_statement import (
     BatchExecuteStatementRequest,
@@ -222,7 +223,9 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class AsyncDynamoDBClient(BaseClient):
-    def __init__(self, aws_session: boto3.Session, endpoint_url: str = None):
+    def __init__(
+        self, aws_session: boto3.Session | AsyncAWSSession, endpoint_url: str = None
+    ):
         super().__init__(aws_session=aws_session, service_name="dynamodb")
         self._url = (
             endpoint_url
@@ -695,4 +698,6 @@ class AsyncDynamoDBClient(BaseClient):
                 f"Method {method_name} is not paginatable."
                 f"Please use any of the following methods: {list(paginators.keys())}"
             )
-        return paginate(self, method_name, request=request, **paginators[method_name])
+        paginator = paginate(self, request=request, **paginators[method_name])
+        async for page in paginator:
+            yield page
