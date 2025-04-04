@@ -12,6 +12,7 @@ from tenacity import (
     wait_exponential,
 )
 
+from async_boto.core.session import AsyncAWSSession
 from async_boto.utils.generate_param_tuple import generate_param_tuple
 from async_boto.utils.json_dumps import json_dump
 
@@ -23,7 +24,9 @@ logger = logging.getLogger(__name__)
 
 class BaseClient:
     def __init__(
-        self, aws_session: boto3.Session, service_name: str = "execute-api"
+        self,
+        aws_session: boto3.Session | AsyncAWSSession,
+        service_name: str = "execute-api",
     ) -> None:
         self._aws_session = aws_session
         self._service_name = service_name
@@ -172,6 +175,8 @@ class BaseClient:
                 {key: value for key, value in json.items() if value is not None},
                 default=json_dump,
             )
+            if not headers.get("Content-Type") or not headers.get("content-type"):
+                headers["Content-Type"] = "application/json"
 
         signed_headers = aws_sig_v4_headers(
             session=self._aws_session,

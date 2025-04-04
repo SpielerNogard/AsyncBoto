@@ -43,7 +43,10 @@ async def paginate(
         response_data = response.model_dump()
         yield response
 
-        if pagination_response_key in response_data:
+        if (
+            pagination_response_key in response_data
+            and response_data[pagination_response_key]
+        ):
             setattr(
                 request, pagination_query_key, response_data[pagination_response_key]
             )

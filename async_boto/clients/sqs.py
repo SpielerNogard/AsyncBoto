@@ -5,6 +5,7 @@ import boto3
 from pydantic import BaseModel
 
 from async_boto.core.base_client import BaseClient
+from async_boto.core.session import AsyncAWSSession
 from async_boto.validation.sqs.add_permission import (
     AddPermissionRequest,
     AddPermissionResponse,
@@ -92,7 +93,7 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class AsyncSQSClient(BaseClient):
-    def __init__(self, aws_session: boto3.Session):
+    def __init__(self, aws_session: boto3.Session | AsyncAWSSession):
         super().__init__(aws_session=aws_session, service_name="sqs")
         self._url = f"https://sqs.{self._aws_session.region_name}.amazonaws.com"
 
