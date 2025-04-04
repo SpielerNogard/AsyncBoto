@@ -1,0 +1,7 @@
+async\_boto.validation.lambda\_.data\_types.source\_access\_configuration module
+================================================================================
+
+.. automodule:: async_boto.validation.lambda_.data_types.source_access_configuration
+   :members:
+   :show-inheritance:
+   :undoc-members:
