@@ -585,26 +585,4 @@ class AWSProfileManager:
         ]
 
 
-# Example usage
-if __name__ == "__main__":
-    profile_manager = AWSProfileManager()
 
-    try:
-        # List all profiles
-        profiles = profile_manager.list_profiles()
-        print(f"Available profiles: {profiles}")
-
-        # Get default profile
-        default_profile = profile_manager.get_profile()
-        print(f"Default profile: {default_profile}")
-
-        # Get credentials
-        credentials = profile_manager.get_credentials()
-        print(f"Credentials found: {list(credentials.keys())}")
-
-        # Get regions
-        regions = profile_manager.get_available_regions()
-        print(f"Available regions: {regions[:5]}...")
-
-    except ValueError as e:
-        print(f"Error: {e}")

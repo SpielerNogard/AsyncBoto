@@ -24,20 +24,16 @@ async def dynamodb_client():
         client = AsyncDynamoDBClient(
             aws_session=session, endpoint_url="http://localhost:4566"
         )
-        yield client
-        # Add any necessary cleanup here
-    if mode == "local-async":
+    elif mode == "local-async":
         # Mock AWS session
         session = AsyncAWSSession(region_name="us-west-2")
         client = AsyncDynamoDBClient(
             aws_session=session, endpoint_url="http://localhost:4566"
         )
-        yield client
-        # Add any necessary cleanup here
     else:
         session = boto3.Session()
         client = AsyncDynamoDBClient(aws_session=session)
-        yield client
+    yield client
 
 
 @pytest.fixture()
