@@ -1,7 +1,7 @@
 site_name: AsyncBoto Docs
 repo_name: SpielerNogard/AsyncBoto
 repo_url: https://github.com/squidfunk/mkdocs-material
-
+site_url: https://spielernogard.github.io/AsyncBoto/
 theme:
   name: material
 
