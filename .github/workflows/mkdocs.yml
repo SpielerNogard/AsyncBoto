@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 jobs:
-  deploy:
+  mkdocs:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     steps:
@@ -25,5 +25,5 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material
+      - run: pip install mkdocs-material "mkdocstrings[python]"
       - run: mkdocs gh-deploy --force
