@@ -1,0 +1,1 @@
+::: async_boto.validation.timestream_write.data_types.magnetic_store_rejected_data_location

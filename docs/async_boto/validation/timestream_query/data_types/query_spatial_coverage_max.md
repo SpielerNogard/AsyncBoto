@@ -1,0 +1,1 @@
+::: async_boto.validation.timestream_query.data_types.query_spatial_coverage_max

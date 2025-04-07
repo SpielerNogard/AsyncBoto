@@ -1,0 +1,1 @@
+::: async_boto.validation.timestream_query.data_types.account_settings_notification_configuration

@@ -1,0 +1,1 @@
+::: async_boto.validation.lambda_.data_types.alias_routing_configuration
