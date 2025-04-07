@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.8.0 (2025-04-07)
+
+### Feat
+
+- **AsyncBoto**: added script for building package documentation
+
 ## 0.7.0 (2025-04-07)
 
 ### Feat
