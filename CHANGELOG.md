@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 0.7.0 (2025-04-07)
+
+### Feat
+
+- **AsyncBoto**: added docs using mkdocs
+
 ## 0.6.0 (2025-04-04)
 
 ### Feat
