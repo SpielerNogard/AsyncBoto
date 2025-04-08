@@ -96,6 +96,9 @@ jobs:
         inputs: >-
           ./dist/*.tar.gz
           ./dist/*.whl
+    - name: Debug tag output
+      run: |
+        echo "Tag name: ${{ steps.get_latest_tag.outputs.tag }}"
     - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
