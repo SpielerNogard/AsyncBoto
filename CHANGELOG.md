@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.0 (2025-04-08)
+
+### Feat
+
+- **AsyncBoto**: added Documentation url to pyproject.toml
+
 ## 1.0.1 (2025-04-08)
 
 ### Fix
