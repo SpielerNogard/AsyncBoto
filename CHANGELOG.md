@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.1 (2025-04-08)
+
+### Fix
+
+- fix
+
 ## 1.1.0 (2025-04-08)
 
 ### Feat
