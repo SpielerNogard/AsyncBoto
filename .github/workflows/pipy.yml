@@ -13,26 +13,10 @@ jobs:
     name: Build distribution 📦
     runs-on: ubuntu-latest
 
-    outputs:
-      tag_name: ${{ steps.get_latest_tag.outputs.tag_name }}
-
     steps:
     - uses: actions/checkout@v4
       with:
         persist-credentials: true
-    - name: Fetch all tags
-      run: git fetch --tags
-    - name: Get the latest tag
-      id: get_latest_tag
-      run: |
-        tag=$(git rev-list --tags --max-count=1)
-        if [ -n "$tag" ]; then
-          tag_name=$(git describe --tags "$tag")
-        else
-          tag_name="v0.0.0" # Default tag if no tags exist
-        fi
-        echo "Using tag: $tag_name"
-        echo "tag_name=$tag_name" >> $GITHUB_OUTPUT
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -102,18 +86,19 @@ jobs:
     - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: >-
-        gh release create
-        "${{ needs.build.outputs.tag_name }}"
-        --repo "$GITHUB_REPOSITORY"
-        --notes ""
+      run: |
+        file=$(ls dist/*.tar.gz | head -n 1)
+        version=$(echo "$file" | grep -oP '(?<=-)[0-9]+\.[0-9]+\.[0-9]+(?=\.tar\.gz)')
+        echo "Extracted version: $version"
+        gh release create "$version" --repo "$GITHUB_REPOSITORY" --notes ""
     - name: Upload artifact signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
       # Upload to GitHub Release using the `gh` CLI.
       # `dist/` contains the built packages, and the
       # sigstore-produced signatures and certificates.
-      run: >-
-        gh release upload
-        "${{ needs.build.outputs.tag_name }}" dist/**
-        --repo "$GITHUB_REPOSITORY"
+      run: |
+        file=$(ls dist/*.tar.gz | head -n 1)
+        version=$(echo "$file" | grep -oP '(?<=-)[0-9]+\.[0-9]+\.[0-9]+(?=\.tar\.gz)')
+        echo "Extracted version: $version"
+        gh release upload "$version" dist/** --repo "$GITHUB_REPOSITORY"
