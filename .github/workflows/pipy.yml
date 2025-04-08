@@ -24,7 +24,14 @@ jobs:
       run: git fetch --tags
     - name: Get the latest tag
       id: get_latest_tag
-      run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      run: |
+        tag=$(git rev-list --tags --max-count=1)
+        if [ -n "$tag" ]; then
+          tag_name=$(git describe --tags "$tag")
+        else
+          tag_name="v0.0.0" # Default tag if no tags exist
+        fi
+        echo "tag=$tag_name" >> $GITHUB_ENV
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
