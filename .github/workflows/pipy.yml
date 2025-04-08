@@ -31,6 +31,7 @@ jobs:
         else
           tag_name="v0.0.0" # Default tag if no tags exist
         fi
+        echo "Using tag: $tag_name"
         echo "tag=$tag_name" >> $GITHUB_OUTPUT
     - name: Set up Python
       uses: actions/setup-python@v5
