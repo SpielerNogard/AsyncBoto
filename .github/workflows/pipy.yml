@@ -13,10 +13,16 @@ jobs:
     name: Build distribution 📦
     runs-on: ubuntu-latest
 
+    outputs:
+      tag_name: ${{ steps.get_latest_tag.outputs.tag }}
+
     steps:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
+    - name: Get the latest tag
+      id: get_latest_tag
+      run: echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -80,17 +86,12 @@ jobs:
         inputs: >-
           ./dist/*.tar.gz
           ./dist/*.whl
-    - name: Fetch all tags
-      run: git fetch --tags
-    - name: Get the latest tag
-      id: get_latest_tag
-      run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
     - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: >-
         gh release create
-        "${{ env.tag }}"
+        "${{ needs.build.outputs.tag_name }}"
         --repo "$GITHUB_REPOSITORY"
         --notes ""
     - name: Upload artifact signatures to GitHub Release
@@ -101,5 +102,5 @@ jobs:
       # sigstore-produced signatures and certificates.
       run: >-
         gh release upload
-        "${{ env.tag }}" dist/**
+        "${{ needs.build.outputs.tag_name }}" dist/**
         --repo "$GITHUB_REPOSITORY"
