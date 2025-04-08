@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.8 (2025-04-08)
+
+### Fix
+
+- **PiPy**: use correct tag for github release
+
 ## 1.1.7 (2025-04-08)
 
 ### Fix
