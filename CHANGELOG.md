@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.0.0 (2025-04-08)
+
+### Feat
+
+- **ClientError**: the default error type that is raised is now ClientError
+
 ## 0.8.0 (2025-04-07)
 
 ### Feat
