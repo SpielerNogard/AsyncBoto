@@ -1,6 +1,11 @@
 name: Publish Python 🐍 distribution 📦 to PyPI
 
-on: push
+on:
+  workflow_run:
+    workflows:
+      - Bump version
+    types:
+      - completed
 
 jobs:
   build:
