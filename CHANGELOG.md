@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.4 (2025-04-08)
+
+### Fix
+
+- **PiPy-workflow**: trigger workflow with commitzen
+
 ## 1.1.3 (2025-04-08)
 
 ### Fix
