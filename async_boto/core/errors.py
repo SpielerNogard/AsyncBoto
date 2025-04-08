@@ -1,6 +1,5 @@
-class APIResponseError(Exception):
+class ClientError(Exception):
     "Raised when an API does not return a statuscode < 300"
-
     pass
 
 
@@ -9,7 +8,7 @@ class ErrorFactory:
     def create_exception(name, message, api_response):
         return type(
             name,
-            (APIResponseError,),
+            (ClientError,),
             {
                 "__init__": lambda self, msg=message: super(
                     self.__class__, self
