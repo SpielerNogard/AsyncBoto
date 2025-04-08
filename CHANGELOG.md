@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.6 (2025-04-08)
+
+### Fix
+
+- **PiPy**: use latest tag name as release name
+- **AsyncBoto**: fixed project description in pyproject.toml and docs
+
 ## 1.1.5 (2025-04-08)
 
 ### Fix
