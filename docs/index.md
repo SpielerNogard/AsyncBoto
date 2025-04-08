@@ -17,12 +17,12 @@ This library is built on top of aiohttp and is designed to be easy to use, effic
 You can install AsyncBoto using pip:
 
 ```bash
-pip install asyncboto
+pip install AsyncBoto
 ```
 
 or using uv
 ```bash
-uv pip install asyncboto
+uv pip install AsyncBoto
 ```
 
 
