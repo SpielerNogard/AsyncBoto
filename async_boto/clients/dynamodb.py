@@ -315,6 +315,55 @@ class AsyncDynamoDBClient(BaseClient):
     async def batch_execute_statement(
         self, request: BatchExecuteStatementRequest
     ) -> BatchExecuteStatementResponse:
+        """
+        This operation allows you to perform batch reads or writes on data stored in
+        DynamoDB, using PartiQL. Each read statement in a BatchExecuteStatement must
+        specify an equality condition on all key attributes.
+        This enforces that each SELECT statement in a batch returns at
+        most a single item. For more information, see
+        [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchExecuteStatement.html)
+
+        Parameters
+        ----------
+        request : BatchExecuteStatementRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        BatchExecuteStatementResponse
+            The response object containing the results of the operation.
+
+        Raises
+        -------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from tests.async_boto.clients.dynamodb.conftest import dynamodb_client        >>> from async_boto.core.session import AsyncAWSSession
+        >>> from async_boto.clients.dynamodb import (
+        ...        AsyncDynamoDBClient,
+        ...        BatchExecuteStatementRequest,
+        ...        BatchExecuteStatementResponse,
+        ...        PutItemRequest,
+        ...    )
+        >>> from async_boto.validation.dynamodb.data_types.batch_statement_request import (
+        ...        BatchStatementRequest,
+        ...    )
+        >>> dynamodb_client = AsyncDynamoDBClient()
+        >>> batch_statement_request = BatchStatementRequest(
+        ...    Statement=f"SELECT * FROM \"{test_table}\" WHERE hash = 'hash2' and sort='sort2'",
+        ...    ConsistentRead=True,
+        ... )
+        >>> request = BatchExecuteStatementRequest(Statements=[batch_statement_request])
+        >>> response = await dynamodb_client.batch_execute_statement(request=request)
+        ... 
+        >>> assert isinstance(response, BatchExecuteStatementResponse)
+        >>> assert response.Responses[0].Item.to_python_dict() == {
+        ...     "hash": "hash2",
+        ...     "sort": "sort2",
+        ... }
+        """ # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.BatchExecuteStatement",
             request,
