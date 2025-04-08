@@ -3,7 +3,7 @@ name: PiPy
 on:
   push:
     tags:
-      - '*'
+      - 'refs/tags/*'
 
 jobs:
   pypi-publish:
