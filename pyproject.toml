@@ -20,6 +20,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/SpielerNogard/AsyncBoto"
+Documentation="https://spielernogard.github.io/AsyncBoto/"
 
 
 [tool.setuptools.packages.find]
