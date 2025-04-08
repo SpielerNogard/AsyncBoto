@@ -80,12 +80,15 @@ jobs:
         inputs: >-
           ./dist/*.tar.gz
           ./dist/*.whl
+    - name: Get the latest tag
+      id: get_latest_tag
+      run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
     - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
       run: >-
         gh release create
-        "$GITHUB_REF_NAME"
+        "${{ env.tag }}"
         --repo "$GITHUB_REPOSITORY"
         --notes ""
     - name: Upload artifact signatures to GitHub Release
@@ -96,5 +99,5 @@ jobs:
       # sigstore-produced signatures and certificates.
       run: >-
         gh release upload
-        "$GITHUB_REF_NAME" dist/**
+        "${{ env.tag }}" dist/**
         --repo "$GITHUB_REPOSITORY"
