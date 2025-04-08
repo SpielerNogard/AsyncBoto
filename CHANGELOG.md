@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## 1.1.3 (2025-04-08)
+
+### Fix
+
+- **PiPy-worklfow**: only start pipy workflow on commitizen bump
+
 ## 1.1.2 (2025-04-08)
 
 ### Fix
