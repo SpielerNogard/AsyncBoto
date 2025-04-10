@@ -1,5 +1,6 @@
 class ClientError(Exception):
     "Raised when an API does not return a statuscode < 300"
+
     pass
 
 

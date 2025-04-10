@@ -12,7 +12,7 @@ async def test_describe_table(dynamodb_client: AsyncDynamoDBClient, test_table: 
     request = DescribeTableRequest(
         TableName=test_table,
     )
-    response = await dynamodb_client.query(request=request)
+    response = await dynamodb_client.describe_table(request=request)
 
     assert isinstance(response, DescribeTableResponse)
     assert response.Table.TableName == test_table
