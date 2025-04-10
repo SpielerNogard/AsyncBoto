@@ -24,3 +24,6 @@ or using uv
 ```bash
 uv pip install AsyncBoto
 ```
+
+## Docs
+For full documentation visit [Docs](https://spielernogard.github.io/AsyncBoto/).
