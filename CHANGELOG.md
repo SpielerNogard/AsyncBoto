@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## 1.2.0 (2025-04-10)
+
+### Feat
+
+- **BaseClient**: added paginate method and decorator for easier management of paginatable methods
+- **AsyncDynamoDBClient**: added docstrings and moved paginator into `BaseClient` class
+
 ## 1.1.16 (2025-04-08)
 
 ### Fix

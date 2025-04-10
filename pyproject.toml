@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "AsyncBoto"
-version = "1.1.16"
+version = "1.2.0"
 description = "Python package to asyncronous interact with AWS"
 readme = "README.md"
 requires-python = ">=3.11"
