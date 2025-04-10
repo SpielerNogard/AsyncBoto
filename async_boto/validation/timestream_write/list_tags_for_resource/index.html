@@ -1,0 +1,11806 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://spielernogard.github.io/AsyncBoto/async_boto/validation/timestream_write/list_tags_for_resource/">
+      
+      
+        <link rel="prev" href="../list_tables/">
+      
+      
+        <link rel="next" href="../resume_batch_load_task/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>List tags for resource - AsyncBoto Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#async_boto.validation.timestream_write.list_tags_for_resource" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="AsyncBoto Docs" class="md-header__button md-logo" aria-label="AsyncBoto Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AsyncBoto Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              List tags for resource
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SpielerNogard/AsyncBoto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="AsyncBoto Docs" class="md-nav__button md-logo" aria-label="AsyncBoto Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AsyncBoto Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SpielerNogard/AsyncBoto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to AsyncBoto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Async boto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Async boto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../async_boto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Async boto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Clients
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clients/dynamodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamodb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clients/lambda_/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lambda 
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clients/sqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sqs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clients/timestream_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Timestream query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clients/timestream_write/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Timestream write
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/aws_sig_v4_headers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Aws sig v4 headers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/base_client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Errors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/profile_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Profile manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../core/session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/batching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batching
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/dynamo_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamo conversion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/generate_param_tuple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generate param tuple
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/json_dumps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Json dumps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/paginate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Paginate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/unpack_lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unpack lists
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Validation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Validation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_1" id="__nav_3_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Dynamodb
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Dynamodb
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/batch_execute_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch execute statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/batch_get_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch get item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/batch_write_items/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch write items
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/create_backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/create_global_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create global table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/create_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/delete_backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/delete_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/delete_resource_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete resource policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/delete_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_continous_backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe continous backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_contributor_insights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe contributor insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_enpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe enpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe export
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_global_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe global table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_global_table_settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe global table settings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe import
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_kinesis_streaming_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe kinesis streaming destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe limits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_table_replica_auto_scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe table replica auto scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/describe_time_to_live/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe time to live
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/disable_kinesis_streaming_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Disable kinesis streaming destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/enable_kinesis_streaming_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enable kinesis streaming destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/execute_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execute statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/execute_transaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execute transaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/export_table_to_point_in_time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Export table to point in time
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/get_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/get_resource_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get resource policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/import_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Import table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_contributor_insights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List contributor insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_exports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List exports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_global_tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List global tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_imports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List imports
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/list_tags_of_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tags of resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/put_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/put_resource_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put resource policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/restore_table_from_backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Restore table from backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/restore_table_to_point_in_time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Restore table to point in time
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/scan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scan
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/tag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/transact_get_items/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transact get items
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/transact_write_items/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transact write items
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/untag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Untag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_continuous_backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update continuous backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_contributor_insights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update contributor insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_global_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update global table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_global_table_settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update global table settings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_kinesis_streaming_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update kinesis streaming destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_table_replica_auto_scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update table replica auto scaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/update_time_to_live/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update time to live
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_1_58" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_1_58" id="__nav_3_5_1_58_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_1_58_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_1_58">
+            <span class="md-nav__icon md-icon"></span>
+            Data types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/archival_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Archival summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/attribute_definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attribute definition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/attribute_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attribute value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/attribute_value_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attribute value update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_policy_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling policy description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_policy_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling policy update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_settings_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling settings description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_settings_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling settings update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_target_tracking_scaling_policy_configuration_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling target tracking scaling policy configuration description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/auto_scaling_target_tracking_scaling_policy_configuration_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto scaling target tracking scaling policy configuration update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/backup_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backup description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/backup_details/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backup details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/backup_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backup summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/batch_statement_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch statement error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/batch_statement_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch statement request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/batch_statement_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch statement response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/billing_mode_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Billing mode summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/cancelation_reason/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cancelation reason
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/capacity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Capacity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/condition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Condition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/condition_check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Condition check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/consumed_capacity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumed capacity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/continuous_backups_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Continuous backups description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/contributor_insights_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributor insights summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/create_global_secondary_index_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create global secondary index action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/create_replica_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create replica action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/create_replication_group_member_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create replication group member action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/csv_options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Csv options
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/delete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/delete_global_secondary_index_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete global secondary index action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/delete_replica_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete replica action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/delete_replication_group_member_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete replication group member action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/delete_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/enable_kinesis_streaming_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enable kinesis streaming configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/endpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Endpoint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/expected_attribute_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expected attribute value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/export_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Export description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/export_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Export summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/failure_exception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Failure exception
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/get/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index_auto_scaling_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index auto scaling update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_secondary_index_warm_throughput_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global secondary index warm throughput description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_table_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global table description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/global_table_global_secondary_index_settings_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Global table global secondary index settings update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/import_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Import summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/import_table_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Import table description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/incremental_export_specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incremental export specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/input_format_options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Input format options
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/item_collection_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Item collection metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/item_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Item response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/key_schema_element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Key schema element
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/keys_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Keys and attributes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/kinesis_data_stream_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kinesis data stream destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/local_secondary_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local secondary index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/local_secondary_index_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local secondary index description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/local_secondary_index_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local secondary index info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/on_demand_throughput/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On demand throughput
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/on_demand_throughput_override/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On demand throughput override
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/parametrized_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parametrized statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/point_in_time_recovery_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Point in time recovery description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/point_in_time_recovery_specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Point in time recovery specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/projection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Projection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/provisioned_throughput/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned throughput
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/provisioned_throughput_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned throughput description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/provisioned_throughput_override/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned throughput override
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/put/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/put_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_auto_scaling_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica auto scaling description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_auto_scaling_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica auto scaling update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index_auto_scaling_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index auto scaling description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index_auto_scaling_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index auto scaling update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index_settings_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index settings description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_global_secondary_index_settings_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica global secondary index settings update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_settings_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica settings description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_settings_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica settings update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replica_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replica update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/replication_group_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replication group update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/restore_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Restore summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/s3_bucket_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 bucket source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/source_table_details/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source table details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/source_table_feature_details/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source table feature details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/sse_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sse description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/sse_specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sse specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/stream_specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/table_auto_scaling_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table auto scaling description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/table_class_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table class summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/table_creation_parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table creation parameters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/table_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/table_warm_throughput_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table warm throughput description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/tag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/time_to_live_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Time to live description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/time_to_live_specification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Time to live specification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/transact_get_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transact get item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/transact_write_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transact write item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/update_global_secondary_index_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update global secondary index action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/update_kinesis_streaming_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update kinesis streaming configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/update_replication_group_member_action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update replication group member action
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/warm_throughput/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Warm throughput
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dynamodb/data_types/write_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Write request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_2" id="__nav_3_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lambda 
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lambda 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/add_layer_version_permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Add layer version permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/add_permission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Add permission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/create_alias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create alias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/create_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/create_event_source_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create event source mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/create_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create function
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/create_function_url_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create function url config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_alias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete alias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_event_source_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete event source mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete function
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_function_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete function code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_function_concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete function concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_function_event_invoke_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete function event invoke config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_function_url_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete function url config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_layer_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete layer version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/delete_provisioned_concurrency_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete provisioned concurrency config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_account_settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get account settings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_alias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get alias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_event_source_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get event source mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_event_invoke_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function event invoke config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_recursion_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function recursion config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_function_url_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get function url config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_layer_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get layer version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_layer_version_by_arn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get layer version by arn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_layer_version_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get layer version policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get policy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_provisioned_concurrency_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get provisioned concurrency config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/get_runtime_management_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get runtime management config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/invoke/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/invoke_async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke async
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/invoke_with_response_stream/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke with response stream
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List aliases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_code_signing_configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List code signing configs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_event_source_mappings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List event source mappings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_function_event_invoke_configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List function event invoke configs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_function_url_configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List function url configs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_functions_by_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List functions by code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_layer_versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List layer versions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_layers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List layers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_provisioned_concurrency_configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List provisioned concurrency configs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/list_versions_by_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List versions by function
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/publish_layer_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish layer version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/publish_version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_function_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put function code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_function_concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put function concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_function_event_invoke_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put function event invoke config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_function_recursion_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put function recursion config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_provisioned_concurrency_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put provisioned concurrency config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/put_runtime_management_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Put runtime management config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/remove_layer_version_permission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Remove layer version permission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/remove_permission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Remove permission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/tag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/untag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Untag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_alias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update alias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_event_source_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update event source mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_function_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update function code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_function_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update function configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_function_event_invoke_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update function event invoke config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/update_function_url_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update function url config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_2_69" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_2_69" id="__nav_3_5_2_69_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_2_69_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_2_69">
+            <span class="md-nav__icon md-icon"></span>
+            Data types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/account_limit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account limit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/account_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/alias_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alias configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/alias_routing_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alias routing configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/allowed_publishers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Allowed publishers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/amazon_managed_kafka_event_source_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon managed kafka event source config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/code_signing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code signing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/code_signing_policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code signing policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/cors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/dead_letter_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dead letter config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/destination_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Destination config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/document_db_event_source_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document db event source config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/environment_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/environment_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/ephemeral_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ephemeral storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/event_source_mapping_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event source mapping configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/event_source_mapping_metrics_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event source mapping metrics config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/file_system_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File system config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/filter_criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter criteria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/filter_criteria_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter criteria error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/function_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/function_code_location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function code location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/function_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/function_event_invoke_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function event invoke config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/function_url_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function url config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/image_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/image_config_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image config error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/image_config_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image config response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/invoke_response_stream_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke response stream update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/invoke_with_response_stream_complete_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke with response stream complete event
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/invoke_with_response_stream_response_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke with response stream response event
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/layer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/layer_version_content_input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layer version content input
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/layer_version_content_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layer version content output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/layer_versions_list_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layer versions list item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/layers_list_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layers list item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/logging_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/on_failure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On failure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/on_success/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    On success
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/provisioned_concurrency_config_list_item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned concurrency config list item
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/provisioned_poller_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned poller config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/runtime_version_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Runtime version config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/runtime_version_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Runtime version error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/scaling_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scaling config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/self_managed_event_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Self managed event source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/self_managed_kafka_event_source_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Self managed kafka event source config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/snap_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Snap start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/snap_start_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Snap start response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/source_access_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source access configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/tags_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tags error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/tracing_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/tracing_config_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing config response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/vpc_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vpc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lambda_/data_types/vpc_config_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vpc config response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_3" id="__nav_3_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sqs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sqs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/add_permission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Add permission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/cancel_message_move_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cancel message move task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/change_message_visibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change message visibility
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/change_message_visibility_batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change message visibility batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/create_queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/delete_message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/delete_message_batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete message batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/delete_queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/get_queue_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get queue attributes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/get_queue_url/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Get queue url
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/list_dead_letter_source_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List dead letter source queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/list_message_move_tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List message move tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/list_queue_tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List queue tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/list_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/purge_queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Purge queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/receive_message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Receive message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/remove_permission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Remove permission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/send_message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Send message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/send_message_batch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Send message batch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/set_queue_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Set queue attributes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/start_message_move_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start message move task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/tag_queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/untag_queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Untag queue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_3_24" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_3_24" id="__nav_3_5_3_24_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_3_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_3_24">
+            <span class="md-nav__icon md-icon"></span>
+            Data types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/batch_result_error_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch result error entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/change_message_visibility_batch_request_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change message visibility batch request entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/change_message_visibility_batch_result_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Change message visibility batch result entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/delete_message_batch_request_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete message batch request entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/delete_message_batch_result_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete message batch result entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/list_message_move_tasks_result_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List message move tasks result entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/message_attribute_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message attribute value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/message_system_attribute_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message system attribute value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/send_message_batch_request_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Send message batch request entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqs/data_types/send_message_batch_result_entry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Send message batch result entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_4" id="__nav_3_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Timestream query
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Timestream query
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/cancel_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cancel query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/create_scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/delete_scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/describe_account_settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe account settings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/describe_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/describe_scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/execute_scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execute scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/list_scheduled_queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List scheduled queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/list_tags_for_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tags for resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/prepare_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/tag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/untag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Untag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/update_account_settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update account settings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/update_scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_4_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_4_16" id="__nav_3_5_4_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_4_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_4_16">
+            <span class="md-nav__icon md-icon"></span>
+            Data types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/account_settings_notification_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account settings notification configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/column_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Column info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/datum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datum
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/dimension_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dimension mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/endpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Endpoint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/error_report_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error report configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/error_report_location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error report location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/execution_stats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution stats
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/last_update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Last update
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/mixed_measure_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mixed measure mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/multi_measure_attribute_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi measure attribute mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/multi_measure_mappings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi measure mappings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/notification_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Notification configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/parameter_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parameter mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/provisioned_capacity_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned capacity request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/provisioned_capacity_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provisioned capacity response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_compute_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query compute request
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_compute_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query compute response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_insights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_insights_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query insights response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_spatial_coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query spatial coverage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_spatial_coverage_max/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query spatial coverage max
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query status
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_temporal_range/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query temporal range
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/query_temporal_range_max/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query temporal range max
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/row/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Row
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/s3_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/s3_report_location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 report location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/schedule_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/scheduled_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scheduled query
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/scheduled_query_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scheduled query description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/scheduled_query_insights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scheduled query insights
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/scheduled_query_insights_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scheduled query insights response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/scheduled_query_run_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scheduled query run summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/select_column/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Select column
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/sns_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sns configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/tag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/target_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Target configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/target_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Target destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/timeseries_data_point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Timeseries data point
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/timestream_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Timestream configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/timestream_destination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Timestream destination
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestream_query/data_types/type/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Type
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_5" id="__nav_3_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Timestream write
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_5_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Timestream write
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_batch_load_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create batch load task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delete_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delete_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Delete table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../describe_batch_load_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe batch load task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../describe_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../describe_endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../describe_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Describe table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list_batch_load_tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List batch load tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list_databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../list_tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    List tags for resource
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    List tags for resource
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;list_tags_for_resource
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" list_tags_for_resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ListTagsForResourceRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" ListTagsForResourceRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest.ResourceARN" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ResourceARN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ListTagsForResourceResponse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" ListTagsForResourceResponse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse.Tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;Tags
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resume_batch_load_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resume batch load task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../untag_resource/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Untag resource
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update_table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Update table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../write_records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Write records
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5_5_20" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5_5_20" id="__nav_3_5_5_20_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data types
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_5_5_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5_5_20">
+            <span class="md-nav__icon md-icon"></span>
+            Data types
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/batch_load_progress_report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch load progress report
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/batch_load_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch load task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/batch_load_task_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch load task description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/csv_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Csv configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/data_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/data_model_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data model configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/data_model_s3_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data model s3 configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/data_source_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data source configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/data_source_s3_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data source s3 configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/dimension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dimension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/dimension_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dimension mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/endpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Endpoint
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/magnetic_store_rejected_data_location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Magnetic store rejected data location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/magnetic_store_write_properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Magnetic store write properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/measure_value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Measure value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/mixed_measure_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mixed measure mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/multi_measure_attribute_mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi measure attribute mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/multi_measure_mappings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi measure mappings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/partition_key/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Partition key
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Record
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/records_ingested/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Records ingested
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/rejected_record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rejected record
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/report_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Report configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/report_s3_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Report s3 configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/retention_properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retention properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/s3_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    S3 configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/tag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;list_tags_for_resource
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" list_tags_for_resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ListTagsForResourceRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" ListTagsForResourceRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest.ResourceARN" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ResourceARN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ListTagsForResourceResponse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" ListTagsForResourceResponse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse.Tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;Tags
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>List tags for resource</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="async_boto.validation.timestream_write.list_tags_for_resource" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">async_boto.validation.timestream_write.list_tags_for_resource</span>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">ListTagsForResourceRequest</span>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Lists all tags on a Timestream resource.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">ATTRIBUTE</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            ResourceARN
+
+
+  
+      instance-attribute
+   (async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest.ResourceARN)" href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest.ResourceARN">ResourceARN</a></code></td>
+            <td class="doc-attribute-details">
+              <div class="doc-md-description">
+                <p>The Timestream resource with tags to be listed.
+This value is an Amazon Resource Name (ARN).</p>
+              </div>
+              <p>
+                  <span class="doc-attribute-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="str">str</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceRequest.ResourceARN" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">ResourceARN</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ResourceARN</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">ListTagsForResourceResponse</span>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>The response returned by the service when a ListTagsForResource action is
+successful.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">ATTRIBUTE</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            Tags
+
+
+  
+      instance-attribute
+   (async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse.Tags)" href="#async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse.Tags">Tags</a></code></td>
+            <td class="doc-attribute-details">
+              <div class="doc-md-description">
+                <p>The tags currently associated with the Timestream resource.</p>
+              </div>
+              <p>
+                  <span class="doc-attribute-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="List">List</span>[<a class="autorefs autorefs-internal" title="            Tag (async_boto.validation.timestream_write.data_types.tag.Tag)" href="../data_types/tag/#async_boto.validation.timestream_write.data_types.tag.Tag">Tag</a>]</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="async_boto.validation.timestream_write.list_tags_for_resource.ListTagsForResourceResponse.Tags" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">Tags</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">Tags</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
