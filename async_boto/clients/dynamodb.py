@@ -4,9 +4,8 @@ from typing import TypeVar
 import boto3
 from pydantic import BaseModel
 
-from async_boto.core.base_client import BaseClient
+from async_boto.core.base_client import BaseClient, register_paginator
 from async_boto.core.session import AsyncAWSSession
-from async_boto.utils.paginate import paginate
 from async_boto.validation.dynamodb.batch_execute_statement import (
     BatchExecuteStatementRequest,
     BatchExecuteStatementResponse,
@@ -252,6 +251,34 @@ class AsyncDynamoDBClient(BaseClient):
         return response_cls(**resp.json)
 
     async def describe_endpoints(self) -> DescribeEndpointsResponse:
+        """
+        Returns the regional endpoint information.
+        For more information see
+        [API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeEndpoints.html)
+
+        Returns
+        -------
+        DescribeEndpointsResponse
+            The response object containing the results of the operation.
+
+        Raises
+        -------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.core.session import AsyncAWSSession
+        >>> from async_boto.clients.dynamodb import (
+        ...     AsyncDynamoDBClient,
+        ...     DescribeEndpointsResponse,
+        ... )
+        >>> dynamodb_client = AsyncDynamoDBClient()
+        >>> response = await dynamodb_client.describe_endpoints()
+        >>> assert isinstance(response, DescribeEndpointsResponse)
+        response.Endpoints
+        [{"Adress" : "endpoint1", "CachePeriodInMinutes": 5}]
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.DescribeEndpoints",
             None,
@@ -261,19 +288,212 @@ class AsyncDynamoDBClient(BaseClient):
     async def batch_write_items(
         self, request: BatchWriteItemRequest
     ) -> BatchWriteItemsResponse:
+        """
+        The BatchWriteItem operation puts or deletes multiple items in one or more
+        tables. A single call to BatchWriteItem can transmit up to 16MB of data over
+        the network, consisting of up to 25 item put or delete operations.
+        While individual items can be up to 400 KB once stored, it's important to note
+        that an item's representation might be greater than 400KB while being sent in
+        DynamoDB's JSON format for the API call.
+        For more information, see
+        [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html)
+
+        Parameters
+        ----------
+        request : BatchWriteItemRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        BatchWriteItemsResponse
+            The response object containing the results of the operation.
+
+        Raises
+        -------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.clients.dynamodb import (
+        ...     BatchWriteItemRequest,
+        ...     BatchWriteItemsResponse,
+        ... )
+        >>> from async_boto.clients.dynamodb import AsyncDynamoDBClient
+        >>> request = BatchWriteItemRequest(
+        ...     RequestItems={
+        ...         test_table: [
+        ...             {
+        ...                 "PutRequest": {
+        ...                     "Item": {"hash": {"S": "hash1"}, "sort": {"S": "sort1"}}
+        ...                 }
+        ...             }
+        ...         ]
+        ...     }
+        ... )
+        >>> dynamodb_client = AsyncDynamoDBClient()
+        >>> response = await dynamodb_client.batch_write_items(request=request)
+        >>> assert isinstance(response, BatchWriteItemsResponse)
+        >>> assert response.UnprocessedItems == {}
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.BatchWriteItem", request, BatchWriteItemsResponse
         )
 
     async def put_item(self, request: PutItemRequest) -> PutItemResponse:
+        """
+        Creates a new item, or replaces an old item with a new item. If an item that
+        has the same primary key as the new item already exists in the specified table,
+        the new item completely replaces the existing item.
+        You can perform a conditional put operation
+        (add a new item if one with the specified primary key doesn't exist), or replace
+         an existing item if it has certain attribute values. You can return the item's
+         attribute values in the same operation, using the ReturnValues parameter.
+        When you add an item, the primary key attributes are the only required attributes.
+        Empty String and Binary attribute values are allowed. Attribute values of type
+        String and Binary must have a length greater than zero if the attribute is used
+        as a key attribute for a table or index. Set type attributes cannot be empty.
+        Invalid Requests with empty values will be rejected with a ValidationException exception.
+        For more information, see
+        [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html)
+
+        Parameters
+        ----------
+        request : PutItemRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        PutItemResponse
+            The response object containing the results of the operation.
+
+        Raises
+        ------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.clients.dynamodb import AsyncDynamoDBClient
+        >>> dynamodb_client = AsyncDynamoDBClient()
+        >>> request = PutItemRequest.from_python_dict(
+        ...     data={"hash": "hash2", "sort": "sort2"},
+        ...     TableName=test_table,
+        ...     ReturnConsumedCapacity="TOTAL",
+        ... )
+
+        >>> response = await dynamodb_client.put_item(request=request)
+        >>> assert isinstance(response, PutItemResponse)
+        >>> assert response.ConsumedCapacity.CapacityUnits == 1.0
+        >>> assert response.ConsumedCapacity.TableName == test_table
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.PutItem", request, PutItemResponse
         )
 
+    @register_paginator(
+        pagination_query_key="ExclusiveStartKey",
+        pagination_response_key="LastEvaluatedKey",
+    )
     async def scan(self, request: ScanRequest) -> ScanResponse:
+        """
+        The Scan operation returns one or more items and item attributes by accessing every item in a table or a secondary index.
+        To have DynamoDB return fewer items, you can provide a FilterExpression operation.
+        If the total size of scanned items exceeds the maximum dataset size limit of 1 MB,
+        the scan completes and results are returned to the user.
+        The LastEvaluatedKey value is also returned and the requestor can use the LastEvaluatedKey to
+        continue the scan in a subsequent operation. Each scan response also includes number of items that
+        were scanned (ScannedCount) as part of the request.
+        If using a FilterExpression, a scan result can result in no items meeting the criteria and the
+        Count will result in zero. If you did not use a FilterExpression in the scan request,
+        then Count is the same as ScannedCount.
+        for more information, see [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Scan.html)
+
+        Parameters
+        ----------
+        request : ScanRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        ScanResponse
+            The response object containing the results of the operation.
+
+        Raises
+        ------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.clients.dynamodb import AsyncDynamoDBClient
+        >>> from async_boto.clients.dynamodb import ScanRequest, ScanResponse
+        >>> request = ScanRequest(TableName=test_table)
+        >>> response = await dynamodb_client.scan(request=request)
+        >>> assert isinstance(response, ScanResponse)
+        >>> items = [item.to_python_dict() for item in response.Items]
+        >>> assert items == [{"hash": "hash2", "sort": "sort2"}]
+        """  # noqa: E501
         return await self._make_request("DynamoDB_20120810.Scan", request, ScanResponse)
 
+    @register_paginator(
+        pagination_query_key="ExclusiveStartKey",
+        pagination_response_key="LastEvaluatedKey",
+    )
     async def query(self, request: QueryRequest) -> QueryResponse:
+        """
+        You must provide the name of the partition key attribute and a single value for that attribute.
+        Query returns all items with that partition key value.
+        Optionally, you can provide a sort key attribute and use a comparison operator to refine the search results.
+        Use the KeyConditionExpression parameter to provide a specific value for the partition key.
+        The Query operation will return all of the items from the table or index with that partition key value.
+        You can optionally narrow the scope of the Query operation by specifying a sort key value and a comparison operator in KeyConditionExpression.
+        To further refine the Query results, you can optionally provide a FilterExpression.
+        A FilterExpression determines which items within the results should be returned to you.
+        All of the other results are discarded.
+        A Query operation always returns a result set.
+        If no matching items are found, the result set will be empty.
+        Queries that do not return results consume the minimum number of read capacity units for that type of read operation.
+
+        For more information, see [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html)
+
+        Parameters
+        ----------
+        request : QueryRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        QueryResponse
+            The response object containing the results of the operation.
+
+        Raises
+        ------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from tests.async_boto.clients.dynamodb.conftest import dynamodb_client
+        >>> from async_boto.clients.dynamodb import QueryRequest, QueryResponse
+        >>> request = QueryRequest(
+        ...     TableName=test_table,
+        ...     ExpressionAttributeValues={
+        ...         ":v1": {
+        ...             "S": "hash2",
+        ...         },
+        ...     },
+        ...     KeyConditionExpression="#h=:v1",
+        ...     ExpressionAttributeNames={
+        ...         "#h": "hash",
+        ...     },
+        ... )
+        >>> dynamodb_client = AsyncDynamoDBClient()
+        >>> response = await dynamodb_client.query(request=request)
+        >>> assert isinstance(response, QueryResponse)
+        >>> items = [item.to_python_dict() for item in response.Items]
+        >>> assert items == [{"hash": "hash2", "sort": "sort2"}]
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.Query", request, QueryResponse
         )
@@ -281,11 +501,83 @@ class AsyncDynamoDBClient(BaseClient):
     async def describe_table(
         self, request: DescribeTableRequest
     ) -> DescribeTableResponse:
+        """
+        Returns information about the table,
+        including the current status of the table, when it was created,
+        the primary key schema, and any indexes on the table.
+        for more information, see [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html)
+
+        Parameters
+        ----------
+        request : DescribeTableRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        DescribeTableResponse
+            The response object containing the results of the operation.
+
+        Raises
+        ------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.clients.dynamodb import AsyncDynamoDBClient
+        >>> from async_boto.clients.dynamodb import (
+        ...     DescribeTableRequest,
+        ...     DescribeTableResponse,
+        ... )
+        >>> request = DescribeTableRequest(
+        ...     TableName=test_table,
+        ... )
+        >>> response = await dynamodb_client.query(request=request)
+
+        >>> assert isinstance(response, DescribeTableResponse)
+        >>> assert response.Table.TableName == test_table
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.DescribeTable", request, DescribeTableResponse
         )
 
+    @register_paginator(
+        pagination_query_key="ExclusiveStartTableName",
+        pagination_response_key="LastEvaluatedTableName",
+    )
     async def list_tables(self, request: ListTablesRequest) -> ListTablesResponse:
+        """
+        Returns an array of table names associated with the current account and endpoint.
+        The output from ListTables is paginated, with each page returning a maximum of 100 table names.
+        for more information, see [AWS API Docs](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html)
+        Parameters
+        ----------
+        request : ListTablesRequest
+            The request object containing the parameters for the operation.
+
+        Returns
+        -------
+        ListTablesResponse
+            The response object containing the results of the operation.
+
+        Raises
+        ------
+        async_boto.core.exceptions.ClientError
+            if the request fails.
+
+        Examples
+        --------
+        >>> from async_boto.clients.dynamodb import AsyncDynamoDBClient
+        >>> from async_boto.clients.dynamodb import (
+        ...     ListTablesRequest,
+        ...     ListTablesResponse,
+        ... )
+        >>> request = ListTablesRequest()
+        >>> response = await dynamodb_client.list_tables(request=request)
+
+        >>> assert isinstance(response, ListTablesResponse)
+        >>> assert test_table in response.TableNames
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.ListTables", request, ListTablesResponse
         )
@@ -340,30 +632,29 @@ class AsyncDynamoDBClient(BaseClient):
 
         Examples
         --------
-        >>> from tests.async_boto.clients.dynamodb.conftest import dynamodb_client        >>> from async_boto.core.session import AsyncAWSSession
+        >>> from async_boto.core.session import AsyncAWSSession
         >>> from async_boto.clients.dynamodb import (
-        ...        AsyncDynamoDBClient,
-        ...        BatchExecuteStatementRequest,
-        ...        BatchExecuteStatementResponse,
-        ...        PutItemRequest,
-        ...    )
+        ...     AsyncDynamoDBClient,
+        ...     BatchExecuteStatementRequest,
+        ...     BatchExecuteStatementResponse,
+        ...     PutItemRequest,
+        ... )
         >>> from async_boto.validation.dynamodb.data_types.batch_statement_request import (
-        ...        BatchStatementRequest,
-        ...    )
+        ...     BatchStatementRequest,
+        ... )
         >>> dynamodb_client = AsyncDynamoDBClient()
         >>> batch_statement_request = BatchStatementRequest(
-        ...    Statement=f"SELECT * FROM \"{test_table}\" WHERE hash = 'hash2' and sort='sort2'",
-        ...    ConsistentRead=True,
+        ...     Statement=f"SELECT * FROM \"{test_table}\" WHERE hash = 'hash2' and sort='sort2'",
+        ...     ConsistentRead=True,
         ... )
         >>> request = BatchExecuteStatementRequest(Statements=[batch_statement_request])
         >>> response = await dynamodb_client.batch_execute_statement(request=request)
-        ... 
         >>> assert isinstance(response, BatchExecuteStatementResponse)
         >>> assert response.Responses[0].Item.to_python_dict() == {
         ...     "hash": "hash2",
         ...     "sort": "sort2",
         ... }
-        """ # noqa: E501
+        """  # noqa: E501
         return await self._make_request(
             "DynamoDB_20120810.BatchExecuteStatement",
             request,
@@ -536,11 +827,19 @@ class AsyncDynamoDBClient(BaseClient):
             "DynamoDB_20120810.ImportTable", request, ImportTableResponse
         )
 
+    @register_paginator(
+        pagination_query_key="ExclusiveStartBackupArn",
+        pagination_response_key="LastEvaluatedBackupArn",
+    )
     async def list_backups(self, request: ListBackupsRequest) -> ListBackupsResponse:
         return await self._make_request(
             "DynamoDB_20120810.ListBackups", request, ListBackupsResponse
         )
 
+    @register_paginator(
+        pagination_query_key="NextToken",
+        pagination_response_key="NextToken",
+    )
     async def list_contributor_insights(
         self, request: ListContributorInsightsRequest
     ) -> ListContributorInsightsResponse:
@@ -550,11 +849,19 @@ class AsyncDynamoDBClient(BaseClient):
             ListContributorInsightsResponse,
         )
 
+    @register_paginator(
+        pagination_query_key="NextToken",
+        pagination_response_key="NextToken",
+    )
     async def list_exports(self, request: ListExportsRequest) -> ListExportsResponse:
         return await self._make_request(
             "DynamoDB_20120810.ListExports", request, ListExportsResponse
         )
 
+    @register_paginator(
+        pagination_query_key="ExclusiveStartGlobalTableName",
+        pagination_response_key="LastEvaluatedGlobalTableName",
+    )
     async def list_global_tables(
         self, request: ListGlobalTablesRequest
     ) -> ListGlobalTablesResponse:
@@ -562,11 +869,18 @@ class AsyncDynamoDBClient(BaseClient):
             "DynamoDB_20120810.ListGlobalTables", request, ListGlobalTablesResponse
         )
 
+    @register_paginator(
+        pagination_query_key="NextToken", pagination_response_key="NextToken"
+    )
     async def list_imports(self, request: ListImportsRequest) -> ListImportsResponse:
         return await self._make_request(
             "DynamoDB_20120810.ListImports", request, ListImportsResponse
         )
 
+    @register_paginator(
+        pagination_query_key="NextToken",
+        pagination_response_key="NextToken",
+    )
     async def list_tags_of_resource(
         self, request: ListTagsOfResourceRequest
     ) -> ListTagsOfResourceResponse:
@@ -693,60 +1007,3 @@ class AsyncDynamoDBClient(BaseClient):
         return await self._make_request(
             "DynamoDB_20120810.UpdateTimeToLive", request, UpdateTimeToLiveResponse
         )
-
-    async def paginate(self, method_name, request: BaseModel):
-        paginators = {
-            "list_backups": {
-                "method": "list_backups",
-                "pagination_query_key": "ExclusiveStartBackupArn",
-                "pagination_response_key": "LastEvaluatedBackupArn",
-            },
-            "list_contributor_insights": {
-                "method": "list_contributor_insights",
-                "pagination_query_key": "NextToken",
-                "pagination_response_key": "NextToken",
-            },
-            "list_exports": {
-                "method": "list_exports",
-                "pagination_query_key": "NextToken",
-                "pagination_response_key": "NextToken",
-            },
-            "list_global_tables": {
-                "method": "list_global_tables",
-                "pagination_query_key": "ExclusiveStartGlobalTableName",
-                "pagination_response_key": "LastEvaluatedGlobalTableName",
-            },
-            "list_imports": {
-                "method": "list_imports",
-                "pagination_query_key": "NextToken",
-                "pagination_response_key": "NextToken",
-            },
-            "list_tables": {
-                "method": "list_tables",
-                "pagination_query_key": "ExclusiveStartTableName",
-                "pagination_response_key": "LastEvaluatedTableName",
-            },
-            "list_tags_of_resource": {
-                "method": "list_tags_of_resource",
-                "pagination_query_key": "NextToken",
-                "pagination_response_key": "NextToken",
-            },
-            "query": {
-                "method": "query",
-                "pagination_query_key": "ExclusiveStartKey",
-                "pagination_response_key": "LastEvaluatedKey",
-            },
-            "scan": {
-                "method": "scan",
-                "pagination_query_key": "ExclusiveStartKey",
-                "pagination_response_key": "LastEvaluatedKey",
-            },
-        }
-        if method_name not in paginators:
-            raise ValueError(
-                f"Method {method_name} is not paginatable."
-                f"Please use any of the following methods: {list(paginators.keys())}"
-            )
-        paginator = paginate(self, request=request, **paginators[method_name])
-        async for page in paginator:
-            yield page
