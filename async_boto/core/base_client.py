@@ -1,3 +1,4 @@
+import functools
 import json as json_
 import logging
 import traceback
@@ -5,6 +6,7 @@ from typing import Any, Literal
 
 import aiohttp
 import boto3
+from pydantic import BaseModel
 from tenacity import (
     retry,
     retry_if_exception_type,
@@ -15,11 +17,37 @@ from tenacity import (
 from async_boto.core.session import AsyncAWSSession
 from async_boto.utils.generate_param_tuple import generate_param_tuple
 from async_boto.utils.json_dumps import json_dump
+from async_boto.utils.paginate import paginate
 
 from .aws_sig_v4_headers import aws_sig_v4_headers
 from .response import AsyncRequestResponse
 
 logger = logging.getLogger(__name__)
+
+
+def register_paginator(pagination_query_key, pagination_response_key):
+    def decorator(func):
+        setattr(
+            func,
+            "_paginator_metadata",
+            {
+                "method": func.__name__,
+                "pagination_query_key": pagination_query_key,
+                "pagination_response_key": pagination_response_key,
+            },
+        )
+        logger.debug(
+            f"Registering paginator: {func.__name__} with query key: "
+            f"{pagination_query_key} and response key: {pagination_response_key}"
+        )
+
+        @functools.wraps(func)  # Preserve the original function's attributes
+        async def wrapper(self, *args, **kwargs):
+            return await func(self, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 
 class BaseClient:
@@ -30,6 +58,16 @@ class BaseClient:
     ) -> None:
         self._aws_session = aws_session
         self._service_name = service_name
+        self._paginators = {}
+
+        # Collect paginators from decorated methods
+        for attr_name in dir(
+            self.__class__
+        ):  # Iterate over the class, not the instance
+            method = getattr(self.__class__, attr_name, None)
+            if callable(method) and hasattr(method, "_paginator_metadata"):
+                metadata = method._paginator_metadata
+                self._paginators[metadata["method"]] = metadata
 
     async def _get(
         self,
@@ -213,3 +251,13 @@ class BaseClient:
             logger.error(traceback.format_exc())
         finally:
             await session.close()
+
+    async def paginate(self, method_name, request: BaseModel):
+        if method_name not in self._paginators:
+            raise ValueError(
+                f"Method {method_name} is not paginatable. "
+                f"Available methods: {list(self._paginators.keys())}"
+            )
+        paginator = paginate(self, request=request, **self._paginators[method_name])
+        async for page in paginator:
+            yield page
