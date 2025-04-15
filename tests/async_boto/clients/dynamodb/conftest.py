@@ -14,7 +14,7 @@ from async_boto.clients.dynamodb import (
     ListTablesResponse,
 )
 from async_boto.core.session import AsyncAWSSession
-
+import uuid
 @pytest.fixture(scope="session")
 async def dynamodb_client():
     mode = os.environ.get("mode", "local-boto")
@@ -38,7 +38,7 @@ async def dynamodb_client():
 
 @pytest.fixture()
 async def test_table(dynamodb_client):
-    table_name = "test-table-consistent"
+    table_name = f"test-table-consistent-{uuid.uuid4()}"
     # Setup: create a table
     create_request = CreateTableRequest(
         TableName=table_name,

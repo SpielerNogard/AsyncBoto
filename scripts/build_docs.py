@@ -12,6 +12,7 @@ def create_markdown_files(package_path, docs_path):
 
                 with open(docs_file_path, "w") as f:
                     f.write(f"::: {module_name}\n")
+                    print(f"Created documentation for {module_name} at {docs_file_path}")
 
 if __name__ == "__main__":
     package_path = "async_boto"

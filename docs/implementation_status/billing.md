@@ -1,0 +1,63 @@
+# billing
+
+# can_paginate
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# close
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# create_billing_view
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# delete_billing_view
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# generate_presigned_url
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# get_billing_view
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# get_paginator
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# get_resource_policy
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# get_waiter
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# list_billing_views
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# list_source_views_for_billing_view
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# list_tags_for_resource
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# tag_resource
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# untag_resource
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+# update_billing_view
+  - ❌ Written
+  - ❌ Tested
+  - ❌ Confirmed in Cloud
+
