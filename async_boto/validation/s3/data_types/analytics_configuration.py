@@ -1,13 +1,13 @@
 from pydantic import BaseModel
-from typing import Optional
-from .analytics_and_operator import AnalyticsAndOperator
-from .tag import Tag
-from .storage_class_analysis import StorageClassAnalysis
+
 from .analytics_filter import AnalyticsFilter
+from .storage_class_analysis import StorageClassAnalysis
+
 
 class AnalyticsConfiguration(BaseModel):
     """
-    Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.
+    Specifies the configuration and any analyses for the analytics filter of an Amazon
+    S3 bucket.
 
     Attributes
     ----------
@@ -18,6 +18,7 @@ class AnalyticsConfiguration(BaseModel):
     Filter : Optional[AnalyticsFilter]
         The filter used to describe a set of objects for analyses.
     """
+
     Id: str
     StorageClassAnalysis: StorageClassAnalysis
-    Filter: Optional[AnalyticsFilter] = None
+    Filter: AnalyticsFilter | None = None

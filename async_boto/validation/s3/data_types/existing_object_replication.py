@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
 from typing import Literal
+
+from pydantic import BaseModel
+
 
 class ExistingObjectReplication(BaseModel):
     """
@@ -10,4 +12,5 @@ class ExistingObjectReplication(BaseModel):
     Status : Literal["Enabled", "Disabled"]
         Specifies whether Amazon S3 replicates existing source bucket objects.
     """
+
     Status: Literal["Enabled", "Disabled"]

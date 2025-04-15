@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List
+
 from .server_side_encryption_rule import ServerSideEncryptionRule
+
 
 class ServerSideEncryptionConfiguration(BaseModel):
     """
@@ -9,6 +10,8 @@ class ServerSideEncryptionConfiguration(BaseModel):
     Attributes
     ----------
     Rules : List[ServerSideEncryptionRule]
-        Container for information about a particular server-side encryption configuration rule.
+        Container for information about a particular server-side encryption
+        configuration rule.
     """
-    Rules: List[ServerSideEncryptionRule]
+
+    Rules: list[ServerSideEncryptionRule]

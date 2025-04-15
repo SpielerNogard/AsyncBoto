@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class Encryption(BaseModel):
     """
@@ -10,10 +12,13 @@ class Encryption(BaseModel):
     EncryptionType : Literal["AES256", "aws:kms", "aws:kms:dsse"]
         The server-side encryption algorithm used when storing job results in Amazon S3.
     KMSContext : Optional[str]
-        Optional encryption context for restore results if the encryption type is aws:kms.
+        Optional encryption context for restore results if the encryption type is
+        aws:kms.
     KMSKeyId : Optional[str]
-        Optional ID of the symmetric encryption customer managed key for aws:kms encryption.
+        Optional ID of the symmetric encryption customer managed key for aws:kms
+        encryption.
     """
+
     EncryptionType: Literal["AES256", "aws:kms", "aws:kms:dsse"]
-    KMSContext: Optional[str] = None
-    KMSKeyId: Optional[str] = None
+    KMSContext: str | None = None
+    KMSKeyId: str | None = None

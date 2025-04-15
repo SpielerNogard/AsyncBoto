@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional, List
+
 from .filter_rule import FilterRule
+
 
 class S3KeyFilter(BaseModel):
     """
@@ -9,6 +10,8 @@ class S3KeyFilter(BaseModel):
     Attributes
     ----------
     FilterRules : Optional[List[FilterRule]]
-        A list of containers for the key-value pair that defines the criteria for the filter rule.
+        A list of containers for the key-value pair that defines the criteria
+        for the filter rule.
     """
-    FilterRules: Optional[List[FilterRule]]
+
+    FilterRules: list[FilterRule] | None

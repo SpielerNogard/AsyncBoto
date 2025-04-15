@@ -1,8 +1,11 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 from .csv_input import CSVInput
 from .json_input import JSONInput
 from .parquet_input import ParquetInput
+
 
 class InputSerialization(BaseModel):
     """
@@ -19,7 +22,8 @@ class InputSerialization(BaseModel):
     Parquet : Optional[ParquetInput]
         Specifies Parquet as the object's input serialization format.
     """
-    CompressionType: Optional[Literal["NONE", "GZIP", "BZIP2"]]
-    CSV: Optional[CSVInput]
-    JSON: Optional[JSONInput]
-    Parquet: Optional[ParquetInput]
+
+    CompressionType: Literal["NONE", "GZIP", "BZIP2"] | None
+    CSV: CSVInput | None
+    JSON: JSONInput | None
+    Parquet: ParquetInput | None

@@ -1,7 +1,10 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
-from .metadata_table_configuration_result import MetadataTableConfigurationResult
+
 from .error_details import ErrorDetails
+from .metadata_table_configuration_result import MetadataTableConfigurationResult
+
 
 class GetBucketMetadataTableConfigurationResult(BaseModel):
     """
@@ -16,6 +19,7 @@ class GetBucketMetadataTableConfigurationResult(BaseModel):
     Error : Optional[ErrorDetails]
         Contains error details if the metadata table creation failed.
     """
+
     MetadataTableConfigurationResult: MetadataTableConfigurationResult
     Status: Literal["CREATING", "ACTIVE", "FAILED"]
-    Error: Optional[ErrorDetails]
+    Error: ErrorDetails | None

@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional, List
+
 from .tag import Tag
+
 
 class MetricsAndOperator(BaseModel):
     """
@@ -15,6 +16,7 @@ class MetricsAndOperator(BaseModel):
     Tags : Optional[List[Tag]]
         The list of tags used when evaluating an AND predicate.
     """
-    AccessPointArn: Optional[str] = None
-    Prefix: Optional[str] = None
-    Tags: Optional[List[Tag]] = None
+
+    AccessPointArn: str | None = None
+    Prefix: str | None = None
+    Tags: list[Tag] | None = None

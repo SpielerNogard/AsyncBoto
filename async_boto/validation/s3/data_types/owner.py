@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class Owner(BaseModel):
     """
@@ -12,5 +12,6 @@ class Owner(BaseModel):
     ID : Optional[str]
         The ID of the owner.
     """
-    DisplayName: Optional[str] = None
-    ID: Optional[str] = None
+
+    DisplayName: str | None = None
+    ID: str | None = None

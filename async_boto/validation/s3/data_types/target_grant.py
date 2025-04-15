@@ -1,6 +1,9 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 from .grantee import Grantee
+
 
 class TargetGrant(BaseModel):
     """
@@ -13,5 +16,6 @@ class TargetGrant(BaseModel):
     Permission : Optional[Literal["FULL_CONTROL", "READ", "WRITE"]]
         Logging permissions assigned to the grantee for the bucket.
     """
-    Grantee: Optional[Grantee]
-    Permission: Optional[Literal["FULL_CONTROL", "READ", "WRITE"]]
+
+    Grantee: Grantee | None
+    Permission: Literal["FULL_CONTROL", "READ", "WRITE"] | None

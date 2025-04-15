@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List
+
 from .ownership_controls_rule import OwnershipControlsRule
+
 
 class OwnershipControls(BaseModel):
     """
@@ -11,4 +12,5 @@ class OwnershipControls(BaseModel):
     Rules : List[OwnershipControlsRule]
         The container element for an ownership control rule.
     """
-    Rules: List[OwnershipControlsRule]
+
+    Rules: list[OwnershipControlsRule]

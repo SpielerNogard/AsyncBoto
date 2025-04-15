@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .stats import Stats
+
 
 class StatsEvent(BaseModel):
     """
@@ -11,4 +12,5 @@ class StatsEvent(BaseModel):
     Details : Optional[Stats]
         The Stats event details.
     """
-    Details: Optional[Stats]
+
+    Details: Stats | None

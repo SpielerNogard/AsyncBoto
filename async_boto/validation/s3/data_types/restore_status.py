@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel
+
 
 class RestoreStatus(BaseModel):
     """
@@ -14,5 +15,6 @@ class RestoreStatus(BaseModel):
     RestoreExpiryDate : Optional[datetime]
         Indicates when the restored copy will expire.
     """
-    IsRestoreInProgress: Optional[bool]
-    RestoreExpiryDate: Optional[datetime]
+
+    IsRestoreInProgress: bool | None
+    RestoreExpiryDate: datetime | None

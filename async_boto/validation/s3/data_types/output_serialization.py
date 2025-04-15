@@ -1,7 +1,8 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .csv_output import CSVOutput
 from .json_output import JSONOutput
+
 
 class OutputSerialization(BaseModel):
     """
@@ -14,5 +15,6 @@ class OutputSerialization(BaseModel):
     JSON : Optional[JSONOutput]
         Specifies JSON as the request's output serialization format.
     """
-    CSV: Optional[CSVOutput] = None
-    JSON: Optional[JSONOutput] = None
+
+    CSV: CSVOutput | None = None
+    JSON: JSONOutput | None = None

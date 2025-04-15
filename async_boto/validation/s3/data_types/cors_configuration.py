@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List
+
 from .cors_rule import CORSRule
+
 
 class CORSConfiguration(BaseModel):
     """
@@ -12,4 +13,5 @@ class CORSConfiguration(BaseModel):
         A set of origins and methods (cross-origin access) that you want to allow.
         You can add up to 100 rules to the configuration.
     """
-    CORSRules: List[CORSRule]
+
+    CORSRules: list[CORSRule]

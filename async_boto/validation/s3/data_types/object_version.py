@@ -1,8 +1,11 @@
-from pydantic import BaseModel, Field
-from typing import Optional, List, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, Field
+
 from .owner import Owner
 from .restore_status import RestoreStatus
+
 
 class ObjectVersion(BaseModel):
     """
@@ -32,15 +35,18 @@ class ObjectVersion(BaseModel):
         The class of storage used to store the object.
     VersionId : Optional[str]
         The version ID of the object.
-    """
-    ChecksumAlgorithm: Optional[List[Literal["CRC32", "CRC32C", "SHA1", "SHA256", "CRC64NVME"]]] = None
-    ChecksumType: Optional[Literal["COMPOSITE", "FULL_OBJECT"]] = None
-    ETag: Optional[str] = None
-    IsLatest: Optional[bool] = None
-    Key: Optional[str] = Field(None, min_length=1)
-    LastModified: Optional[datetime] = None
-    Owner: Optional[Owner] = None
-    RestoreStatus: Optional[RestoreStatus] = None
-    Size: Optional[int] = None
-    StorageClass: Optional[Literal["STANDARD"]] = None
-    VersionId: Optional[str] = None
+    """  # noqa: E501
+
+    ChecksumAlgorithm: (
+        list[Literal["CRC32", "CRC32C", "SHA1", "SHA256", "CRC64NVME"]] | None
+    ) = None
+    ChecksumType: Literal["COMPOSITE", "FULL_OBJECT"] | None = None
+    ETag: str | None = None
+    IsLatest: bool | None = None
+    Key: str | None = Field(None, min_length=1)
+    LastModified: datetime | None = None
+    Owner: Owner | None = None
+    RestoreStatus: RestoreStatus | None = None
+    Size: int | None = None
+    StorageClass: Literal["STANDARD"] | None = None
+    VersionId: str | None = None

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class Stats(BaseModel):
     """
@@ -14,6 +14,7 @@ class Stats(BaseModel):
     BytesScanned : Optional[int]
         The total number of object bytes scanned.
     """
-    BytesProcessed: Optional[int]
-    BytesReturned: Optional[int]
-    BytesScanned: Optional[int]
+
+    BytesProcessed: int | None
+    BytesReturned: int | None
+    BytesScanned: int | None

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class ServerSideEncryptionByDefault(BaseModel):
     """
@@ -10,7 +10,9 @@ class ServerSideEncryptionByDefault(BaseModel):
     SSEAlgorithm : str
         Server-side encryption algorithm to use for the default encryption.
     KMSMasterKeyID : Optional[str]
-        AWS Key Management Service (KMS) customer managed key ID to use for the default encryption.
+        AWS Key Management Service (KMS) customer managed key ID to use
+        for the default encryption.
     """
+
     SSEAlgorithm: str
-    KMSMasterKeyID: Optional[str]
+    KMSMasterKeyID: str | None

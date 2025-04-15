@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class Redirect(BaseModel):
     """
@@ -19,8 +21,9 @@ class Redirect(BaseModel):
     ReplaceKeyWith : Optional[str]
         The specific object key to use in the redirect request.
     """
-    HostName: Optional[str] = None
-    HttpRedirectCode: Optional[str] = None
-    Protocol: Optional[Literal["http", "https"]] = None
-    ReplaceKeyPrefixWith: Optional[str] = None
-    ReplaceKeyWith: Optional[str] = None
+
+    HostName: str | None = None
+    HttpRedirectCode: str | None = None
+    Protocol: Literal["http", "https"] | None = None
+    ReplaceKeyPrefixWith: str | None = None
+    ReplaceKeyWith: str | None = None

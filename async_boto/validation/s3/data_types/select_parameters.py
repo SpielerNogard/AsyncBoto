@@ -1,6 +1,8 @@
 from pydantic import BaseModel
+
 from .input_serialization import InputSerialization
 from .output_serialization import OutputSerialization
+
 
 class SelectParameters(BaseModel):
     """
@@ -17,6 +19,7 @@ class SelectParameters(BaseModel):
     OutputSerialization : OutputSerialization
         Describes how the results of the Select job are serialized.
     """
+
     Expression: str
     ExpressionType: str
     InputSerialization: InputSerialization

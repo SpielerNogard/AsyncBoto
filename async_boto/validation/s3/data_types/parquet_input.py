@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class ParquetInput(BaseModel):
     """
     Container for Parquet.
@@ -8,4 +9,5 @@ class ParquetInput(BaseModel):
     ----
     The members of this structure are context-dependent.
     """
+
     pass

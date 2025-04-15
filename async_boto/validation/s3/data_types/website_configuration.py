@@ -1,9 +1,10 @@
 from pydantic import BaseModel, root_validator
-from typing import Optional, List
+
 from .error_document import ErrorDocument
 from .index_document import IndexDocument
 from .redirect_all_requests_to import RedirectAllRequestsTo
 from .routing_rule import RoutingRule
+
 
 class WebsiteConfiguration(BaseModel):
     """
@@ -20,14 +21,21 @@ class WebsiteConfiguration(BaseModel):
     RoutingRules : Optional[List[RoutingRule]]
         Rules that define when a redirect is applied and the redirect behavior.
     """
-    ErrorDocument: Optional[ErrorDocument]
-    IndexDocument: Optional[IndexDocument]
-    RedirectAllRequestsTo: Optional[RedirectAllRequestsTo]
-    RoutingRules: Optional[List[RoutingRule]]
+
+    ErrorDocument: ErrorDocument | None
+    IndexDocument: IndexDocument | None
+    RedirectAllRequestsTo: RedirectAllRequestsTo | None
+    RoutingRules: list[RoutingRule] | None
 
     @root_validator
     def validate_redirect_all_requests_to(cls, values):
         if values.get("RedirectAllRequestsTo") is not None:
-            if any(values.get(field) is not None for field in ["ErrorDocument", "IndexDocument", "RoutingRules"]):
-                raise ValueError("If RedirectAllRequestsTo is specified, no other property can be set.")
+            if any(
+                values.get(field) is not None
+                for field in ["ErrorDocument", "IndexDocument", "RoutingRules"]
+            ):
+                raise ValueError(
+                    "If RedirectAllRequestsTo is specified, no other property can "
+                    "be set."
+                )
         return values

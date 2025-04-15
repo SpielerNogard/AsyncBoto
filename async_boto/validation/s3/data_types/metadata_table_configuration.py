@@ -1,5 +1,7 @@
 from pydantic import BaseModel
+
 from .s3_tables_destination import S3TablesDestination
+
 
 class MetadataTableConfiguration(BaseModel):
     """
@@ -8,8 +10,12 @@ class MetadataTableConfiguration(BaseModel):
     Attributes
     ----------
     S3TablesDestination : S3TablesDestination
-        The destination information for the metadata table configuration. The destination table bucket must
-        be in the same Region and AWS account as the general purpose bucket. The specified metadata table
-        name must be unique within the aws_s3_metadata namespace in the destination table bucket.
+        The destination information for the metadata table configuration.
+        The destination table bucket must
+        be in the same Region and AWS account as the general purpose bucket.
+        The specified metadata table
+        name must be unique within the aws_s3_metadata namespace in the destination
+        table bucket.
     """
+
     S3TablesDestination: S3TablesDestination

@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class RedirectAllRequestsTo(BaseModel):
     """
@@ -13,5 +15,6 @@ class RedirectAllRequestsTo(BaseModel):
     Protocol : Optional[Literal["http", "https"]]
         Protocol to use when redirecting requests.
     """
+
     HostName: str
-    Protocol: Optional[Literal["http", "https"]] = None
+    Protocol: Literal["http", "https"] | None = None

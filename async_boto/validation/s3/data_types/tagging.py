@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List
+
 from .tag import Tag
+
 
 class Tagging(BaseModel):
     """
@@ -11,4 +12,5 @@ class Tagging(BaseModel):
     TagSet : List[Tag]
         A collection for a set of tags.
     """
-    TagSet: List[Tag]
+
+    TagSet: list[Tag]

@@ -1,10 +1,11 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .continuation_event import ContinuationEvent
 from .end_event import EndEvent
 from .progress_event import ProgressEvent
 from .records_event import RecordsEvent
 from .stats_event import StatsEvent
+
 
 class SelectObjectContentEventStream(BaseModel):
     """
@@ -23,8 +24,9 @@ class SelectObjectContentEventStream(BaseModel):
     Stats : Optional[StatsEvent]
         The Stats Event.
     """
-    Cont: Optional[ContinuationEvent]
-    End: Optional[EndEvent]
-    Progress: Optional[ProgressEvent]
-    Records: Optional[RecordsEvent]
-    Stats: Optional[StatsEvent]
+
+    Cont: ContinuationEvent | None
+    End: EndEvent | None
+    Progress: ProgressEvent | None
+    Records: RecordsEvent | None
+    Stats: StatsEvent | None

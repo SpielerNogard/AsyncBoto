@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class Checksum(BaseModel):
     """
@@ -20,9 +22,10 @@ class Checksum(BaseModel):
     ChecksumType : Optional[Literal["COMPOSITE", "FULL_OBJECT"]]
         The checksum type used to calculate the object's checksum value.
     """
-    ChecksumCRC32: Optional[str] = None
-    ChecksumCRC32C: Optional[str] = None
-    ChecksumCRC64NVME: Optional[str] = None
-    ChecksumSHA1: Optional[str] = None
-    ChecksumSHA256: Optional[str] = None
-    ChecksumType: Optional[Literal["COMPOSITE", "FULL_OBJECT"]] = None
+
+    ChecksumCRC32: str | None = None
+    ChecksumCRC32C: str | None = None
+    ChecksumCRC64NVME: str | None = None
+    ChecksumSHA1: str | None = None
+    ChecksumSHA256: str | None = None
+    ChecksumType: Literal["COMPOSITE", "FULL_OBJECT"] | None = None

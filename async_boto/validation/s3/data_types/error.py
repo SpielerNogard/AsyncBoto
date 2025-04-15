@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class Error(BaseModel):
     """
@@ -16,7 +16,8 @@ class Error(BaseModel):
     VersionId : Optional[str]
         The version ID of the error.
     """
-    Code: Optional[str] = None
-    Key: Optional[str] = None
-    Message: Optional[str] = None
-    VersionId: Optional[str] = None
+
+    Code: str | None = None
+    Key: str | None = None
+    Message: str | None = None
+    VersionId: str | None = None

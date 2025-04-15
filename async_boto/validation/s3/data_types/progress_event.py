@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .progress import Progress
+
 
 class ProgressEvent(BaseModel):
     """
@@ -11,4 +12,5 @@ class ProgressEvent(BaseModel):
     Details : Optional[Progress]
         The Progress event details.
     """
-    Details: Optional[Progress] = None
+
+    Details: Progress | None = None

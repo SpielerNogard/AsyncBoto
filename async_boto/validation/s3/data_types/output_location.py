@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .s3_location import S3Location
+
 
 class OutputLocation(BaseModel):
     """
@@ -11,4 +12,5 @@ class OutputLocation(BaseModel):
     S3 : Optional[S3Location]
         Describes an S3 location that will receive the results of the restore request.
     """
-    S3: Optional[S3Location] = None
+
+    S3: S3Location | None = None

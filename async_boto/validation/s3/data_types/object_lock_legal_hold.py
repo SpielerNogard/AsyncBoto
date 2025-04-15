@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class ObjectLockLegalHold(BaseModel):
     """
@@ -10,4 +12,5 @@ class ObjectLockLegalHold(BaseModel):
     Status : Optional[Literal["ON", "OFF"]]
         Indicates whether the specified object has a legal hold in place.
     """
-    Status: Optional[Literal["ON", "OFF"]] = None
+
+    Status: Literal["ON", "OFF"] | None = None

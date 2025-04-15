@@ -1,12 +1,15 @@
 from pydantic import BaseModel
-from typing import Optional, Union
+
 from .lifecycle_rule_and_operator import LifecycleRuleAndOperator
 from .tag import Tag
 
+
 class LifecycleRuleFilter(BaseModel):
     """
-    The Filter is used to identify objects that a Lifecycle Rule applies to. A Filter can have exactly one of
-    Prefix, Tag, ObjectSizeGreaterThan, ObjectSizeLessThan, or And specified. If the Filter element is left empty,
+    The Filter is used to identify objects that a Lifecycle Rule applies to.
+    A Filter can have exactly one of
+    Prefix, Tag, ObjectSizeGreaterThan, ObjectSizeLessThan, or And specified. If the
+    Filter element is left empty,
     the Lifecycle Rule applies to all objects in the bucket.
 
     Attributes
@@ -22,8 +25,9 @@ class LifecycleRuleFilter(BaseModel):
     Tag : Optional[Tag]
         This tag must exist in the object's tag set in order for the rule to apply.
     """
-    And: Optional[LifecycleRuleAndOperator] = None
-    ObjectSizeGreaterThan: Optional[int] = None
-    ObjectSizeLessThan: Optional[int] = None
-    Prefix: Optional[str] = None
-    Tag: Optional[Tag] = None
+
+    And: LifecycleRuleAndOperator | None = None
+    ObjectSizeGreaterThan: int | None = None
+    ObjectSizeLessThan: int | None = None
+    Prefix: str | None = None
+    Tag: Tag | None = None

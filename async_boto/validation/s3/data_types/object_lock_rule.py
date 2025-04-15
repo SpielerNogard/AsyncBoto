@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .default_retention import DefaultRetention
+
 
 class ObjectLockRule(BaseModel):
     """
@@ -11,4 +12,5 @@ class ObjectLockRule(BaseModel):
     DefaultRetention : Optional[DefaultRetention]
         The default Object Lock retention mode and period for new objects in the bucket.
     """
-    DefaultRetention: Optional[DefaultRetention] = None
+
+    DefaultRetention: DefaultRetention | None = None

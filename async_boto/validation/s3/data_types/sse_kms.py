@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class SSEKMS(BaseModel):
     """
     Specifies the use of SSE-KMS to encrypt delivered inventory reports.
@@ -10,4 +11,5 @@ class SSEKMS(BaseModel):
         Specifies the ID of the AWS KMS symmetric encryption customer managed key
         to use for encrypting inventory reports.
     """
+
     KeyId: str

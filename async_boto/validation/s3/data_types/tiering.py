@@ -1,19 +1,24 @@
-from pydantic import BaseModel, Field, root_validator
 from typing import Literal
+
+from pydantic import BaseModel, Field, root_validator
+
 
 class Tiering(BaseModel):
     """
-    The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data
-    to the most cost-effective storage access tier, without additional operational overhead.
+    The S3 Intelligent-Tiering storage class is designed to optimize storage costs by
+    automatically moving data to the most cost-effective storage access tier,
+    without additional operational overhead.
 
     Attributes
     ----------
     AccessTier : Literal["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"]
         S3 Intelligent-Tiering access tier.
     Days : int
-        The number of consecutive days of no access after which an object will be eligible to be transitioned
+        The number of consecutive days of no access after which an object will be
+        eligible to be transitioned
         to the corresponding tier.
     """
+
     AccessTier: Literal["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"]
     Days: int = Field(..., ge=90, le=730)
 

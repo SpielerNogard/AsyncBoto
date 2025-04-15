@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List
+
 from .rule import Rule
+
 
 class LifecycleConfiguration(BaseModel):
     """
@@ -11,4 +12,5 @@ class LifecycleConfiguration(BaseModel):
     Rules : List[Rule]
         Specifies lifecycle configuration rules for an Amazon S3 bucket.
     """
-    Rules: List[Rule]
+
+    Rules: list[Rule]

@@ -1,10 +1,12 @@
-from pydantic import BaseModel, Field
-from typing import Optional, List
-from typing_extensions import Literal
-from .grant import Grant
+from typing import Literal
+
+from pydantic import BaseModel
+
 from .encryption import Encryption
-from .tagging import Tagging
+from .grant import Grant
 from .metadata_entry import MetadataEntry
+from .tagging import Tagging
+
 
 class S3Location(BaseModel):
     """
@@ -31,19 +33,39 @@ class S3Location(BaseModel):
         The tag-set that is applied to the restore results.
     UserMetadata : Optional[List[MetadataEntry]]
         A list of metadata to store with the restore results in S3.
-    """
+    """  # noqa: E501
+
     BucketName: str
     Prefix: str
-    AccessControlList: Optional[List[Grant]]
-    CannedACL: Optional[Literal[
-        "private", "public-read", "public-read-write", "authenticated-read",
-        "aws-exec-read", "bucket-owner-read", "bucket-owner-full-control"
-    ]]
-    Encryption: Optional[Encryption]
-    StorageClass: Optional[Literal[
-        "STANDARD", "REDUCED_REDUNDANCY", "STANDARD_IA", "ONEZONE_IA",
-        "INTELLIGENT_TIERING", "GLACIER", "DEEP_ARCHIVE", "OUTPOSTS",
-        "GLACIER_IR", "SNOW", "EXPRESS_ONEZONE"
-    ]]
-    Tagging: Optional[Tagging]
-    UserMetadata: Optional[List[MetadataEntry]]
+    AccessControlList: list[Grant] | None
+    CannedACL: (
+        Literal[
+            "private",
+            "public-read",
+            "public-read-write",
+            "authenticated-read",
+            "aws-exec-read",
+            "bucket-owner-read",
+            "bucket-owner-full-control",
+        ]
+        | None
+    )
+    Encryption: Encryption | None
+    StorageClass: (
+        Literal[
+            "STANDARD",
+            "REDUCED_REDUNDANCY",
+            "STANDARD_IA",
+            "ONEZONE_IA",
+            "INTELLIGENT_TIERING",
+            "GLACIER",
+            "DEEP_ARCHIVE",
+            "OUTPOSTS",
+            "GLACIER_IR",
+            "SNOW",
+            "EXPRESS_ONEZONE",
+        ]
+        | None
+    )
+    Tagging: Tagging | None
+    UserMetadata: list[MetadataEntry] | None

@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class DeleteMarkerReplication(BaseModel):
     """
@@ -10,4 +12,5 @@ class DeleteMarkerReplication(BaseModel):
     Status : Optional[Literal["Enabled", "Disabled"]]
         Indicates whether to replicate delete markers.
     """
-    Status: Optional[Literal["Enabled", "Disabled"]] = None
+
+    Status: Literal["Enabled", "Disabled"] | None = None

@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Literal
+
+from pydantic import BaseModel
+
 
 class ReplicaModifications(BaseModel):
     """
@@ -11,4 +13,5 @@ class ReplicaModifications(BaseModel):
     Status : Literal["Enabled", "Disabled"]
         Specifies whether Amazon S3 replicates modifications on replicas.
     """
+
     Status: Literal["Enabled", "Disabled"]

@@ -1,6 +1,9 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 from .object_lock_rule import ObjectLockRule
+
 
 class ObjectLockConfiguration(BaseModel):
     """
@@ -13,5 +16,6 @@ class ObjectLockConfiguration(BaseModel):
     Rule : Optional[ObjectLockRule]
         Specifies the Object Lock rule for the bucket.
     """
-    ObjectLockEnabled: Optional[Literal["Enabled"]] = None
-    Rule: Optional[ObjectLockRule] = None
+
+    ObjectLockEnabled: Literal["Enabled"] | None = None
+    Rule: ObjectLockRule | None = None

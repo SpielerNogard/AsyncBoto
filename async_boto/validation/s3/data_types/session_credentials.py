@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from datetime import datetime
+
+from pydantic import BaseModel
+
 
 class SessionCredentials(BaseModel):
     """
@@ -16,6 +18,7 @@ class SessionCredentials(BaseModel):
     SessionToken : str
         A token used to validate the temporary security credentials.
     """
+
     AccessKeyId: str
     Expiration: datetime
     SecretAccessKey: str

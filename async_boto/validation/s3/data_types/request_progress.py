@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class RequestProgress(BaseModel):
     """
@@ -11,4 +11,5 @@ class RequestProgress(BaseModel):
         Specifies whether periodic QueryProgress frames should be sent.
         Valid values: TRUE, FALSE. Default value: FALSE.
     """
-    Enabled: Optional[bool] = False
+
+    Enabled: bool | None = False

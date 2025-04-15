@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class JSONInput(BaseModel):
     """
@@ -10,4 +12,5 @@ class JSONInput(BaseModel):
     Type : Optional[Literal["DOCUMENT", "LINES"]]
         The type of JSON. Valid values: "DOCUMENT" or "LINES".
     """
-    Type: Optional[Literal["DOCUMENT", "LINES"]]
+
+    Type: Literal["DOCUMENT", "LINES"] | None

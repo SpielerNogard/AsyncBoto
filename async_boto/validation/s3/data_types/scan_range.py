@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+
 
 class ScanRange(BaseModel):
     """
@@ -12,5 +12,6 @@ class ScanRange(BaseModel):
     End : Optional[int]
         Specifies the end of the byte range. Must be a non-negative integer.
     """
-    Start: Optional[int] = Field(None, ge=0)
-    End: Optional[int] = Field(None, ge=0)
+
+    Start: int | None = Field(None, ge=0)
+    End: int | None = Field(None, ge=0)

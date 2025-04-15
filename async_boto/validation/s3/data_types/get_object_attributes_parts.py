@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional, List
+
 from .object_part import ObjectPart
+
 
 class GetObjectAttributesParts(BaseModel):
     """
@@ -21,9 +22,10 @@ class GetObjectAttributesParts(BaseModel):
     TotalPartsCount : Optional[int]
         The total number of parts.
     """
-    IsTruncated: Optional[bool]
-    MaxParts: Optional[int]
-    NextPartNumberMarker: Optional[int]
-    PartNumberMarker: Optional[int]
-    Parts: Optional[List[ObjectPart]]
-    TotalPartsCount: Optional[int]
+
+    IsTruncated: bool | None
+    MaxParts: int | None
+    NextPartNumberMarker: int | None
+    PartNumberMarker: int | None
+    Parts: list[ObjectPart] | None
+    TotalPartsCount: int | None

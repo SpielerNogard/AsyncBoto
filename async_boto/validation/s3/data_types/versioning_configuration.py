@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class VersioningConfiguration(BaseModel):
     """
@@ -12,5 +14,6 @@ class VersioningConfiguration(BaseModel):
     Status : Optional[Literal["Enabled", "Suspended"]]
         The versioning state of the bucket.
     """
-    MFADelete: Optional[Literal["Enabled", "Disabled"]]
-    Status: Optional[Literal["Enabled", "Suspended"]]
+
+    MFADelete: Literal["Enabled", "Disabled"] | None
+    Status: Literal["Enabled", "Suspended"] | None

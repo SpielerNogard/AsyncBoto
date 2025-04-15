@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class PartitionedPrefix(BaseModel):
     """
@@ -10,4 +12,5 @@ class PartitionedPrefix(BaseModel):
     PartitionDateSource : Optional[Literal["EventTime", "DeliveryTime"]]
         Specifies the partition date source for the partitioned prefix.
     """
-    PartitionDateSource: Optional[Literal["EventTime", "DeliveryTime"]] = None
+
+    PartitionDateSource: Literal["EventTime", "DeliveryTime"] | None = None

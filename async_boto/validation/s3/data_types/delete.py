@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List, Optional
+
 from .object_identifier import ObjectIdentifier
+
 
 class Delete(BaseModel):
     """
@@ -13,5 +14,6 @@ class Delete(BaseModel):
     Quiet : Optional[bool]
         Element to enable quiet mode for the request. Defaults to None.
     """
-    Objects: List[ObjectIdentifier]
-    Quiet: Optional[bool] = None
+
+    Objects: list[ObjectIdentifier]
+    Quiet: bool | None = None

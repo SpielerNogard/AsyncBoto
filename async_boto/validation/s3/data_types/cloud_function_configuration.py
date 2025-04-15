@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, List, Literal
+
 
 class CloudFunctionConfiguration(BaseModel):
     """
@@ -29,21 +31,43 @@ class CloudFunctionConfiguration(BaseModel):
         An optional unique identifier for configurations in a notification configuration.
     InvocationRole : Optional[str]
         The role supporting the invocation of the Lambda function.
-    """
-    CloudFunction: Optional[str] = None
-    Event: Optional[str] = None
-    Events: Optional[List[Literal[
-        "s3:ReducedRedundancyLostObject", "s3:ObjectCreated:*", "s3:ObjectCreated:Put",
-        "s3:ObjectCreated:Post", "s3:ObjectCreated:Copy", "s3:ObjectCreated:CompleteMultipartUpload",
-        "s3:ObjectRemoved:*", "s3:ObjectRemoved:Delete", "s3:ObjectRemoved:DeleteMarkerCreated",
-        "s3:ObjectRestore:*", "s3:ObjectRestore:Post", "s3:ObjectRestore:Completed",
-        "s3:Replication:*", "s3:Replication:OperationFailedReplication",
-        "s3:Replication:OperationNotTracked", "s3:Replication:OperationMissedThreshold",
-        "s3:Replication:OperationReplicatedAfterThreshold", "s3:ObjectRestore:Delete",
-        "s3:LifecycleTransition", "s3:IntelligentTiering", "s3:ObjectAcl:Put",
-        "s3:LifecycleExpiration:*", "s3:LifecycleExpiration:Delete",
-        "s3:LifecycleExpiration:DeleteMarkerCreated", "s3:ObjectTagging:*",
-        "s3:ObjectTagging:Put", "s3:ObjectTagging:Delete"
-    ]]] = None
-    Id: Optional[str] = None
-    InvocationRole: Optional[str] = None
+    """  # noqa: E501
+
+    CloudFunction: str | None = None
+    Event: str | None = None
+    Events: (
+        list[
+            Literal[
+                "s3:ReducedRedundancyLostObject",
+                "s3:ObjectCreated:*",
+                "s3:ObjectCreated:Put",
+                "s3:ObjectCreated:Post",
+                "s3:ObjectCreated:Copy",
+                "s3:ObjectCreated:CompleteMultipartUpload",
+                "s3:ObjectRemoved:*",
+                "s3:ObjectRemoved:Delete",
+                "s3:ObjectRemoved:DeleteMarkerCreated",
+                "s3:ObjectRestore:*",
+                "s3:ObjectRestore:Post",
+                "s3:ObjectRestore:Completed",
+                "s3:Replication:*",
+                "s3:Replication:OperationFailedReplication",
+                "s3:Replication:OperationNotTracked",
+                "s3:Replication:OperationMissedThreshold",
+                "s3:Replication:OperationReplicatedAfterThreshold",
+                "s3:ObjectRestore:Delete",
+                "s3:LifecycleTransition",
+                "s3:IntelligentTiering",
+                "s3:ObjectAcl:Put",
+                "s3:LifecycleExpiration:*",
+                "s3:LifecycleExpiration:Delete",
+                "s3:LifecycleExpiration:DeleteMarkerCreated",
+                "s3:ObjectTagging:*",
+                "s3:ObjectTagging:Put",
+                "s3:ObjectTagging:Delete",
+            ]
+        ]
+        | None
+    ) = None
+    Id: str | None = None
+    InvocationRole: str | None = None

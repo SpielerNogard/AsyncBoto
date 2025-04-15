@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class Grantee(BaseModel):
     """
@@ -18,8 +20,9 @@ class Grantee(BaseModel):
     URI : Optional[str]
         URI of the grantee group.
     """
+
     Type: Literal["CanonicalUser", "AmazonCustomerByEmail", "Group"]
-    DisplayName: Optional[str]
-    EmailAddress: Optional[str]
-    ID: Optional[str]
-    URI: Optional[str]
+    DisplayName: str | None
+    EmailAddress: str | None
+    ID: str | None
+    URI: str | None

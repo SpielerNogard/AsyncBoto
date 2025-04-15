@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class FilterRule(BaseModel):
     """
@@ -8,9 +10,11 @@ class FilterRule(BaseModel):
     Attributes
     ----------
     Name : Optional[Literal["prefix", "suffix"]]
-        The object key name prefix or suffix identifying one or more objects to which the filtering rule applies.
+        The object key name prefix or suffix identifying one or more objects to which
+        the filtering rule applies.
     Value : Optional[str]
         The value that the filter searches for in object key names.
     """
-    Name: Optional[Literal["prefix", "suffix"]]
-    Value: Optional[str]
+
+    Name: Literal["prefix", "suffix"] | None
+    Value: str | None

@@ -1,9 +1,12 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 from .access_control_translation import AccessControlTranslation
 from .encryption_configuration import EncryptionConfiguration
 from .metrics import Metrics
 from .replication_time import ReplicationTime
+
 
 class Destination(BaseModel):
     """
@@ -30,14 +33,26 @@ class Destination(BaseModel):
                                     "SNOW", "EXPRESS_ONEZONE"]]
         The storage class to use when replicating objects.
     """
+
     Bucket: str
-    AccessControlTranslation: Optional[AccessControlTranslation] = None
-    Account: Optional[str] = None
-    EncryptionConfiguration: Optional[EncryptionConfiguration] = None
-    Metrics: Optional[Metrics] = None
-    ReplicationTime: Optional[ReplicationTime] = None
-    StorageClass: Optional[Literal[
-        "STANDARD", "REDUCED_REDUNDANCY", "STANDARD_IA", "ONEZONE_IA",
-        "INTELLIGENT_TIERING", "GLACIER", "DEEP_ARCHIVE", "OUTPOSTS",
-        "GLACIER_IR", "SNOW", "EXPRESS_ONEZONE"
-    ]] = None
+    AccessControlTranslation: AccessControlTranslation | None = None
+    Account: str | None = None
+    EncryptionConfiguration: EncryptionConfiguration | None = None
+    Metrics: Metrics | None = None
+    ReplicationTime: ReplicationTime | None = None
+    StorageClass: (
+        Literal[
+            "STANDARD",
+            "REDUCED_REDUNDANCY",
+            "STANDARD_IA",
+            "ONEZONE_IA",
+            "INTELLIGENT_TIERING",
+            "GLACIER",
+            "DEEP_ARCHIVE",
+            "OUTPOSTS",
+            "GLACIER_IR",
+            "SNOW",
+            "EXPRESS_ONEZONE",
+        ]
+        | None
+    ) = None

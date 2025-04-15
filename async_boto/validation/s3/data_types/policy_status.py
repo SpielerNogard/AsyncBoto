@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class PolicyStatus(BaseModel):
     """
@@ -11,4 +11,5 @@ class PolicyStatus(BaseModel):
         The policy status for this bucket. TRUE indicates that this bucket is public.
         FALSE indicates that the bucket is not public.
     """
-    IsPublic: Optional[bool] = None
+
+    IsPublic: bool | None = None

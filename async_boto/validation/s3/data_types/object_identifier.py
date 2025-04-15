@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel, Field
+
 
 class ObjectIdentifier(BaseModel):
     """
@@ -19,8 +20,9 @@ class ObjectIdentifier(BaseModel):
     VersionId : Optional[str]
         The version ID of the object.
     """
+
     Key: str = Field(..., min_length=1)
-    ETag: Optional[str] = None
-    LastModifiedTime: Optional[datetime] = None
-    Size: Optional[int] = None
-    VersionId: Optional[str] = None
+    ETag: str | None = None
+    LastModifiedTime: datetime | None = None
+    Size: int | None = None
+    VersionId: str | None = None

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class CompletedPart(BaseModel):
     """
@@ -20,12 +20,14 @@ class CompletedPart(BaseModel):
     ETag : Optional[str]
         Entity tag returned when the part was uploaded.
     PartNumber : Optional[int]
-        Part number that identifies the part. Must be a positive integer between 1 and 10,000.
+        Part number that identifies the part. Must be a positive integer
+        between 1 and 10,000.
     """
-    ChecksumCRC32: Optional[str] = None
-    ChecksumCRC32C: Optional[str] = None
-    ChecksumCRC64NVME: Optional[str] = None
-    ChecksumSHA1: Optional[str] = None
-    ChecksumSHA256: Optional[str] = None
-    ETag: Optional[str] = None
-    PartNumber: Optional[int] = None
+
+    ChecksumCRC32: str | None = None
+    ChecksumCRC32C: str | None = None
+    ChecksumCRC64NVME: str | None = None
+    ChecksumSHA1: str | None = None
+    ChecksumSHA256: str | None = None
+    ETag: str | None = None
+    PartNumber: int | None = None

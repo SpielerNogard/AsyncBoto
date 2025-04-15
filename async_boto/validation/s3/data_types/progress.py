@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class Progress(BaseModel):
     """
@@ -14,6 +14,7 @@ class Progress(BaseModel):
     BytesScanned : Optional[int]
         The current number of object bytes scanned.
     """
-    BytesProcessed: Optional[int] = None
-    BytesReturned: Optional[int] = None
-    BytesScanned: Optional[int] = None
+
+    BytesProcessed: int | None = None
+    BytesReturned: int | None = None
+    BytesScanned: int | None = None

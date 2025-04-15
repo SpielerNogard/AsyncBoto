@@ -1,7 +1,8 @@
 from pydantic import BaseModel
-from typing import Optional
+
 from .sse_kms import SSEKMS
 from .sse_s3 import SSES3
+
 
 class InventoryEncryption(BaseModel):
     """
@@ -14,5 +15,6 @@ class InventoryEncryption(BaseModel):
     SSES3 : Optional[SSES3]
         Specifies the use of SSE-S3 to encrypt delivered inventory reports.
     """
-    SSEKMS: Optional[SSEKMS]
-    SSES3: Optional[SSES3]
+
+    SSEKMS: SSEKMS | None
+    SSES3: SSES3 | None

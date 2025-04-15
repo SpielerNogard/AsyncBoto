@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Literal
+
+from pydantic import BaseModel
+
 
 class InventorySchedule(BaseModel):
     """
@@ -10,4 +12,5 @@ class InventorySchedule(BaseModel):
     Frequency : Literal["Daily", "Weekly"]
         Specifies how frequently inventory results are produced.
     """
+
     Frequency: Literal["Daily", "Weekly"]

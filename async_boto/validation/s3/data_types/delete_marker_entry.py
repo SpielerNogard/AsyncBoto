@@ -1,7 +1,9 @@
-from pydantic import BaseModel, Field
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel, Field
+
 from .owner import Owner
+
 
 class DeleteMarkerEntry(BaseModel):
     """
@@ -20,8 +22,9 @@ class DeleteMarkerEntry(BaseModel):
     VersionId : Optional[str]
         Version ID of an object.
     """
-    IsLatest: Optional[bool] = None
-    Key: Optional[str] = Field(None, min_length=1)
-    LastModified: Optional[datetime] = None
-    Owner: Optional[Owner] = None
-    VersionId: Optional[str] = None
+
+    IsLatest: bool | None = None
+    Key: str | None = Field(None, min_length=1)
+    LastModified: datetime | None = None
+    Owner: Owner | None = None
+    VersionId: str | None = None

@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel
+
 
 class ObjectLockRetention(BaseModel):
     """
@@ -13,5 +15,6 @@ class ObjectLockRetention(BaseModel):
     RetainUntilDate : Optional[datetime]
         The date on which this Object Lock Retention will expire.
     """
-    Mode: Optional[Literal["GOVERNANCE", "COMPLIANCE"]] = None
-    RetainUntilDate: Optional[datetime] = None
+
+    Mode: Literal["GOVERNANCE", "COMPLIANCE"] | None = None
+    RetainUntilDate: datetime | None = None

@@ -1,5 +1,7 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import Optional, Literal
+
 
 class AnalyticsS3BucketDestination(BaseModel):
     """
@@ -16,7 +18,8 @@ class AnalyticsS3BucketDestination(BaseModel):
     Prefix : Optional[str]
         The prefix to use when exporting data. The prefix is prepended to all results.
     """
+
     Bucket: str
     Format: Literal["CSV"]
-    BucketAccountId: Optional[str] = None
-    Prefix: Optional[str] = None
+    BucketAccountId: str | None = None
+    Prefix: str | None = None

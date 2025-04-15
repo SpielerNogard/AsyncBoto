@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 
+
 class Tag(BaseModel):
     """
     A container of a key-value name pair.
@@ -11,5 +12,6 @@ class Tag(BaseModel):
     Value : str
         Value of the tag.
     """
+
     Key: str = Field(..., min_length=1)
     Value: str

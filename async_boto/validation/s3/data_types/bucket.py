@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel
+
 
 class Bucket(BaseModel):
     """
@@ -15,6 +16,7 @@ class Bucket(BaseModel):
     Name : Optional[str]
         The name of the bucket.
     """
-    BucketRegion: Optional[str] = None
-    CreationDate: Optional[datetime] = None
-    Name: Optional[str] = None
+
+    BucketRegion: str | None = None
+    CreationDate: datetime | None = None
+    Name: str | None = None

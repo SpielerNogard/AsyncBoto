@@ -1,8 +1,11 @@
-from pydantic import BaseModel, Field
-from typing import Optional, List, Literal
 from datetime import datetime
+from typing import Literal
+
+from pydantic import BaseModel, Field
+
 from .owner import Owner
 from .restore_status import RestoreStatus
+
 
 class Object(BaseModel):
     """
@@ -31,16 +34,31 @@ class Object(BaseModel):
         "INTELLIGENT_TIERING", "DEEP_ARCHIVE", "OUTPOSTS", "GLACIER_IR", "SNOW", "EXPRESS_ONEZONE"
     ]]
         The class of storage used to store the object.
-    """
-    ChecksumAlgorithm: Optional[List[Literal["CRC32", "CRC32C", "SHA1", "SHA256", "CRC64NVME"]]] = None
-    ChecksumType: Optional[Literal["COMPOSITE", "FULL_OBJECT"]] = None
-    ETag: Optional[str] = None
-    Key: Optional[str] = Field(None, min_length=1)
-    LastModified: Optional[datetime] = None
-    Owner: Optional[Owner] = None
-    RestoreStatus: Optional[RestoreStatus] = None
-    Size: Optional[int] = None
-    StorageClass: Optional[Literal[
-        "STANDARD", "REDUCED_REDUNDANCY", "GLACIER", "STANDARD_IA", "ONEZONE_IA",
-        "INTELLIGENT_TIERING", "DEEP_ARCHIVE", "OUTPOSTS", "GLACIER_IR", "SNOW", "EXPRESS_ONEZONE"
-    ]] = None
+    """  # noqa: E501
+
+    ChecksumAlgorithm: (
+        list[Literal["CRC32", "CRC32C", "SHA1", "SHA256", "CRC64NVME"]] | None
+    ) = None
+    ChecksumType: Literal["COMPOSITE", "FULL_OBJECT"] | None = None
+    ETag: str | None = None
+    Key: str | None = Field(None, min_length=1)
+    LastModified: datetime | None = None
+    Owner: Owner | None = None
+    RestoreStatus: RestoreStatus | None = None
+    Size: int | None = None
+    StorageClass: (
+        Literal[
+            "STANDARD",
+            "REDUCED_REDUNDANCY",
+            "GLACIER",
+            "STANDARD_IA",
+            "ONEZONE_IA",
+            "INTELLIGENT_TIERING",
+            "DEEP_ARCHIVE",
+            "OUTPOSTS",
+            "GLACIER_IR",
+            "SNOW",
+            "EXPRESS_ONEZONE",
+        ]
+        | None
+    ) = None

@@ -1,11 +1,13 @@
 from pydantic import BaseModel, root_validator
-from typing import Optional
+
 from .partitioned_prefix import PartitionedPrefix
 from .simple_prefix import SimplePrefix
 
+
 class TargetObjectKeyFormat(BaseModel):
     """
-    Amazon S3 key format for log objects. Only one format, PartitionedPrefix or SimplePrefix, is allowed.
+    Amazon S3 key format for log objects. Only one format, PartitionedPrefix or
+    SimplePrefix, is allowed.
 
     Attributes
     ----------
@@ -14,11 +16,14 @@ class TargetObjectKeyFormat(BaseModel):
     SimplePrefix : Optional[SimplePrefix]
         To use the simple format for S3 keys for log objects.
     """
-    PartitionedPrefix: Optional[PartitionedPrefix]
-    SimplePrefix: Optional[SimplePrefix]
+
+    PartitionedPrefix: PartitionedPrefix | None
+    SimplePrefix: SimplePrefix | None
 
     @root_validator
     def validate_exclusive_fields(cls, values):
         if values.get("PartitionedPrefix") and values.get("SimplePrefix"):
-            raise ValueError("Only one of PartitionedPrefix or SimplePrefix can be set.")
+            raise ValueError(
+                "Only one of PartitionedPrefix or SimplePrefix can be set."
+            )
         return values

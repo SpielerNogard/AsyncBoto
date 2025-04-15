@@ -1,7 +1,10 @@
+from typing import Literal
+
 from pydantic import BaseModel
-from typing import List, Literal, Optional
-from .tiering import Tiering
+
 from .intelligent_tiering_filter import IntelligentTieringFilter
+from .tiering import Tiering
+
 
 class IntelligentTieringConfiguration(BaseModel):
     """
@@ -16,9 +19,11 @@ class IntelligentTieringConfiguration(BaseModel):
     Tierings : List[Tiering]
         Specifies the S3 Intelligent-Tiering storage class tier of the configuration.
     Filter : Optional[IntelligentTieringFilter]
-        Specifies a bucket filter. The configuration only includes objects that meet the filter's criteria.
+        Specifies a bucket filter. The configuration only includes objects that meet
+        the filter's criteria.
     """
+
     Id: str
     Status: Literal["Enabled", "Disabled"]
-    Tierings: List[Tiering]
-    Filter: Optional[IntelligentTieringFilter]
+    Tierings: list[Tiering]
+    Filter: IntelligentTieringFilter | None

@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Literal
+
+from pydantic import BaseModel
+
 
 class OwnershipControlsRule(BaseModel):
     """
@@ -9,5 +11,8 @@ class OwnershipControlsRule(BaseModel):
     ----------
     ObjectOwnership : Literal["BucketOwnerPreferred", "ObjectWriter", "BucketOwnerEnforced"]
         The container element for object ownership for a bucket's ownership controls.
-    """
-    ObjectOwnership: Literal["BucketOwnerPreferred", "ObjectWriter", "BucketOwnerEnforced"]
+    """  # noqa: E501
+
+    ObjectOwnership: Literal[
+        "BucketOwnerPreferred", "ObjectWriter", "BucketOwnerEnforced"
+    ]

@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+
+from pydantic import BaseModel
+
 
 class CopyPartResult(BaseModel):
     """
@@ -23,10 +24,11 @@ class CopyPartResult(BaseModel):
     LastModified : Optional[datetime]
         The date and time at which the object was uploaded.
     """
-    ChecksumCRC32: Optional[str] = None
-    ChecksumCRC32C: Optional[str] = None
-    ChecksumCRC64NVME: Optional[str] = None
-    ChecksumSHA1: Optional[str] = None
-    ChecksumSHA256: Optional[str] = None
-    ETag: Optional[str] = None
-    LastModified: Optional[datetime] = None
+
+    ChecksumCRC32: str | None = None
+    ChecksumCRC32C: str | None = None
+    ChecksumCRC64NVME: str | None = None
+    ChecksumSHA1: str | None = None
+    ChecksumSHA256: str | None = None
+    ETag: str | None = None
+    LastModified: datetime | None = None

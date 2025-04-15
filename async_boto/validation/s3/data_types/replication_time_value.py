@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+
 
 class ReplicationTimeValue(BaseModel):
     """
@@ -11,4 +11,5 @@ class ReplicationTimeValue(BaseModel):
     Minutes : Optional[int]
         Contains an integer specifying time in minutes. Valid value: 15.
     """
-    Minutes: Optional[int] = Field(None, ge=15, le=15)
+
+    Minutes: int | None = Field(None, ge=15, le=15)

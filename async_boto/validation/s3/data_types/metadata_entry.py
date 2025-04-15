@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class MetadataEntry(BaseModel):
     """
@@ -12,5 +12,6 @@ class MetadataEntry(BaseModel):
     Value : Optional[str]
         Value of the object.
     """
-    Name: Optional[str] = None
-    Value: Optional[str] = None
+
+    Name: str | None = None
+    Value: str | None = None

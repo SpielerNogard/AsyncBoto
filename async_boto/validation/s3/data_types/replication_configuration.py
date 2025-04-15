@@ -1,6 +1,9 @@
 from pydantic import BaseModel
-from typing import List
-from .replication_rule import ReplicationRule  # Assuming ReplicationRule is defined in a separate file
+
+from .replication_rule import (
+    ReplicationRule,  # Assuming ReplicationRule is defined in a separate file
+)
+
 
 class ReplicationConfiguration(BaseModel):
     """
@@ -14,5 +17,6 @@ class ReplicationConfiguration(BaseModel):
     Rules : List[ReplicationRule]
         A container for one or more replication rules.
     """
+
     Role: str
-    Rules: List[ReplicationRule]
+    Rules: list[ReplicationRule]

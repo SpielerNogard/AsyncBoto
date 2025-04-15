@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class JSONOutput(BaseModel):
     """
@@ -8,7 +8,9 @@ class JSONOutput(BaseModel):
     Attributes
     ----------
     RecordDelimiter : Optional[str]
-        The value used to separate individual records in the output. If no value is specified,
+        The value used to separate individual records in the output.
+        If no value is specified,
         Amazon S3 uses a newline character ('\\n').
     """
-    RecordDelimiter: Optional[str]
+
+    RecordDelimiter: str | None

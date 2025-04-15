@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Literal
+
+from pydantic import BaseModel
+
 
 class RequestPaymentConfiguration(BaseModel):
     """
@@ -10,4 +12,5 @@ class RequestPaymentConfiguration(BaseModel):
     Payer : Literal["Requester", "BucketOwner"]
         Specifies who pays for the download and request fees.
     """
+
     Payer: Literal["Requester", "BucketOwner"]

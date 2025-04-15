@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+
 
 class ObjectPart(BaseModel):
     """
@@ -22,10 +22,11 @@ class ObjectPart(BaseModel):
     Size : Optional[int]
         The size of the uploaded part in bytes.
     """
-    ChecksumCRC32: Optional[str] = None
-    ChecksumCRC32C: Optional[str] = None
-    ChecksumCRC64NVME: Optional[str] = None
-    ChecksumSHA1: Optional[str] = None
-    ChecksumSHA256: Optional[str] = None
-    PartNumber: Optional[int] = Field(None, ge=1, le=10000)
-    Size: Optional[int] = None
+
+    ChecksumCRC32: str | None = None
+    ChecksumCRC32C: str | None = None
+    ChecksumCRC64NVME: str | None = None
+    ChecksumSHA1: str | None = None
+    ChecksumSHA256: str | None = None
+    PartNumber: int | None = Field(None, ge=1, le=10000)
+    Size: int | None = None

@@ -1,11 +1,14 @@
+from typing import Literal
+
 from pydantic import BaseModel, Field
-from typing import Optional, List, Literal
+
+from .abort_incomplete_multipart_upload import AbortIncompleteMultipartUpload
 from .lifecycle_expiration import LifecycleExpiration
 from .lifecycle_rule_filter import LifecycleRuleFilter
 from .noncurrent_version_expiration import NoncurrentVersionExpiration
 from .noncurrent_version_transition import NoncurrentVersionTransition
 from .transition import Transition
-from .abort_incomplete_multipart_upload import AbortIncompleteMultipartUpload
+
 
 class LifecycleRule(BaseModel):
     """
@@ -14,9 +17,11 @@ class LifecycleRule(BaseModel):
     Attributes
     ----------
     Status : Literal["Enabled", "Disabled"]
-        If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being applied.
+        If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is
+        not currently being applied.
     AbortIncompleteMultipartUpload : Optional[AbortIncompleteMultipartUpload]
-        Specifies the days since the initiation of an incomplete multipart upload before removal.
+        Specifies the days since the initiation of an incomplete multipart upload before
+         removal.
     Expiration : Optional[LifecycleExpiration]
         Specifies the expiration for the lifecycle of the object.
     Filter : Optional[LifecycleRuleFilter]
@@ -26,18 +31,20 @@ class LifecycleRule(BaseModel):
     NoncurrentVersionExpiration : Optional[NoncurrentVersionExpiration]
         Specifies when noncurrent object versions expire.
     NoncurrentVersionTransitions : Optional[List[NoncurrentVersionTransition]]
-        Specifies the transition rule for noncurrent objects to a specific storage class.
+        Specifies the transition rule for noncurrent objects to a specific storage
+        class.
     Prefix : Optional[str]
         Deprecated. Use Filter instead.
     Transitions : Optional[List[Transition]]
         Specifies when an Amazon S3 object transitions to a specified storage class.
     """
+
     Status: Literal["Enabled", "Disabled"]
-    AbortIncompleteMultipartUpload: Optional[AbortIncompleteMultipartUpload]
-    Expiration: Optional[LifecycleExpiration]
-    Filter: Optional[LifecycleRuleFilter]
-    ID: Optional[str] = Field(None, max_length=255)
-    NoncurrentVersionExpiration: Optional[NoncurrentVersionExpiration]
-    NoncurrentVersionTransitions: Optional[List[NoncurrentVersionTransition]]
-    Prefix: Optional[str]  # Deprecated
-    Transitions: Optional[List[Transition]]
+    AbortIncompleteMultipartUpload: AbortIncompleteMultipartUpload | None
+    Expiration: LifecycleExpiration | None
+    Filter: LifecycleRuleFilter | None
+    ID: str | None = Field(None, max_length=255)
+    NoncurrentVersionExpiration: NoncurrentVersionExpiration | None
+    NoncurrentVersionTransitions: list[NoncurrentVersionTransition] | None
+    Prefix: str | None  # Deprecated
+    Transitions: list[Transition] | None
