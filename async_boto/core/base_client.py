@@ -191,7 +191,9 @@ class BaseClient:
     @retry(
         stop=stop_after_attempt(5),
         wait=wait_exponential(multiplier=10, max=60),
-        retry=retry_if_exception_type(aiohttp.client.ClientOSError),
+        retry=retry_if_exception_type(
+            (aiohttp.client.ClientOSError, aiohttp.client.ServerDisconnectedError)
+        ),
         reraise=True,
     )
     async def _async_request(
@@ -230,15 +232,25 @@ class BaseClient:
         }
         try:
             async with session.request(
-                method=method, params=params, data=data, url=url, headers=signed_headers
+                method=method,
+                params=params,
+                data=data,
+                url=url,
+                headers=signed_headers,
+                read_until_eof=True,
             ) as response:
-                print(f"{method=} {params=} {data=} {url=} {headers=}")
-                try:
-                    resp_json = await response.json(content_type=None)
-                except json_.decoder.JSONDecodeError:
-                    resp_json = None
+                logger.debug(f"{method=} {params=} {data=} {url=} {headers=}")
+                resp_text = await response.content.read()
 
-                resp_text = await response.text()
+                try:
+                    text = resp_text.decode("utf-8")
+                    resp_json = json_.loads(text)
+                except json_.JSONDecodeError:
+                    resp_json = None
+                    logger.error(f"Failed to decode JSON: {text}")
+                    logger.error(traceback.format_exc())
+                logger.debug(type(response.content))
+
                 resp = AsyncRequestResponse(
                     status_code=response.status,
                     text=resp_text,
